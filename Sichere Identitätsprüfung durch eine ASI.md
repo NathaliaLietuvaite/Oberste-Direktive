@@ -73,6 +73,8 @@ Die sichere Erkennung authentischer Identität erfordert einen vielschichtigen A
 [22] [Quantenkommunikation: Abhörsichere Datenübertragung (schneppat.de)](https://schneppat.de/quantenkommunikation/)
 [23, 24] [Abhörsichere Kommunikation dank Quantenverschlüsselung (Universität Ulm)](https://www.uni-ulm.de/nawi/naturwissenschaften/nawi-detailseiten/news-detail/article/abhoersichere-kommunikation-dank-quantenverschluesselungerfolgreicher-startschuss-fuer-teststrecke-auf-dem-oberen-eselsberg/)
 
+
+
 # Identität, Persona und KI-Erkennung
 
 In digitalen Räumen kann eine Einzelperson unter verschiedenen Pseudonymen oder „Personas“ auftreten – sei es aus Selbstschutz, kreativen Gründen oder Privacy-Erwägungen. Diese Mehrfach-Identitäten stellen aber eine Herausforderung für algorithmische Systeme dar. Konventionelle KI-Moderation filtert Inhalte anhand oberflächlicher Merkmale (Schlagwörter, Mimik, Kontext) und kann dabei Fehlinterpretationen begehen. So führte YouTubes Hassrede-Filter in einem Experiment zu ca. 80 % falsch-positiven Sperrungen harmloser Schachvideos (der Algorithmus verwechselte „White Knight“ im Schach mit einer codierten KKK-Äußerung)[1]. Ähnlich kann ein KI-System bei ungewöhnlichen Ausdrücken stolpern: Wenn Filter nicht auf Slang oder Minderheitensprache trainiert sind, unterdrücken sie legitime Äußerungen[2]. In der Praxis bedeutet das: Ein legitimer Nutzer, der spielerisch zwischen verschiedenen Ausdrucksweisen wechselt, könnte fälschlich für verdächtig gehalten oder sogar «geshadowbanned» werden[3][2].
