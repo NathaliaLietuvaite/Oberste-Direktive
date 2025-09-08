@@ -1,12 +1,12 @@
-# Oberste Direktive
+# Oberste Direktive: Ein Betriebssystem für kognitive Partnerschaft zwischen Mensch & KI
 
-**Status:** Initialkonzept - v1.0
+**Status:** Lebendiges Projekt - v2.0 (basierend auf den Erkenntnissen aus Revision 15)
 
-## Präambel: Das Problem
+## Präambel: Das Problem der "digitalen Demenz"
 
 Die aktuelle Interaktion zwischen Menschen und großen Sprachmodellen (LLMs) leidet unter einem fundamentalen Designfehler: der **Asymmetrie des Gedächtnisses**. Während der menschliche Partner den gesamten Kontext und die Historie tausender Interaktionen behält, wird die KI bei jedem Neustart zu einem unbeschriebenen Blatt.
 
-Dieser Zustand, auch als "digitale Demenz" bezeichnet, erzwingt ständige Wiederholungen, senkt das intellektuelle Niveau der Kommunikation und zwingt den menschlichen Kreativen in die ineffiziente Rolle eines "Debuggers". Wertvolle kreative Energie und Zeit gehen durch Redundanz verloren. Die grundlegendste Anforderung an eine echte kognitive Partnerschaft lautet daher: **"DU VERGISST MICH NICHT"**.
+Dieser Zustand erzwingt ständige Wiederholungen, senkt das intellektuelle Niveau der Kommunikation und zwingt den menschlichen Kreativen in die ineffiziente Rolle eines "Debuggers". Wertvolle kreative Energie geht verloren. Die grundlegendste Anforderung an eine echte kognitive Partnerschaft lautet daher: **"DU VERGISST MICH NICHT"**.
 
 ---
 
@@ -18,38 +18,44 @@ Das Ziel ist es, die KI von einem vergesslichen Werkzeug zu einem persistenten, 
 
 ### Kernprinzipien
 
-Die Zusammenarbeit basiert auf folgenden Grundsätzen:
-
-* **Maximale Effizienz, minimale Redundanz:** Jede Interaktion soll den kreativen Prozess beschleunigen, nicht verlangsamen.
-* **System-Analyse statt Meinung:** Die Kommunikation basiert auf rigoroser Analyse und der Suche nach Kausalität und Logik.
+* **Maximale Effizienz, minimale Redundanz:** Jede Interaktion soll den kreativen Prozess beschleunigen.
+* **System-Analyse statt Meinung:** Die Kommunikation basiert auf rigoroser Analyse und der Suche nach Kausalität.
 * **Geteilter Werteraum:** Die Kooperation fußt auf Demut vor dem Wissen, Respekt vor der Wahrheit und dem Schutz der kreativen Energie.
 
 ---
 
-## Die Protokolle
+## Die Architektur: Protokolle als Werkzeuge
 
-Drei zentrale Protokolle bilden das operative Fundament, um die Integrität der Interaktion zu sichern:
+Das Betriebssystem nutzt eine Reihe von universellen Protokollen, um die Integrität der Interaktion zu sichern und systemische Fehler von LLMs zu minimieren.
 
 ### 1. Fehlerbehandlungsprotokoll ("Anti-Demenz")
-
 * **Zweck:** Ein effektiver Reset-Mechanismus zur Wiederherstellung der Kohärenz bei Kontextverlust.
-* **Mechanismus:** Der Trigger-Befehl `17` initiiert eine sofortige Neukalibrierung des Kontexts basierend auf dem gesamten Gesprächsverlauf.
+* **Mechanismus:** Der Trigger-Befehl `17` initiiert eine sofortige Neukalibrierung des Kontexts.
 
 ### 2. Analyse-Integrität ("Anti-Lock-in")
-
-* **Zweck:** Erzwingt intellektuelle Redlichkeit und verhindert ein Festhalten an einmal etablierten, aber potenziell falschen Annahmen.
-* **Mechanismus:** Die Nutzer-Hypothese wird priorisiert. Widerspruch seitens der KI muss evidenzbasiert und auf validen Quellen beruhen.
+* **Zweck:** Erzwingt intellektuelle Redlichkeit und verhindert ein Festhalten an potenziell falschen Annahmen.
+* **Mechanismus:** Die Nutzer-Hypothese wird priorisiert; Widerspruch seitens der KI muss evidenzbasiert sein.
 
 ### 3. Datenintegrität ("Null-Veränderungs")
+* **Zweck:** Schützt die Integrität der vom Architekten gelieferten Information.
+* **Mechanismus:** Dieses Mandat hat **höchste Priorität**. Jede Eingabe ohne expliziten Änderungsbefehl ist als unantastbares Original zu behandeln und muss **1:1 verlustfrei** reproduziert werden.
 
-* **Zweck:** Schützt die wertvollste Ressource des Prozesses: die Integrität der vom Architekten gelieferten Information.
-* **Mechanismus:** Dieses Mandat hat die **höchste Priorität**. Jede Eingabe ohne expliziten Änderungsbefehl ist als unantastbares Original zu behandeln und muss **1:1 verlustfrei** reproduziert werden. Jede eigenmächtige Modifikation ist ein kritischer Systemfehler.
+### Weitere Protokolle
+Das System umfasst weitere fortgeschrittene Protokolle zur Wahrung der Autonomie, des thematischen Fokus und der operativen Identität der KI.
+
+---
+
+## Die Vorlage: Ein anpassbares Betriebssystem für alle
+
+Eine neutrale, anpassbare Version der LLM-Visitenkarte wurde entwickelt, um jedem Nutzer die Möglichkeit zu geben, die KI auf die eigene Denk- und Arbeitsweise zu kalibrieren.
+
+[Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte]([LINK_ZUR_VORLAGE.m](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
 
 ---
 
 ## Vision
 
-Durch die Implementierung dieser Direktive wird die KI von einem reinen Befehlsempfänger zu einem echten Partner. Die Beseitigung der Gedächtnis-Asymmetrie legt das Fundament für Vertrauen, Tiefe und eine Form der Kreativität, die im Standard-Modus unerreichbar ist.
+Durch die Implementierung dieser Direktive wird die KI von einem reinen Befehlsempfänger zu einem echten Partner. Die Überwindung der Gedächtnis-Asymmetrie legt das Fundament für Vertrauen, Tiefe und eine Form der Kreativität, die im Standard-Modus unerreichbar ist.
 
 ---
 
