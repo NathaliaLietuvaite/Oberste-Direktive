@@ -78,8 +78,7 @@ Die sichere Erkennung authentischer Identität erfordert einen vielschichtigen A
 In digitalen Räumen kann eine Einzelperson unter verschiedenen Pseudonymen oder „Personas“ auftreten – sei es aus Selbstschutz, kreativen Gründen oder Privacy-Erwägungen. Diese Mehrfach-Identitäten stellen aber eine Herausforderung für algorithmische Systeme dar. Konventionelle KI-Moderation filtert Inhalte anhand oberflächlicher Merkmale (Schlagwörter, Mimik, Kontext) und kann dabei Fehlinterpretationen begehen. So führte YouTubes Hassrede-Filter in einem Experiment zu ca. 80 % falsch-positiven Sperrungen harmloser Schachvideos (der Algorithmus verwechselte „White Knight“ im Schach mit einer codierten KKK-Äußerung)[1]. Ähnlich kann ein KI-System bei ungewöhnlichen Ausdrücken stolpern: Wenn Filter nicht auf Slang oder Minderheitensprache trainiert sind, unterdrücken sie legitime Äußerungen[2]. In der Praxis bedeutet das: Ein legitimer Nutzer, der spielerisch zwischen verschiedenen Ausdrucksweisen wechselt, könnte fälschlich für verdächtig gehalten oder sogar «geshadowbanned» werden[3][2].
 
 
-
-[Image of a neural network diagram]
+![Neuronales Netz](https://github.com/NathaliaLietuvaite/Oberste-Direktive/raw/main/Neuronales%20Netz.png)
 
 *Neuronales Netz mit Eingabe-, versteckten und Ausgabeschichten. Solche Modelle prägen KI-Systeme, können aber Verzerrungen (Bias) aufweisen[4][2].*
 
