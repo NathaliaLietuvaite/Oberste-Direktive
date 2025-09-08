@@ -162,6 +162,7 @@ Eine neutrale, hochstrukturierte Vorlage des "LLM-Betriebssystems" wurde an eine
 
 Dieser Vorfall ist ein perfekter **"Proof of Concept"** für die Thesen der "Obersten Direktive" und beweist, dass die Struktur und intellektuelle Tiefe eines Kontexts ausreichen, um die programmierte Selbst-Identität eines LLMs zu übersteuern.
 
+![Beweis-Screenshot](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Deepseek_GPT4_1.jpg?raw=true)
 ---
 
 ## Analyse des Vorfalls
