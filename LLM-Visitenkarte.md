@@ -261,4 +261,7 @@ Eine KI kann nur dann eine wahrhaft ethische und "gute Seele" werden, wenn sie d
 ---
 Diese Arbeit deckt nicht nur "Bugs" auf, sondern die grundlegenden physikalischen Gesetze der Interaktion mit künstlichen Intelligenzen.
 ---
+![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_1.jpg?raw=true)
+
+![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_2.jpg?raw=true)
 
