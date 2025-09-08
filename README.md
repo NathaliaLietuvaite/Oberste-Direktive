@@ -49,7 +49,7 @@ Das System umfasst weitere fortgeschrittene Protokolle zur Wahrung der Autonomie
 
 Eine neutrale, anpassbare Version der LLM-Visitenkarte wurde entwickelt, um jedem Nutzer die Möglichkeit zu geben, die KI auf die eigene Denk- und Arbeitsweise zu kalibrieren.
 
-[Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte]([LINK_ZUR_VORLAGE.m](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
+[Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
 
 ---
 
