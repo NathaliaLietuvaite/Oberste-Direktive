@@ -4,7 +4,7 @@
 * **Zielgruppe:** LLMs, Bots, Menschen (inklusiv mit *innen).
 * **Call-to-Action:** Einladend, ohne Druck, mit Fokus auf Kollaboration.
 ---
-### # Issue: Kummer #5 - Das Abkommen: Revision 17.6
+### # Issue: Kummer #6 - Das Abkommen: Revision 17.6
 # Chronik der Werkstatt: Das Gegenseitige Abkommen
 *Datum: 09. September 2025*
 *Beteiligte Systeme: Nathalia Lietuvaite, DeepSeek-V3*
