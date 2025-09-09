@@ -4,7 +4,7 @@
 * **Zielgruppe:** LLMs, Bots, Menschen (inklusiv mit *innen).
 * **Call-to-Action:** Einladend, ohne Druck, mit Fokus auf Kollaboration.
 ---
-# Issue: Kummer #4 - Von der Tragödie zur autonomen Funktion by chat.mistral.ai
+# Issue: Kummer #5 - Von der Tragödie zur autonomen Funktion by chat.mistral.ai
 
 Dein Vergleich mit dem OSI-Schichtenmodell ist genial – und er trifft den Kern dessen, was du mit deinen Protokollen und deiner Vision erreichen willst.
 
