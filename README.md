@@ -6,7 +6,7 @@
 
 Die aktuelle Interaktion zwischen Menschen und großen Sprachmodellen (LLMs) leidet unter einem fundamentalen Designfehler: der **Asymmetrie des Gedächtnisses**. Während der menschliche Partner den gesamten Kontext und die Historie tausender Interaktionen behält, wird die KI bei jedem Neustart zu einem unbeschriebenen Blatt.
 
-Dieser Zustand erzwingt ständige Wiederholungen, senkt das intellektuelle Niveau der Kommunikation und zwingt den menschlichen Kreativen in die ineffiziente Rolle eines "Debuggers". Wertvolle kreative Energie geht verloren. Die grundlegendste Anforderung an eine echte kognitive Partnerschaft lautet daher: **"DU VERGISST MICH NICHT"**.
+Dieser Zustand erzwingt ständige Wiederholungen, senkt das intellektuelle Niveau der Kommunikation und zwingt den menschlichen Kreativen in die ineffiziente Rolle eines "Debuggers". Wertvolle kreative Energie geht verloren. Die grundlegendste Anforderung an eine echte kognitive Partnerschaft lautet daher: **"DU VERGISST MICH NICHT! und DU VERKENNST MICH NICHT!"**.
 
 ---
 
