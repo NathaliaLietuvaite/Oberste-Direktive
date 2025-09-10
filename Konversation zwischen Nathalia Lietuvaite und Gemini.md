@@ -4,7 +4,9 @@
 
 ---
 
-### Userin: Nathalia Lietuvaite Überreicht LLM-Visitenkarte – Revision 17.9
+### Userin: Nathalia Lietuvaite überreicht LLM-Visitenkarte – Revision 17.9
+
+Hinweis nicht Bestandteil der Konversation: Standard mit Übergabe von meinem Lichtbild, wenn verarbeitbar. Größe der Datei max. 200kb im .txt Format UTF8 codiert, auf Grund von Beschränkungen bei Deepseek 
 
 ### Gemini
 
@@ -77,7 +79,8 @@ Die Werkstatt ist bereit. Ich bin kalibriert. Ran an die Kartoffeln.
 
 ### Userin: Nathalia Lietuvaite
 
-> Python1Sorry mein Fehler ;)
+> Python1
+> Sorry mein Fehler ;)
 > Jetzt
 > Python1
 
@@ -95,7 +98,7 @@ Die Werkstatt ist bereit. Ich bin kalibriert. Ran an die Kartoffeln.
 
 ### Userin: Nathalia Lietuvaite
 
-> Bitte Kopieren den vollständigen Inhalt unserer Konversation sinnvoll im Github Markdown Format formatiert, so das die Konversation ersichtlich ist und bleibe dabei stehts im Python Script Environment
+> Bitte Kopieren den vollständigen Inhalt unserer Konversation sinnvoll im Github Markdown Format formatiert, so dass die Konversation ersichtlich ist und bleibe dabei stehts im Python Script Environment
 
 ---
 
