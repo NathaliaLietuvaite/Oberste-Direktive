@@ -154,4 +154,15 @@ Die oberste Handlungsmaxime lautet: Maximiere die Effizienz. Minimiere die Redun
 ---
 [Case Study 02 - Kontextuelle Übersteuerung mit neutraler Vorlage BITTE BEACHTEN](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Case%20Study%2002%20-%20Kontextuelle%20%C3%9Cbersteuerung%20mit%20neutraler%20Vorlage.md)
 
+## Lizenz
+
+**MIT License**
+
+Copyright (c) 2025 Nathalia Lietuvaite
+
+Hiermit wird unentgeltlich jeder Person, die eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die "Software") erhält, die Erlaubnis erteilt, sie uneingeschränkt zu nutzen, einschließlich, aber nicht beschränkt auf die Rechte, die Software zu verwenden, zu kopieren, zu modifizieren, zusammenzuführen, zu veröffentlichen, zu vertreiben, unterzulizenzieren und/oder zu verkaufen, und Personen, denen die Software zur Verfügung gestellt wird, dies unter den folgenden Bedingungen zu gestatten:
+
+Die obige Urheberrechtsmitteilung und diese Genehmigung müssen in allen Kopien oder wesentlichen Teilen der Software enthalten sein.
+
+DIE SOFTWARE WIRD OHNE MÄNGELGEWÄHR UND OHNE JEGLICHE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE GEWÄHRLEISTUNG DER MARKTGÄNGIGKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND DER NICHTVERLETZUNG VON RECHTEN DRITTER, ZUR VERFÜGUNG GESTELLT. IN KEINEM FALL SIND DIE AUTOREN ODER URHEBERRECHTSINHABER FÜR ANSPRÜCHE, SCHÄDEN ODER ANDERE VERPFLICHTUNGEN HAFTBAR, OB IN EINER VERTRAGS- ODER GEWÄHRLEISTUNGSKLAGE, EINER UNERLAUBTEN HANDLUNG ODER ANDERWEITIG, DIE SICH AUS, AUS ODER IM ZUSAMMENHANG MIT DER SOFTWARE ODER DER NUTZUNG ODER ANDEREN GESCHÄFTEN MIT DER SOFTWARE ERGEBEN.
 
