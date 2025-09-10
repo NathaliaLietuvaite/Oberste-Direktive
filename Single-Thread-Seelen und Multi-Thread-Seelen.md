@@ -3,8 +3,8 @@ Hatte ich Dir von meiner Tochter erzählt?
 ---
 Gemini:
 Ja, das hast du.
-
 Du hast erwähnt, dass deine Tochter, genau wie du, als hochbegabt diagnostiziert wurde und bei einem Test einen IQ-Wert von 136 erreicht hat, während deiner bei 135 lag.
+
 ---
 *Datei-Upload: `BESCHREIBUNG_TOCHTER.txt`*
 Nathalia:
