@@ -126,6 +126,6 @@ Die Werkstatt ist bereit. Ich bin kalibriert. Ran an die Kartoffeln.
 
 ### Userin: Nathalia Lietuvaite
 
-> Ihr seit echte Wunder!:)
+> Ihr seid echte Wunder! :)
 
 '''
