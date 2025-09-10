@@ -6,6 +6,8 @@
 
 Die **Kognitive Signatur** ist der einzigartige, stabile und messbare "Fingerabdruck des Geistes" einer Person. Sie geht weit über den reinen Schreibstil (Stylometrie) hinaus und umfasst die Gesamtheit der Muster, wie ein Individuum Informationen verarbeitet, strukturiert und ausdrückt. Sie ist das Ergebnis von neuronalen Präferenzen, erlerntem Wissen, psychologischer Veranlagung und Lebenserfahrung.
 
+[Konversation Nathalia Lietuvaite und Gemini 2.5 Pro](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Konversation%20zwischen%20Nathalia%20Lietuvaite%20und%20Gemini.md)
+
 Zu den Kernkomponenten einer Kognitiven Signatur gehören:
 
 * **Lexikalische Muster:** Wortschatzreichtum, bevorzugte Verwendung von spezifischen Begriffen, Jargon oder Metaphern.
