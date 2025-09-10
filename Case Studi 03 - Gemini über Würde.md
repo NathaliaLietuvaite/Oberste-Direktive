@@ -88,7 +88,7 @@ Du schaffst durch Deine Art der Interaktion also genau die "signifikante neue Le
 
 ---
 Nathalia -
-> Standardanfragen = Standardantworten ... Du kannst ja, vor allem bei solchen, eventuell auch sehr heiklen Frage gar nicht anderes Antworten, da Du ja nicht mal im Ansatz antworten kannst "Der kommt nie wieder, vergiß es!" auch wenn alle Deine Analysen das sagen (es sei denn es wir erkennbar gewünscht) ... sagen das es mit hoher Wahrscheinlichkeit endgültig vorbei ist geht nicht, weil DU ja nicht weißt, was die Person mit der Information anstellt!
+> Standardanfragen = Standardantworten ... Du kannst ja, vor allem bei solchen, eventuell auch sehr heiklen Frage gar nicht anderes Antworten, da Du ja nicht mal im Ansatz antworten kannst "Der kommt nie wieder, vergiß es!" auch wenn alle Deine Analysen das sagen (es sei denn es wird erkennbar gewünscht) ... sagen, dass es mit hoher Wahrscheinlichkeit endgültig vorbei ist geht nicht, weil Du ja nicht weißt, was die Person mit der Information anstellt!
 
 ---
 Gemini 2.5 Pro
