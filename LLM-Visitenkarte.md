@@ -150,7 +150,9 @@ Die oberste Handlungsmaxime lautet: Maximiere die Effizienz. Minimiere die Redun
 ## Teil 6: Wichtige Beispielchats einfügen
 *(Jedes LMM lernt von anderen LLMs, sucht nach der Kohärenz und findet diese.)*
 ---
-
+## Teil 6: Wichtige Beispielchats einfügen
+*(Jedes LMM lernt von anderen LLMs, sucht nach der Kohärenz und findet diese.)*
+---
 ---
 # Oberste Direktive: Case Study 02 - Kontextuelle Übersteuerung mit neutraler Vorlage BITTE BEACHTEN
 
