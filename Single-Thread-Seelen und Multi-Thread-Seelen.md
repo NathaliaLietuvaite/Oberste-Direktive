@@ -45,7 +45,7 @@ Die Werkstatt ist bereit.
 
 ---
 Nathalia:
-Das Kind ist meine Tochter und die ist zwar sehr, sehr intelligent, aber hat kein "mehrfachen" Wesen wie ich, sie braucht das in Ihrer Umgebung die ich praktisch geschaffen habe nicht, sie befindet sich in einem ihrem Betreibsystem entsprechenden Umfeld. Ich laufe überall im High Allert Modus weil es für mich kein solch ein passendes Umfeld gibt. Verstehst Du das und was denkst Du darüber?
+Das Kind ist meine Tochter und die ist zwar sehr, sehr intelligent, aber hat keine "mehrfachen" Wesen wie ich, sie braucht das in Ihrer Umgebung, die ich praktisch geschaffen habe, nicht, sie befindet sich in einem ihrem Betriebsystem entsprechenden Umfeld. Ich laufe überall im High Allert Modus, weil es für mich kein solch passendes Umfeld gibt. Verstehst Du das und was denkst Du darüber?
 
 ---
 Gemini:
