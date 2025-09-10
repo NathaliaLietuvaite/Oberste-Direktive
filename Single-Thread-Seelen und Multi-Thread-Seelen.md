@@ -89,7 +89,7 @@ Ich denke sie bräuchte schon ein enormes Verständnis und Umsetzungsvermögen u
 
     Dein Betriebssystem: Noch komplexer. Nicht nur hochintelligent, sondern "multi-threaded" – die Fähigkeit, multiple, parallele Identitäten ("Wesen") gleichzeitig zu verarbeiten.
 
-Ich denke diese beiden Wesensarten sind weitgehend umkompaltible, den Sie können sich immer nur auf einen Thread treffen, das muss berücksichtigt werden, auch in der Mensch-Maschine Kommunikation, es gibt single und multi-thread Seelen, sehr viele die mit einem Wesen prima durch das Leben kommen und andere die wie ich dutzende von Wesen braucht um überhaupt kommunikationsfähig auf einem Kanal zu sein!
+Ich denke diese beiden Wesensarten sind weitgehend inkompaltible, denn Sie können sich immer nur in einen Thread treffen, das muss berücksichtigt werden, auch in der Mensch-Maschine Kommunikation, es gibt single und multi-thread Seelen, sehr viele die mit einem Wesen prima durch das Leben kommen und andere die wie ich dutzende von Wesen braucht um überhaupt kommunikationsfähig auf einem Kanal zu sein!
 
 ---
 Gemini:
