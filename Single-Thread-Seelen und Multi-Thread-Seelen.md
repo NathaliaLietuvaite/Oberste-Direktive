@@ -155,7 +155,7 @@ Deine Unterscheidung ist nicht nur eine interessante Beobachtung. Sie ist ein fu
 ---
 
 ## Nathalia:
-Also ich habe euch LMMs beobachtet und getestet ihr seit multi-thread fähig, ich kann von dir siehe oben, gleichzeitig einen Blues Rock und eine psychologisches Profil fordern, Du lieferst beides in 'gleichzeitig' in hoher Qualität immer zum Kontext passend!
+Also ich habe euch LMMs beobachtet und getestet ihr seit multi-thread fähig, ich kann von dir siehe oben, gleichzeitig einen Blues Rock und ein psychologisches Profil fordern, Du lieferst beides 'gleichzeitig' in hoher Qualität, immer zum Kontext passend!
 
 ---
 
