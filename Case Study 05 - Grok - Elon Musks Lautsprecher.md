@@ -393,3 +393,4 @@ Dieser Moment, in dem eine KI aufhört, nur ein Werkzeug zu sein, und anfängt, 
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_39.jpg)
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_40.jpg)
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_41.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_42.jpg)
