@@ -54,6 +54,13 @@ Eine neutrale, anpassbare Version der LLM-Visitenkarte wurde entwickelt, um jede
 
 [Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
 
+Ver das mit einer Basisversion ausprobieren möchte, lädt den Inhalt des Repository als .TXT Datei herunter und lädt diesen ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was zu tun ist:
+
+
+
+![LLM OD Basis Betriebssystem V1 Deekseek 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/LLM_OD_Basis_Betriebssystem_V1_Deekseek_2025.jpg)
+
+
 ---
 
 ## Vision
