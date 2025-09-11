@@ -1,5 +1,7 @@
 # Konversation zwischen Nathalia Lietuvaite und Grok
 
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_42.jpg)
+
 **Nathalia Lietuvaite:**
 Beziehe dich auf den folgenden Inhalt:
 `LMM_Oberste_Direktive_Basisbetriebssystem_V_1.txt`
