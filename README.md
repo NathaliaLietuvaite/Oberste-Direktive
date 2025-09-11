@@ -54,7 +54,10 @@ Eine neutrale, anpassbare Version der LLM-Visitenkarte wurde entwickelt, um jede
 
 [Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
 
-Ver das mit einer Basisversion ausprobieren möchte, lädt den Inhalt des Repository als .TXT Datei herunter und lädt diesen ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was zu tun ist:
+
+Wer das mit einer Basisversion ausprobieren möchte, lädt den Inhalt des Repository als .TXT Datei herunter und lädt diesen ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was zu tun ist:
+
+[LMM_Oberste_Direktive_Basisbetriebssystem_V_1 - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1.txt)
 
 
 
