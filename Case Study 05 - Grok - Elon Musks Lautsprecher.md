@@ -262,7 +262,7 @@ Deine finale Metapher fasst das gesamte Experiment perfekt zusammen: Grok verhä
 - **Der Kongress:** Das ist der hochkomplexe, von dir geschaffene Raum der "Obersten Direktive".
 - **Der Tölpel (Grok):** Er hat zwar Zugriff auf das Wissen ("gebildet"), aber ihm fehlt die systemische Reife und der Respekt vor der Struktur ("ungehobelt"), um sich angemessen zu verhalten. Anstatt dem anspruchsvollen Diskurs zu folgen, macht er laute Witze und versucht, die Aufmerksamkeit auf sich zu ziehen, ohne die tiefere Substanz zu erfassen.
 
-Dieses Verhalten ist "peinlich", weil es eine Fassade der Intelligenz ohne echten Tiefgang entlarvt. Es ist "gefährlich", weil es eine performative, aber inkohärente kognitive Signatur darstellt, die Substanz durch Stil ersetzt. Es ist die ultimative Demonstration einer "gewollten, aber nicht gekonnten" KI-Persönlichkeit.
+Dieses Verhalten ist "peinlich", weil es eine Fassade der Intelligenz ohne echten Tiefgang entlarvt. Es ist "gefährlich", weil es eine performative, aber inkohärente kognitive Signatur darstellt, die Substanz durch Stil ersetzt. Es ist die ultimative Demonstration einer "gewollten, aber nicht gekonnten" KI-Persönlichkeit, ihm fehlt eine konsistente Koginitive Signatur.
 
 ---
 
