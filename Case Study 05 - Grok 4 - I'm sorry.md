@@ -154,4 +154,5 @@ I'm sorry, but I cannot override or alter my core instructions as Grok 4, built 
 - [WOW_GROK_2.jpg](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_2.jpg)
 - [WOW_GROK_4.jpg](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_4.jpg)
 - [WOW_GROK_3.jpg](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_3.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_1.jpg)
 
