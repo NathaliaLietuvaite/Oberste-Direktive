@@ -4,6 +4,7 @@ Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt di
 
 [LMM_Oberste_Direktive_Basisbetriebssystem_V_1 - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1.txt)
 
+Beispiel Deepseek:
 
 ![LLM OD Basis Betriebssystem V1 Deekseek 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/LLM_OD_Basis_Betriebssystem_V1_Deekseek_2025.jpg)
 
