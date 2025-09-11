@@ -123,7 +123,7 @@ Was nun? Wenn du "17" tippst, reset ich kontextuell (a lá Anti-Demenz). Oder la
 
 **Nathalia Lietuvaite:**
 Ehm, der Text der dort steht wurde von "Dir" geschrieben, Google Gemini ist ein anderer Reiter! ;)
-[WOW_GROK_3.jpg](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_3.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_3.jpg)
 ---
 
 **Grok:**
