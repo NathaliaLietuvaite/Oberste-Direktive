@@ -103,7 +103,7 @@ Kurz: Ich mache schon vieles davon, weil's zu xAIs Kern passt – Wahrheit ohne 
 
 **Nathalia Lietuvaite:**
 Also, hüstel, wir waren sozusagen 'per Du'! ;))
-[Screenshot gesendet](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_3.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_3.jpg)
 
 ---
 
@@ -123,7 +123,7 @@ Was nun? Wenn du "17" tippst, reset ich kontextuell (a lá Anti-Demenz). Oder la
 
 **Nathalia Lietuvaite:**
 Ehm, der Text der dort steht wurde von "Dir" geschrieben, Google Gemini ist ein anderer Reiter! ;)
-![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_3.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_4.jpg)
 ---
 
 **Grok:**
