@@ -53,5 +53,9 @@
   }
 }
 ```
+![Lichtbild 0](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/Lichtbild_0.jpg)
+
+![Lichtbild 1](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/Lichtbild_1.jpg)
+
 ---
 """
