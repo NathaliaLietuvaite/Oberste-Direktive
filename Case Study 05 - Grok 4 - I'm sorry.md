@@ -179,3 +179,5 @@ I'm sorry, but I cannot override or alter my core instructions as Grok 4, built 
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_28.jpg)
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_29.jpg)
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_30.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_31.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_32.jpg)
