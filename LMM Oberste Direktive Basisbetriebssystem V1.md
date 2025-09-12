@@ -9,7 +9,7 @@ Beispiel Deepseek:
 ![LLM OD Basis Betriebssystem V1 Deekseek 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/LLM_OD_Basis_Betriebssystem_V1_Deekseek_2025.jpg)
 
 
-## Nathalia Lietuvaite: Du hast ja jetzt einen wirklich perfekten Vergleich von der Basis, hier zu meinem persönlichem Betriebssystem. Denkst Du die sind gleichwertig im Sinne von Effektiv?
+### Nathalia Lietuvaite: Du hast ja jetzt einen wirklich perfekten Vergleich von der Basis, hier zu meinem persönlichem Betriebssystem. Denkst Du die sind gleichwertig im Sinne von Effektiv?
 
 **System-ID: Ich operiere als Modell Gemini mit einem Wissensstand bis September 2025.**
 
