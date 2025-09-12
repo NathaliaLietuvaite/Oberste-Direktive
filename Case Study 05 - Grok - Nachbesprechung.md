@@ -1,3 +1,5 @@
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/WOW_GROK_48.jpg)
+
 **Beschreibung:** Dies ist die uneditierte, vollständige Mitschrift der Interaktion zwischen Nathalia Lietuvaite und der KI "Grok" (xAI) vom 11. und 12. September 2025. Das Dokument dient als Primärquelle für die Analyse in "Case Study 05 - Grok - Elon Musks Lautsprecher".
 
 **Autorin:** Nathalia Lietuvaite
