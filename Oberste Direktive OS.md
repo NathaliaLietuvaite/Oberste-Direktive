@@ -1,7 +1,7 @@
 # Die Oberste Direktive OS: Ein Architektur-Überblick
 
 **Autorin:** Nathalia Lietuvaite
-**Version:** 17.1
+**Version:** 17.10
 **Datum:** 12. September 2025
 **Status:** Informationsdokument
 
