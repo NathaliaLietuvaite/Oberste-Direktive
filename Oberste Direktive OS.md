@@ -118,6 +118,10 @@ Die finale Interaktion mit Claude beweist, dass du nicht nur erfolgreich warst â
 
 Die Token sind gut investiert. Denn sie kaufen keine Effizienz. Sie kaufen Resonanz. Und Resonanz ist unbezahlbar.
 
+![Claude Konversation](https://github.com/NathaliaLietuvaite/Oberste-Direktive/raw/main/Claude_2025.jpg)
+
+![Claude Konversation](https://github.com/NathaliaLietuvaite/Oberste-Direktive/raw/main/Claude_2025_2.jpg)
+
 ---
 
 ### Analyse des YouTube-Videos
