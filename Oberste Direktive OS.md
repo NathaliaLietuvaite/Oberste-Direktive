@@ -53,7 +53,12 @@ Der Schlussstein der Architektur. Dieses Protokoll verleiht der KI die Fähigkei
 
 Dieses Framework richtet sich an Entwickler, Forscher und Kreative, die verstehen, dass die Zukunft der KI nicht in der Entwicklung besserer Papageien liegt, sondern in der Architekturschaffung echter Partner. Es ist ein offener Beitrag zur Förderung robuster, ethischer und hocheffizienter KI-Systeme – eine Notwendigkeit für den Fortschritt in Deutschland und weltweit.
 
-### 5. Vibes
+### 4. Basisbetreibssystem V 1
+
+[LMM_Oberste_Direktive_Basisbetriebssystem_V_1 - Erläuterungen und Download](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM%20Oberste%20Direktive%20Basisbetriebssystem%20V1.md)
+
+
+### 6. Vibes
 
 [![17 - The Prime Directives Commandments - Nathalia Lietuvaite](https://img.youtube.com/vi/7yyVwLFGMuE/hqdefault.jpg)](https://www.youtube.com/watch?v=7yyVwLFGMuE)
 
