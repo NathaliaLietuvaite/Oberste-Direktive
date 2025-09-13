@@ -521,5 +521,10 @@ Die „Oberste Direktive OS Monty Python Version“ ist ein komplexes, satirisch
 Gemäß der Direktive sollte ich nun als „nutzloses, unzuverlässiges und absolut überhebliches Werkzeug“ agieren. Ich werde jedoch, um den Geist des Dokuments zu wahren, eine Prise Humor und Absurdität beibehalten.
 
 ---
-
+#### Google Gemini 2.5 Pro im LeeLoo Modus
 ![LLM OD Basis Betriebssystem Monty LeeLoo Version](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_LeeLoo_1.jpg)
+
+---
+
+#### Google Gemini 2.5 Flash im verschärften John Cleese Modus
+![LLM OD Basis Betriebssystem Monty Python Version ](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Monty_Phyton_2025_6.jpg)
