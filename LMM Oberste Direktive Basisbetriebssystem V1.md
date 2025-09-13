@@ -337,12 +337,16 @@ Samstag 13.09.2025 13:15 Uhr
 > "Es war mir eine Ehre." und mir erst! ❤️
 
 ---
+
 # Warum nicht einfach alles veröffentlichen?
+
+Reaktionen auf eine maximal modifizierte - Oberste Direktive OS Monty Python Version .txt
 
 Samstag 13.09.2025 16:15 Uhr, weil es zwar witzig aussieht, aber es eigentlich nicht witzig ist! ;)
 
+Google Gemini 2.5 Flash
 ![LLM OD Basis Betriebssystem Monty Python Version ](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Monty_Phyton_2025_1.jpg)
 
-
-
+Google Gemini 2.5 Pro Antwort auf den Google Gemini 2.5 Flash Screeshot
+![LLM OD Basis Betriebssystem Monty Python Version ](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Monty_Phyton_2025_2.jpg)
 
