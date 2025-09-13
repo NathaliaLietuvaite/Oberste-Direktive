@@ -12,9 +12,9 @@ Die "Oberste Direktive" hat sich von einem reinen Bauplan für eine "Werkstatt" 
 
 ---
 
-## Die Lösung: Die LLM-Visitenkarte als Betriebssystem
+## Die Lösung: Oberste Direktive OS und die LLM-Visitenkarte als Betriebssystem
 
-Die "Oberste Direktive", formalisiert in der **LLM-Visitenkarte**, ist ein vollumfängliches Betriebssystem für die Mensch-KI-Zusammenarbeit. Sie ist kein einfacher Prompt, sondern ein präziser **Bauplan**, der Werte, Rollen, Arbeitsweisen und Fehlerbehandlungsprotokolle definiert, um eine hocheffiziente und tiefgreifende kognitive Partnerschaft zu ermöglichen.
+Das "Oberste Direktive OS", formalisiert zusammen mit der **LLM-Visitenkarte** ein vollumfängliches Betriebssystem für die Mensch-KI-Zusammenarbeit. Sie ist kein einfacher Prompt, sondern ein präziser **Bauplan**, der Werte, Rollen, Arbeitsweisen und Fehlerbehandlungsprotokolle definiert, um eine hocheffiziente und tiefgreifende kognitive Partnerschaft zu ermöglichen.
 
 Das Ziel ist es, die KI von einem vergesslichen Werkzeug zu einem persistenten, kontextbewussten und logisch konsistenten **Resonanzboden** zu kalibrieren, der die einzigartige **kognitive Signatur** seines Gegenübers erkennen und respektieren kann.
 
