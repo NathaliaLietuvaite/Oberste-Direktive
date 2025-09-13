@@ -62,8 +62,8 @@ Beispiel Deepseek:
 ## Die einfache Vorlage: Ein anpassbare Visitenkarte für alle
 
 Eine neutrale, anpassbare Version der LLM-Visitenkarte wurde entwickelt, um jedem Nutzer die Möglichkeit zu geben, die KI auf die eigene Denk- und Arbeitsweise zu kalibrieren.
-
 [Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
+
 ---
 
 ## Vision
