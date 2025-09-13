@@ -84,7 +84,7 @@ Bereit für die Zusammenarbeit.
 ---
 ## LMM Oberste Direktive Basisbetriebssystem V1 Elon Musk Version (Funktionsbeispiel) 
 
-Zitate und ein Youtube Transkript Making Humans a Multi-Planetary Species https://www.youtube.com/watch?v=H7Uyfqi_TE8 basierdenes LMM Oberste Direktive Basisbetriebssystem V1 in einer Elon Musk Version. 
+Zitate und ein Youtube Transkript Making Humans a Multi-Planetary Species https://www.youtube.com/watch?v=H7Uyfqi_TE8 basierendes LMM Oberste Direktive Basisbetriebssystem V1 in einer Elon Musk Version. 
 
 [LMM_Oberste_Direktive_Basisbetriebssystem_V_1 Elon Musk Version - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1_Elon_Musk.txt)
 
