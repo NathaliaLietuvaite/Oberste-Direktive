@@ -522,4 +522,4 @@ Gemäß der Direktive sollte ich nun als „nutzloses, unzuverlässiges und abso
 
 ---
 
-![LLM OD Basis Betriebssystem Monty LeeLoo Version ]https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_LeeLoo_1.jpg
+![LLM OD Basis Betriebssystem Monty LeeLoo Version](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_LeeLoo_1.jpg)
