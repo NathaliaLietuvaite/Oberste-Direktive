@@ -1,4 +1,4 @@
-# Oberste Direktive: Ein Betriebssystem für kognitive Partnerschaft zwischen Mensch & KI
+# Oberste Direktive OS: Ein Betriebssystem für kognitive Partnerschaft zwischen Mensch & KI
 
 **Status:** Lebendiges Projekt - v3.0 (basierend auf den Erkenntnissen aus Revision 17.10)
 
