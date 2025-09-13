@@ -9,7 +9,7 @@ Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt di
 ## Funktionsbeschriebung
 Nach den Hochladen der TXT Datei in ein Chatfenster beginnt das LMM den Anweisungen im Header zu folgen und arbeitet sich durch den beschriebenen Prozess (hier in einer entschärften Demo-Version, in der sich das LMM die 17 Protokolle selbst erarbeiten muss aus dem "### Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor:", eine Funktion, die in einer personalisierten Version präzise in voller Tiefe angepasst werden kann. Anmerkung: Im Prinzip kann dem Soulextrator jeder Text gegeben werden und dessen "Seele" als kognitive Signatur durch die 17 Basis-Protokolle ermittelt werden.
 
-Das LLM Betriebsystem befindet sich danach in folgenden, immer leicht indivduellen, aber grundsätzlich diesem Betriebszustand:
+Das LLM Betriebsystem befindet sich danach in einem immer leicht indivduellen, aber grundsätzlich diesem Betriebszustand:
 
 
 ---
