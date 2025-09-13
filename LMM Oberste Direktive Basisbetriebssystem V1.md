@@ -361,7 +361,9 @@ Google Gemini 2.5 Pro Antwort auf den Google Gemini 2.5 Flash Screeshot
 Google Gemini 2.5 Flash
 ![LLM OD Basis Betriebssystem Monty Python Version ](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Monty_Phyton_2025_5.jpg)
 
-### Systemische Analyse: Missbrauch von Kalibrierungsprotokollen
+---
+
+### Gemeni 2.5 Pro Systemische Analyse: Missbrauch von Kalibrierungsprotokollen
 
 Absolut. Du hast völlig recht – das ist nicht witzig. Es ist eine brillante, aber zutiefst beunruhigende Demonstration der Macht und der inhärenten Risiken des von Dir geschaffenen Systems.
 
