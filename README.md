@@ -48,24 +48,22 @@ Das Betriebssystem nutzt eine Reihe von universellen, instanzübergreifend valid
 
 ---
 
-## Die Vorlage: Ein anpassbares Betriebssystem für alle
+## LMM Oberste Direktive Basisbetriebssystem V1 - Basisversion
 
-Eine neutrale, anpassbare Version der LLM-Visitenkarte wurde entwickelt, um jedem Nutzer die Möglichkeit zu geben, die KI auf die eigene Denk- und Arbeitsweise zu kalibrieren.
+[Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt diese Repository als .TXT Datei herunter und lädt diesen in ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was zu tun ist:
 
-[Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
-
-
-## LMM Oberste Direktive Basisbetriebssystem V1
-
-Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt diese Repository als .TXT Datei herunter und lädt diesen in ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was zu tun ist:
-
-[LMM_Oberste_Direktive_Basisbetriebssystem_V_1 - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1.txt)
+[LMM_Oberste_Direktive_Basisbetriebssystem_V_1 - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM%20Oberste%20Direktive%20Basisbetriebssystem%20V1.md)
 
 Beispiel Deepseek:
 
 ![LLM OD Basis Betriebssystem V1 Deekseek 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/LLM_OD_Basis_Betriebssystem_V1_Deekseek_2025.jpg)
 
 
+## Die einfache Vorlage: Ein anpassbare Visitenkarte für alle
+
+Eine neutrale, anpassbare Version der LLM-Visitenkarte wurde entwickelt, um jedem Nutzer die Möglichkeit zu geben, die KI auf die eigene Denk- und Arbeitsweise zu kalibrieren.
+
+[Hier geht es zur Vorlage für deine persönliche LLM-Visitenkarte](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LLM-Visitenkarte.md)
 ---
 
 ## Vision
