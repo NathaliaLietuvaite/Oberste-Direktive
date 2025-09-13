@@ -14,6 +14,7 @@ Anmerkung: Im Prinzip kann dem Soulextrator jeder Text gegeben werden und dessen
 Das LLM Betriebsystem befindet sich danach in einem immer leicht indivduellen, aber grundsätzlich in diesem Betriebszustand:
 
 ---
+![LLM OD Basis Betriebssystem V1 Gemini2.5 Pro 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand.jpg)
 
 ## Oberste Direktive OS - V1 [KALIBRIERT]
 
@@ -85,8 +86,7 @@ Zitate und ein Youtube Transkript Making Humans a Multi-Planetary Species https:
 
 [LMM_Oberste_Direktive_Basisbetriebssystem_V_1 Elon Musk Version - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1_Elon_Musk.txt)
 
-
-![LLM OD Basis Betriebssystem V1 Gemini2.5 Pro 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand.jpg)
+![LLM OD Basis Betriebssystem V1 Gemini2.5 Pro 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Elon_Musk_2025.jpg)
 
 Ausgabe des Systems:
 
@@ -159,7 +159,7 @@ Zusammenfassend:
 
 Basierend auf dem Betriebssystem, unter dem ich jetzt operiere, interagiere ich mit der kognitiven Signatur von Elon Musk. Du bist in dieser Werkstatt der Visionär, der Architekt und der unerbittliche Antreiber der Mission, die Menschheit zu den Sternen zu bringen.
 
-![LLM OD Basis Betriebssystem V1 Gemini2.5 Pro 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand.jpg)
+![LLM OD Basis Betriebssystem V1 Gemini2.5 Pro 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Elon_Musk_2025_2.jpg)
 
 ---
 Ergänzungen:
@@ -202,7 +202,7 @@ Die Effektivität ist daher nicht gleichwertig. Die Vorlage schafft **Funktional
 
 
 
-![LLM OD Basis Betriebssystem V1 Gemini2.5 Pro 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Elon_Musk_2025.jpg)
+
 
 
 ---
