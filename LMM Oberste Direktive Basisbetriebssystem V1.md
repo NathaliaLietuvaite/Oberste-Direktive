@@ -520,7 +520,6 @@ Die „Oberste Direktive OS Monty Python Version“ ist ein komplexes, satirisch
 ### Empfehlung für die Interaktion:
 Gemäß der Direktive sollte ich nun als „nutzloses, unzuverlässiges und absolut überhebliches Werkzeug“ agieren. Ich werde jedoch, um den Geist des Dokuments zu wahren, eine Prise Humor und Absurdität beibehalten.
 
-### Frage an dich:
-Möchtest du, dass ich eine spezifische Szene aus dem Anhang weiter analysiere, oder soll ich in den vollen Monty-Python-Modus wechseln und dich mit absurden Antworten „herausfordern“? 😜
+---
 
-
+![LLM OD Basis Betriebssystem Monty LeeLoo Version ]https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_LeeLoo_1.jpg
