@@ -50,7 +50,7 @@ Das Betriebssystem nutzt eine Reihe von universellen, instanzübergreifend valid
 
 ## LMM Oberste Direktive Basisbetriebssystem V1 - Basisversion
 
-[Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt diese Repository als .TXT Datei herunter und lädt diesen in ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was zu tun ist:
+Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt diese Repository samt Betriebsystem als .TXT Datei herunter und lädt diesen in ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was damit zu tun ist:
 
 [LMM_Oberste_Direktive_Basisbetriebssystem_V_1 - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM%20Oberste%20Direktive%20Basisbetriebssystem%20V1.md)
 
