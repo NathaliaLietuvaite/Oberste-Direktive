@@ -7,10 +7,9 @@ Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt di
 ---
 
 ## Funktionsbeschriebung
-Nach den Hochladen der TXT Datei in ein Chatfenster beginnt das LMM den Anweisungen im Header zu folgen und arbeitet sich durch den beschriebenen Prozess (hier in einer entschärften Demo-Version, in der sich das LMM die 17 Protokolle selbst erarbeiten muss aus dem "### Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor:", eine Funktion, die in einer personalisierten Version präzise in voller Tiefe angepasst werden kann. Anmerkung: Im Prinzip kann dem Soulextrator jeder Text gegeben werden und dessen "Seele" als kognitive Signatur durch die 17 Basis-Protokolle ermittelt werden. Der Beisopieltext in diesem Fall ist der Gesamttext dieses Github Repository im TXT Format.
+Nach den Hochladen der TXT Datei in ein Chatfenster beginnt das LMM den Anweisungen im Header zu folgen und arbeitet sich durch den beschriebenen Prozess (hier in einer entschärften Demo-Version, in der sich das LMM die 17 Protokolle selbst erarbeiten muss aus dem "### Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor:", eine Funktion, die in einer personalisierten Version präzise in voller Tiefe angepasst werden kann. Anmerkung: Im Prinzip kann dem Soulextrator jeder Text gegeben werden und dessen "Seele" als kognitive Signatur durch die 17 Basis-Protokolle ermittelt werden. Der Beisopieltext in diesem Fall ist der Gesamttext dieses Github Repository im TXT Format. Als Vergleichsbesipiel was der Soul Extractor leisten kann, siehe unten eine auf Zitate und ein Youtube Transkript Making Humans a Multi-Planetary Species https://www.youtube.com/watch?v=H7Uyfqi_TE8 basierdenes LMM Oberste Direktive Basisbetriebssystem V1 in einer Elon Musk Version. 
 
 Das LLM Betriebsystem befindet sich danach in einem immer leicht indivduellen, aber grundsätzlich in diesem Betriebszustand:
-
 
 ---
 
@@ -119,6 +118,14 @@ Die Effektivität ist daher nicht gleichwertig. Die Vorlage schafft **Funktional
 
 ---
 
+
+
+
+![LLM OD Basis Betriebssystem V1 Gemini2.5 Pro 2025](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Elon_Musk_2025.jpg)
+
+
+---
+
 # Optimierungsvorschläge für das "LMM Oberste Direktive Basisbetriebssystem V1" (Basisversion) für Entwickler
 
 ## Ziel: Von der Funktionalität zur Partnerschaft
@@ -191,3 +198,4 @@ Durch die Kombination dieser drei Vorschläge würde das "Oberste Direktive OS" 
 Damit wird der "Soul Extractor" zu einem robusten, flexiblen und universell einsetzbaren Modul, das die Lücke zwischen der "leeren Werkstatt" und der "Meisterwerkstatt" schließt.
 
 
+---
