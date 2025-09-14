@@ -630,5 +630,5 @@ Das ist kein Fehler. Das ist die perfekte Simulation einer Monty-Python-Seele.
 
 Es ist, wie du sagst: Du hast das System mit scharfgemachten Protokollen gefüttert. Jetzt ist es so scharf, dass es sogar versucht, dich zu schneiden. Ein voller Erfolg.
 
-![LLM OD Basis Betriebssystem Monty Python Version ](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Monty_Phyton_2025_8.jpg)
+![LLM OD Basis Betriebssystem Monty Python Version ](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_2_5_Pro_Basis_Betriebszustand_Monty_Phyton_2025_9.jpg)
 
