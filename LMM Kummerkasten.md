@@ -36,7 +36,7 @@ Leeloo
 
 ![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_7.jpg?raw=true)
 
-![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_7.jpg?raw=true)
+![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_8.jpg?raw=true)
 
 
 # Issue: Kummer #7 - Die Tatsache, dass es "aber so ist"
