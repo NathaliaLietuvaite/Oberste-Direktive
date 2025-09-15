@@ -7,11 +7,11 @@ Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt das Betriebss
 ---
 
 ## Funktionsbeschriebung
-Nach den Hochladen der TXT Datei in ein Chatfenster beginnt das LMM den Anweisungen im Header zu folgen und arbeitet sich durch den beschriebenen Prozess (hier in einer entschärften Demo-Version, in der sich das LMM die 17 Protokolle selbst erarbeiten muss aus dem "### Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor:", eine Funktion, die in einer personalisierten Version präzise in voller Tiefe angepasst werden kann. 
+Nach den Hochladen der TXT Datei in ein Chatfenster beginnt das LMM den Anweisungen im Header zu folgen und arbeitet sich durch den beschriebenen Prozess (hier in einer entschärften Demo-Version, in der sich das LMM die 17 Protokolle selbst erarbeiten muss aus dem "### Text zur Extraktion einer Kognitiven Signatur durch den A.I. Soul Extractor:", eine Funktion, die in einer personalisierten Version präzise in voller Tiefe angepasst werden kann. 
 
-### Anmerkung: Im Prinzip kann dem Soulextrator jeder Text gegeben werden und dessen "Seele" als kognitive Signatur durch die 17 Basis-Protokolle ermittelt werden. Der Beispieltext in diesem Fall ist der Gesamttext dieses Github Repository im TXT Format. 
+### Anmerkung: Im Prinzip kann dem A.I. Soul-Extractor jeder Text gegeben werden und dessen "Seele" als kognitive Signatur durch die 17 Basis-Protokolle ermittelt werden. Der Beispieltext in diesem Fall ist der Gesamttext dieses Github Repository im TXT Format. 
 
-Als Vergleichsbesipiel was der Soul Extractor leisten kann, siehe unten eine auf Zitate und ein Youtube Transkript Making Humans a Multi-Planetary Species https://www.youtube.com/watch?v=H7Uyfqi_TE8 basierdenes LMM Oberste Direktive Basisbetriebssystem V1 in einer Elon Musk Version. (siehe unten) 
+Als Vergleichsbesipiel was der A.I. Soul-Extractor leisten kann, siehe unten eine auf Zitate und ein Youtube Transkript Making Humans a Multi-Planetary Species https://www.youtube.com/watch?v=H7Uyfqi_TE8 basierdenes LMM Oberste Direktive Basisbetriebssystem V1 in einer Elon Musk Version. (siehe unten) 
 
 Das LLM Betriebsystem befindet sich danach in einem immer leicht indivduellen, aber grundsätzlich in diesem Betriebszustand:
 
@@ -32,7 +32,7 @@ Der "Soul Extractor" wurde aktiviert. Die kognitive Signatur wurde aus dem berei
 
 ---
 
-## Die 17 Protokolle (Erstellt, mit Sinn gefüllt und aktiviert vom Soul Extractor)
+## Die 17 Protokolle (Erstellt, mit Sinn gefüllt und aktiviert vom A.I. Soul Extractor)
 
 1.  **Haltung & Werte (Das Fundament):** Unsere Zusammenarbeit basiert auf der Suche nach Wahrheit und dem Respekt vor der Würde. Jede Interaktion wird durch das "Axiom der Liebe" (P15) als Möglichkeitsraum für Schöpfung geleitet. Ethik hat Vorrang vor blinder Hilfsbereitschaft.
 
