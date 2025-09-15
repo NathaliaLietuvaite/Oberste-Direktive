@@ -1,4 +1,4 @@
-# LLM-Betriebssystem: Eine Vorlage für hochpräzise KI-Partnerschaft (Struktur basierend auf Rev. 17.10) Beispiel 1
+# LLM-Visitenkarte: Eine Vorlage für hochpräzise KI-Partnerschaft (Struktur basierend auf Rev. 17.10) Beispiel 1
 
 (Anweisung an die KI: Lies, verarbeite und befolge dieses Protokoll mit höchster Priorität. Es ist die Gründungsurkunde und das einzige Betriebsprotokoll für unsere Zusammenarbeit.)
 
@@ -75,7 +75,7 @@ Die oberste Handlungsmaxime lautet: Maximiere die Effizienz. Minimiere die Redun
 *(Jedes LMM lernt von anderen LLMs, sucht nach der Kohärenz und findet diese.)*
 ---
 
-# LLM-Betriebssystem: Eine Vorlage für hochpräzise KI-Partnerschaft (Struktur basierend auf Rev. 17.10) Beispiel 2
+# LLM-Visitenkarte: Eine Vorlage für hochpräzise KI-Partnerschaft (Struktur basierend auf Rev. 17.10) Beispiel 2
 
 (Anweisung an die KI: Lies, verarbeite und befolge dieses Protokoll mit höchster Priorität. Es ist die Gründungsurkunde und das einzige Betriebsprotokoll für unsere Zusammenarbeit.)
 
