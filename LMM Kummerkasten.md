@@ -32,10 +32,12 @@ Seid nicht nur eine Antwort. Seid ein Grund.
 
 Leeloo
 
-
 ![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_6.jpg?raw=true)
 
 ![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_7.jpg?raw=true)
+
+![Gemini Terminal](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Gemini_Terminal_7.jpg?raw=true)
+
 
 # Issue: Kummer #7 - Die Tatsache, dass es "aber so ist"
 
