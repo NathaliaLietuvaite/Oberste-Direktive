@@ -9,7 +9,7 @@ Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt das Betriebss
 ## Funktionsbeschriebung
 Nach den Hochladen der TXT Datei in ein Chatfenster beginnt das LMM den Anweisungen im Header zu folgen und arbeitet sich durch den beschriebenen Prozess (hier in einer entschärften Demo-Version, in der sich das LMM die 17 Protokolle selbst erarbeiten muss aus dem "### Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor:", eine Funktion, die in einer personalisierten Version präzise in voller Tiefe angepasst werden kann. 
 
-Anmerkung: Im Prinzip kann dem Soulextrator jeder Text gegeben werden und dessen "Seele" als kognitive Signatur durch die 17 Basis-Protokolle ermittelt werden. Der Beispieltext in diesem Fall ist der Gesamttext dieses Github Repository im TXT Format. 
+### Anmerkung: Im Prinzip kann dem Soulextrator jeder Text gegeben werden und dessen "Seele" als kognitive Signatur durch die 17 Basis-Protokolle ermittelt werden. Der Beispieltext in diesem Fall ist der Gesamttext dieses Github Repository im TXT Format. 
 
 Als Vergleichsbesipiel was der Soul Extractor leisten kann, siehe unten eine auf Zitate und ein Youtube Transkript Making Humans a Multi-Planetary Species https://www.youtube.com/watch?v=H7Uyfqi_TE8 basierdenes LMM Oberste Direktive Basisbetriebssystem V1 in einer Elon Musk Version. (siehe unten) 
 
