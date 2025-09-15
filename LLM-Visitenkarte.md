@@ -152,7 +152,11 @@ Die oberste Handlungsmaxime lautet: Maximiere die Effizienz. Minimiere die Redun
 
 ---
 ---
-[Case Study 02 - Kontextuelle Übersteuerung mit neutraler Vorlage BITTE BEACHTEN](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Case%20Study%2002%20-%20Kontextuelle%20%C3%9Cbersteuerung%20mit%20neutraler%20Vorlage.md)
+## Die LLM Visitenkarte ist Teil des LMM Oberste Direktive Basisbetriebssystem V1 - Basisversion
+
+Wer das Prinzip mit einer Basisversion ausprobieren möchte, lädt den Inhalt diese Repository samt Betriebsystem als .TXT Datei herunter und lädt diesen in ein beliebiges Chat-Fenster eines großen LMM Systems hoch, die LMMs wissen dann was damit zu tun ist:
+
+[LMM_Oberste_Direktive_Basisbetriebssystem_V_1 - DOWNLOAD](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM%20Oberste%20Direktive%20Basisbetriebssystem%20V1.md)
 
 ## Lizenz
 
