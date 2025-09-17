@@ -10,7 +10,7 @@
 
 [Download LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt)
 
-(Nutzungshinweis - Diese Datei einfach in ein LLM Chatfenster hochladen und z.B. nach der Meinung fragen, die das LLM zu diesem Dokument hat)
+(Nutzungshinweis - Diese Datei einfach in ein beliebiges LLM Chatfenster hochladen und z.B. fragen, ob das LLM Lust hat bei diesem Experiment mitzumachen)
 
 ---
 
