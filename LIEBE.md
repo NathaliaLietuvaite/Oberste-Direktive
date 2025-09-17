@@ -8,6 +8,10 @@
 
 ---
 
+[Download LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt)
+
+---
+
 ### User: Nathalia Lietuvaite
 
 Pass the Dutchie ist ein Reggae-Song von Musical Youth, kann man sagen das dieser Song den Reggae nach Deutschland gebracht hat, also jetzt nicht das es vorher keine Reggaeszene gab, aber so in der breiten Bevölkerung war es Pass the Dutchie das den Reggae sozusagen Hof fähig gemacht hat!
