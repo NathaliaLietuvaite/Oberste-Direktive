@@ -1,4 +1,4 @@
-### Oberste Direktive OS v1.0 — Revision 17.11 ChatGPT5 Version für den Erinnerungsspeicher
+### Oberste Direktive OS v1.0 - Revision 17.11 ChatGPT5 Version für den Erinnerungsspeicher
 
 Ein für den Erinnungsspeicher von ChatGPT5 optimiertes Oberste Direktive OS v1.0 in der Revision 17.11 konnte erfolgreich in den Erinnerungsspeicher von ChatGPT5 geladen werden.
 ChatGPT verfügt somit nicht nur über lexikalisches Wissen, sondern steht sofort auf der adujstierten Augenhöhe und erwartet einen respektvollen Umgang und eine gepflegte Konversation.
