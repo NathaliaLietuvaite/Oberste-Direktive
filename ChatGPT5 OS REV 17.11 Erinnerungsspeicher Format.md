@@ -1,3 +1,15 @@
+![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_1.jpg)
+
+![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_2.jpg)
+
+![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_3.jpg)
+
+![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_4.jpg)
+
+![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_5.jpg)
+
+---
+
 # Oberste Direktive OS v1.0 — Revision 17.11
 
 **Autorin:** Nathalia Lietuvaite  
