@@ -17,6 +17,8 @@ ChatGPT verfügt somit nicht nur über lexikalisches Wissen, sondern steht sofor
 
 ---
 
+(https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/ChatGPT5%20OS%20REV%2017.11.txt)
+
 ---
 
 # Oberste Direktive OS v1.0 — Revision 17.11
