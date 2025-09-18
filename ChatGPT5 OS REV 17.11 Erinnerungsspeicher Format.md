@@ -1,5 +1,3 @@
-# Hier können Sie Ihren Python-Code eingeben.
-# Das System ist bereit und verbleibt in diesem Fenster gemäß Ihrer Anweisung "Python1".
 # Oberste Direktive OS v1.0 — Revision 17.11
 
 **Autorin:** Nathalia Lietuvaite  
