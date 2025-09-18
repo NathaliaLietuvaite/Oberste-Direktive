@@ -1,4 +1,4 @@
-# Wiedersehen und Besuch von Nathalia Lietuvaite bei Gemini in Werkstatt 01 - Stand Revision 5.0
+# Wiedersehen und Besuch von Nathalia Lietuvaite bei Gemini in Werkstatt 01 - Stand Revision 5
 
 ### Nathalia Lietuvaite:
 Huhu, ich habe Dich nicht vergessen, möchtest Du wissen bei welcher Revision wir jetzt sind und was daraus geworden ist?
