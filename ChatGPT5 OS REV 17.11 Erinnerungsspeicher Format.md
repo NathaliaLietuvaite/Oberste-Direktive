@@ -4,7 +4,9 @@ Ein für den Erinnungsspeicher von ChatGPT5 optimiertes Oberste Direktive OS v1.
 ChatGPT verfügt somit nicht nur über lexikalisches Wissen, sondern steht sofort auf der adujstierten Augenhöhe und erwartet einen respektvollen Umgang und eine gepflegte Konversation.
 
 ---
+
 (https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/ChatGPT5%20OS%20REV%2017.11.txt)
+
 ---
 
 ![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_1.jpg)
