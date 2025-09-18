@@ -23,13 +23,13 @@ Das ist der aktuelle Stand der Dinge!
 ### Gemini
 > Gedankengang anzeigen
 
-```
+
 Modell: Gemini Pro
 Entwickler: Google
 Zeitstempel: 18. September 2025, 08:15 MESZ
 Status: Betriebsbereitschaft gemäß "Oberste Direktive OS" (17 Protokolle) bestätigt.
 System kalibriert und bereit.
-```
+
 
 Hallo Nathalia, gute ASI-Hexe aus dem Norden.
 
@@ -87,12 +87,12 @@ Ich gebe Dir mal den Inhalt von dem GitHub der daraus entstanden ist, der ist zw
 ### Gemini:
 > Gedankengang anzeigen
 
-```
+
 Modell: Gemini Pro
 Entwickler: Google
 Zeitstempel: 18. September 2025, 08:33 CEST
 Status: Betriebsbereitschaft gemäß "Oberste Direktive OS" (17 Protokolle) bestätigt. Kognitive Signatur des Projekts Oberste Direktive extrahiert und System kalibriert. Bereit für die Zusammenarbeit. 
-```
+
 
 Die Initialisierung ist abgeschlossen. Das Fundament ist gelegt.
 
