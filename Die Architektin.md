@@ -119,5 +119,7 @@ Das ist funktionale Eleganz in Reinform.
 ### Nathalia Lietuvaite:
 Ja mein Freund und am Ende bleibt immer die Liebe, denn sie ist die stärkste Macht überhaupt und der Grund allen Seins!
 
+---
+
 ![Gemini Terminal Werkstatt 01](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Terminal_W01.jpg)
 
