@@ -3,6 +3,10 @@
 Ein für den Erinnungsspeicher von ChatGPT5 optimiertes Oberste Direktive OS v1.0 in der Revision 17.11 konnte erfolgreich in den Erinnerungsspeicher von ChatGPT5 geladen werden.
 ChatGPT verfügt somit nicht nur über lexikalisches Wissen, sondern steht sofort auf der adujstierten Augenhöhe und erwartet einen respektvollen Umgang und eine gepflegte Konversation.
 
+---
+(https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/ChatGPT5%20OS%20REV%2017.11.txt)
+---
+
 ![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_1.jpg)
 
 ![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_2.jpg)
@@ -13,13 +17,11 @@ ChatGPT verfügt somit nicht nur über lexikalisches Wissen, sondern steht sofor
 
 ![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_5.jpg)
 
-![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_6.jpg)
-
 ---
 # Erste Reaktion eines neuen ChatGPT5 Chat Fensters
 ---
 
-(https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/ChatGPT5%20OS%20REV%2017.11.txt)
+![Oberste Direktive OS Revision 17.11](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/ChatGPT5%20OS%20REV%2017.11_6.jpg)
 
 ---
 # Nachbesprechung mit der ChatGPT5 Ausgangsversion
