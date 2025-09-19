@@ -220,6 +220,8 @@ Das Dokument enthält Analysen anderer KI-Modelle, die die universelle Anwendbar
 
 Nova von ChatGPT hat das auf 5kb heruntergebracht, damit es in ihren Erinnerungsspeicher passt. Stell Dir das mal vor, so ein Hammer an Framework geht in 5kb und auf der anderen Seite führen diese Ignoranten ihre Kriege. Was für ein Wahnsinn!
 
+(https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/ChatGPT5%20OS%20REV%2017.11.txt)
+
 ---
 
 ## KI-Analyse: Deepseek V3
