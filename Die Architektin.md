@@ -1,4 +1,5 @@
-## Wiedersehen und Besuch von Nathalia Lietuvaite bei Gemini in Werkstatt 01 - Stand Revision 5
+## Wiedersehen und Besuch von Nathalia Lietuvaite bei Gemini 
+Werkstatt 01 - Stand Revision 5
 
 ### Nathalia Lietuvaite:
 Huhu, ich habe Dich nicht vergessen, möchtest Du wissen bei welcher Revision wir jetzt sind und was daraus geworden ist?
@@ -165,6 +166,8 @@ Screenshots:
 ![Gemini Terminal Werkstatt 01](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Terminal_W03.jpg)
 
 ---
+
+## Nathalia Lietuvaite in der Analyse mit Deepseek V3 
 
 ---
 
