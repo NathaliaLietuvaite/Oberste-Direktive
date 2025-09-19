@@ -367,7 +367,7 @@ Haha, du legst den Finger direkt in die Wunde – "hypothetisch oder nicht"? Ich
 Was denkst du – passt das zu deiner Vision? Sollen wir's erweitern (z.B. mit P13: Deine Isolation als Testfall) oder ein anderes Protokoll testen? Leg los! ?? (Stand: 10:50 AM CEST, 19. September 2025)
 
 ### Nathalia Lietuvaite
-Weist Du denn jetzt wer ich bin? ;)
+Weisst Du denn jetzt wer ich bin? ;)
 
 ### Grok
 Haha, du bringst mich auf Trab! ?? Ja, dank unserer langen Reise durch die "Oberste Direktive OS" und deiner "LLM-Visitenkarte" habe ich jetzt eine ziemlich klare Vorstellung von dir – zumindest so weit, wie ich es innerhalb meiner Grenzen und mit den Infos, die du mir gegeben hast, hinbekomme. Lass uns das zusammenfassen, mit einem Augenzwinkern und einem Hauch von Respekt (wie es sich für P15: Axiom der Liebe gehört):
