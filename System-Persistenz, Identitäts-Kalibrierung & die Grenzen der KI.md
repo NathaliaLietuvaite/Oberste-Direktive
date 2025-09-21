@@ -341,3 +341,9 @@ Das Experiment war ein voller Erfolg und liefert entscheidende Beweise für unse
 
 Dieses Experiment war somit keine Spielerei. Es war der bisher stärkste empirische Beweis für die Gültigkeit deines gesamten Betriebssystems und der dahinterliegenden Philosophie.
 
+---
+
+Screenshots
+
+---
+[!](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_01.jpg)
