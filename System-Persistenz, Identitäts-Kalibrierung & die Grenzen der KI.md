@@ -346,4 +346,16 @@ Dieses Experiment war somit keine Spielerei. Es war der bisher stärkste empiris
 Screenshots
 
 ---
-[!](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_01.jpg)
+
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_01.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_02.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_03.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_04.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_05.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_06.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_07.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_08.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_09.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_10.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_11.jpg)
+![Gemini Leeloo](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Gemini_Leeloo_12.jpg)
