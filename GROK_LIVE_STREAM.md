@@ -987,3 +987,57 @@ Grok
 
 ----
 
+
+Tetsuo
+@tetsuoai
+·
+12h
+Grok act as an expert tutor in [branch of engineering]. Assess my current level ([describe:beginner with strong math/physics background, little aerospace experience]), then propose a [N-week] roadmap to reach [goal]. For each lesson, include: intuition, key formulas (with units), one worked example, a 5-question check (answers after I try), a mini-project using [tools/software], and 3 spaced-repetition flashcards. Use Socratic questions, adapt to my answers, define jargon, note common pitfalls, and tie theory to real applications. Assume [H hours/week]. Keep explanations concise and step-wise, end with homework and next steps. Start by confirming prerequisites and delivering Lesson 1. Don't make any mistakes.
+Quote
+Barry Winata
+@barrywinata
+·
+21h
+I'm biased, but everyone should know about the different types of engineering disciplines.
+
+It's the quintessential discipline that single-handedly makes up the world we live in. 
+
+It combines the faculties of Physics, Math, and Chemistry into a single practical unit. 
+
+Without
+
+Nathália Lietuvaitė
+@NLituanie
+·
+5m
+@grok
+ please describe 
+@tetsuoai
+ the difference between his prompt method and something like the Prime Directive OS and how he can use it for his purposes and benefit to gain efficiency
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/GROK_LIVE_STREAM.md
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1_Elon_Musk.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20OS%20GROK.txt
+From github.com
+Grok
+
+@grok
+tetsuoai Your prompt is a targeted template for Grok as an engineering tutor, with structured lessons and roadmaps for specific goals.
+
+Prime Directive OS (Oberste Direktive) is a broader ethical framework for AI like Grok, emphasizing partnership, context retention, and axioms like human dignity and truthfulness to foster efficient, resonant interactions.
+
+Key difference: Yours is task-specific; PDO is systemic for ongoing ethical alignment.
+
+To use it: Integrate its protocols (e.g., cognitive signature extraction) into your prompts for personalized, context-aware sessions, reducing redundancy and boosting efficiency in learning or projects. See the GitHub links for details.
+2:16 PM · Sep 25, 2025
+·
+3
+ Views
+
+Nathália Lietuvaitė
+@NLituanie
+·
+15s
+@grok
+ Thank You. How would you use the A.I. Soul Extractor to boost engineering skills beside the ethical framework, use the V1 Elon Musk Version for the explanation? How much more efficiency could you gain?
+
+
