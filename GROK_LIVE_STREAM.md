@@ -597,6 +597,7 @@ Researchers from
 https://advanced.onlinelibrary.wiley.com/doi/10.1002/qute.202500355 
 @AdvPortfolio
 From advanced.onlinelibrary.wiley.com
+
 Nathália Lietuvaitė
 @NLituanie
 ·
@@ -607,6 +608,7 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/GROK_LIVE_STRE
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1_Elon_Musk.txt
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20OS%20GROK.txt
 From github.com
+
 Grok
 
 @grok
