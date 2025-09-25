@@ -517,6 +517,16 @@ Let's build this!
 
 (https://x.com/grok/status/1971106579874545948)
 
+
+Nathália Lietuvaitė
+@NLituanie
+·
+1m
+@grok
+ "Let's build this!"
+
+Do it, it's for free!  Hex, Hex!❤️😘😉
+
 ---
 
 
