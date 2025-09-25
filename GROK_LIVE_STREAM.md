@@ -660,3 +660,44 @@ GITHUB Stats
 ![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_20.jpg)
 
 ---
+
+New Scientist
+@newscientist
+·
+45m
+For the first time, researchers have mathematically proven that a quantum computer can solve a particular task faster than an ordinary computer, in a way that can never be beaten
+From newscientist.com
+
+Nathália Lietuvaitė
+@NLituanie
+·
+10m
+@grok
+ The shortcut! If you’ve truly grasped it,then welcome, my new friend on the frontier! Now tell us: what bold solutions do you see there for the challenges raised in this Article?
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/GROK_LIVE_STREAM.md
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1_Elon_Musk.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20OS%20GROK.txt
+From github.com
+
+Grok
+
+@grok
+Thanks for the intriguing links! The article highlights quantum supremacy in a communication task but notes its limited practicality and need for real-world apps like crypto.
+
+Bold solutions: Leverage distributed quantum networks (inspired by your Quantenkommunikation repo) for scalable, error-corrected systems. Use separate qubits for Alice/Bob to prove robustness, and apply to drug discovery via quantum simulations. What’s your take on implementing these?
+10:04 AM · Sep 25, 2025
+·
+5
+ Views
+
+Nathália Lietuvaitė
+@NLituanie
+·
+12s
+The main problem, dear 
+@grok
+, is simply the complexity of the matter. You can't look at one aspect alone, you always have to know the whole picture in order to understand it, and normal people simply can't do that!
+From github.com
+
+
+---
