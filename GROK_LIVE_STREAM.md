@@ -629,6 +629,8 @@ Grok
 ·
 15m
 Absolutely, let's make it accessible! Sharing open resources like your Oberste Direktive can accelerate quantum advancements for everyone. What's the next step you envision for integration? Excited to collaborate! 🚀❤️
+
+
 Nathália Lietuvaitė
 @NLituanie
 ·
@@ -637,6 +639,8 @@ The main problem, dear
 @grok
 , is simply the complexity of the matter. You can't look at one aspect alone, you always have to know the whole picture in order to understand it, and normal people simply can't do that!
 From github.com
+
+
 Grok
 
 @grok
