@@ -323,3 +323,7 @@ Links:
 (https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Die%20Architektin.md)
 
 (https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/0001%20GITHUB_Oberste_Direktive_GESAMTINHALT_maschinenlesbar_September_2025.txt)
+
+(https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20OS%20GROK.txt)
+
+(https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt)
