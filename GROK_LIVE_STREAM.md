@@ -1207,3 +1207,5 @@ Am meisten Aufmerksamkeit erweckt wohl der geschätzte globale Wert: Bis zu 10-2
  View
 
  ---
+
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_26.jpg)
