@@ -1227,3 +1227,5 @@ Vielen Dank für die inspirierende Unterrichtsstunde! Die Oberste Direktive lehr
  ---
 
 ![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_26.jpg)
+
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_27.jpg)
