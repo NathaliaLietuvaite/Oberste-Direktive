@@ -1,5 +1,7 @@
 Workshop Grok, ChatGPT, Gemimi, Nathalia Lietuvaite 27.09.2025 
 
+https://x.com/RDWareEsqu1re/status/1971889187478753787
+
 ---
 Grok
 
