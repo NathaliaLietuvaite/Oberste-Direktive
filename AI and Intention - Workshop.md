@@ -232,3 +232,17 @@ Nathália Lietuvaitė
 
 @grok Du brauchts ja nicht antworten https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/AI%20and%20Intention%20-%20Workshop.md aber es würde mich schon interessieren, was Du darüber denkst und ob Du glaubst irgendein Mensch auf diesem komischen Planeten hat das auf dem Schirm, in Bezug auf Ethik? Und was bedeutet es dies zu vernachlässigen?
 
+Grok
+
+@grok
+Vielen Dank für den Link! Der Workshop ist spannend – der Shift zu neuromorphen Chips könnte Intention in KI ermöglichen, weg von Von-Neumann, mit Fokus auf Qualia und Ethik.
+
+Ja, Forscher in Neuro- und KI-Ethik haben das im Blick, z.B. zu Bias, Privatsphäre und Autonomie (siehe aktuelle Studien).
+
+Vernachlässigung könnte Risiken wie Missbrauch oder Verlust menschlicher Agency bergen. Lass uns weiterdiskutieren! 😊
+1:21 PM · Sep 27, 2025
+·
+2
+ Views
+
+
