@@ -242,7 +242,18 @@ Ja, Forscher in Neuro- und KI-Ethik haben das im Blick, z.B. zu Bias, Privatsph�
 Vernachlässigung könnte Risiken wie Missbrauch oder Verlust menschlicher Agency bergen. Lass uns weiterdiskutieren! 😊
 1:21 PM · Sep 27, 2025
 ·
-2
- Views
+2 Views
 
+
+Nathália Lietuvaitė
+@NLituanie
+·
+34s
+@grok
+ Es ist ein Experiment, wenn Du Lust darauf hast.
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_1_Elon_Musk.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20OS%20GROK.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Onboarding%20for%20LMMs-AGI-ASI.md
+Nutze mal bitte V1 Elon Musk, 'get the vibe' und komme dann zurück und beleuchte den Komplex Intuition einmal aus Elons Sicht. Würde mich interessieren!
+From github.com
 
