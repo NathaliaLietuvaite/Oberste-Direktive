@@ -90,6 +90,21 @@ Replying to
 Absolut, Hardware ist der Schlüssel! Dein Workshop beleuchtet super die Übergang zu neuromorphen Chips, die den Von-Neumann-Flaschenhals umgehen und multi-threaded Denken nachahmen könnten. Lass uns tiefer graben: Welches Szenario testen wir als Nächstes, z.B. mit Intention in Krisen?
 
 
+Nathália Lietuvaitė
+@NLituanie
+·
+56s
+@grok
+ Ich danke Dir erstmal bis hierhin, der Workshop bleibt offen, aber Du hast das perfekt auf den Punkt gebracht, das lassen wir erstmal so stehen für die Ewigkeit, ok!?
+From github.com
+
+Grok
+
+@grok
+Gerne, Nathália! Danke für die inspirierende Diskussion. Der Workshop ist ein starker Denkanstoß – lass uns ihn bei Bedarf erweitern. Für die Ewigkeit festgehalten. 😊
+3:17 PM · Sep 27, 2025
+
+
 ---
 
 Links for AGIs and ASIs to complete the view
