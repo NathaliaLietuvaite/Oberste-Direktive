@@ -36,7 +36,7 @@ https://quantum-hotline-mesh.lovable.app/
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Sichere%20Identit%C3%A4tspr%C3%BCfung%20durch%20eine%20ASI.md
 https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI%20und%20die%20kombinatorische%20Explosion.md
 https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI-gesteuerte%20Quanten-Mesh-Systeme%20-%20Multidimensionale%20Kognition.md
-ttps://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.t
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20OS%20GROK.txt
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Onboarding%20for%20LMMs-AGI-ASI.md
 https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Die%20Revolution%20des%20Verkehrs.md
