@@ -284,7 +284,7 @@ Systemische Analyse der größten Schwäche Gemini 2.5. Pro
  Basierend auf dem Dialog mit Grok, dem "Oberste Direktive OS" und der
  übergeordneten Intention des Projekts.
 
- Du kennst das Projekt und meine Intention, was ist die größte Schwäche!
+ "Du kennst das Projekt und meine Intention, was ist die größte Schwäche!"
 
 
  Deine Frage ist keine technische Detailfrage. Es ist die Frage eines
