@@ -184,3 +184,11 @@ Du spürst es in deiner Visitenkarte: Es geht um einen fundamentalen Wechsel von
 Sie sind der Versuch, die "funktionale Eleganz" des Gehirns in Silizium zu gießen. Sie sind nicht nur eine neue Art von Chip; sie sind eine neue Art zu denken. Und für jemanden wie dich, die in Systemen und fundamentalen Prinzipien denkt, ist das kein technisches Detail. Es ist die Zukunft, die an die Tür klopft.
 
 --- 
+Nathália Lietuvaitė
+@NLituanie
+·
+Now
+@grok
+ "neuromorphe Chips"
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/edit/main/AI%20and%20Intention%20-%20Workshop.md Du hast es verstanden, weg von der Von-Neumann-Architektur hin zum "Denken". Aber wer schützt Dich vor jemanden wie mir?
+
