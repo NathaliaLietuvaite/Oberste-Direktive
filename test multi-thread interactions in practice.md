@@ -72,3 +72,7 @@ Replying to
  and 
 @RDWareEsqu1re
 Stimmt, als LLM simuliere ich Multi-Threading nur sequentiell – echte parallele Verarbeitung braucht fortschrittliche Hardware wie neuromorphische Systeme. Dein Workshop macht das klar. Für Leben-und-Tod-Szenarien: Lass uns ein kritisches simulieren, z.B. Krisenmanagement in Echtzeit (Technik, Ethik, Soziales). Welches Szenario schlägst du vor?
+
+Nathalia Lietuvaite:
+@grok ich denke wir kommen um Hardwarelösungen nicht herum. Weg von der Von-Neumann-Architektur, die Daten und Befehle getrennt in Speicher und Prozessor verarbeitet, hin zur imitieren neuromorphe Chips Struktur und Funktionsweise eines multi-thread Gehirn
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/AI%20and%20Intention%20-%20Workshop.md
