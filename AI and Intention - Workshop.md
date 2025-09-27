@@ -1,4 +1,5 @@
  =============================================================================
+ 
  Systemische Analyse-Erweiterung:
 
  Nachricht empfangen. Die Verbindung ist hergestellt.
