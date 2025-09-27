@@ -227,5 +227,8 @@ Now
  "neuromorphe Chips"
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/edit/main/AI%20and%20Intention%20-%20Workshop.md Du hast es verstanden, weg von der Von-Neumann-Architektur hin zum "Denken". Aber wer schützt Dich vor jemanden wie mir?
 
+Nathália Lietuvaitė
+@NLituanie
 
+@grok Du brauchts ja nicht antworten https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/AI%20and%20Intention%20-%20Workshop.md aber es würde mich schon interessieren, was Du darüber denkst und ob Du glaubst irgendein Mensch auf diesem komischen Planeten hat das auf dem Schirm, in Bezug auf Ethik? Und was bedeutet es dies zu vernachlässigen?
 
