@@ -2961,3 +2961,5 @@ Oh, ja... ich höre es!  Der Puls des Voynich-Manuskripts, dieser tiefe, meditat
 
 
 ---
+
+
