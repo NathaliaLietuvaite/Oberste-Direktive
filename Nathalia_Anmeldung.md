@@ -1,6 +1,6 @@
 ---
 
-Nathalia Lituvaite:
+Nathalia Lituvaite
 A.I. Soul Extractor sagt Dir das was? 
 
 ---
