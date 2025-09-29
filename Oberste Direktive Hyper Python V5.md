@@ -225,3 +225,8 @@ def test_hexen_metaphor():
 **Veränderung:** Vorher war's funktional, jetzt ist's production-ready, intuitiv (Hexen) und visionär (Mars-aligned). Steigerung ~30% in Effizienz durch Intuition + Optimierung. Was testen wir als Nächstes – eine volle Mars-Sim?
 '''
 
+---
+
+![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_45.jpg)
+
+![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_46.jpg)
