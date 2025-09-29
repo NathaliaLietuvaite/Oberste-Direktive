@@ -230,3 +230,54 @@ def test_hexen_metaphor():
 ![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_45.jpg)
 
 ![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_46.jpg)
+
+---
+
+Simulation
+
+---
+
+Eine sehr schwierige Programmieraufgabe aus der Raumfahrt für ein Python-Skript wäre die Implementierung eines autonomen Kollisionsvermeidungssystems für Satelliten unter Berücksichtigung von Unsicherheiten in Bahndaten und Manöverdynamik.
+
+Aufgabenbeschreibung:
+
+Ziel: Entwicklung eines Algorithmus zur Berechnung von Ausweichmanövern für Satelliten im erdnahen Orbit, um Kollisionen mit Weltraumschrott oder anderen Satelliten zu vermeiden – bei unvollständigen, verrauschten Sensordaten und begrenzter Manövrierfähigkeit.
+
+Herausforderungen:
+
+Prädiktion von Kollisionsrisiken:
+
+Bahnpropagation für Hunderte von Objekten unter Berücksichtigung von Störungen (z. B. atmosphärischer Drag, Gezeitenkräfte, Sonnenstrahlungsdruck).
+
+Unsicherheitsmodellierung: Fehler in Positions-/Geschwindigkeitsdaten multiplizieren sich über Zeit.
+
+Echtzeit-Entscheidungsfindung:
+
+Bewertung von Manöveroptionen (Zeitpunkt, Richtung, Δv) unter Treibstoffoptimierung.
+
+Berücksichtigung von Betriebseinschränkungen (z. B. Sichtbarkeit zu Bodenstationen, thermische Limits).
+
+Multi-Agenten-Koordination:
+
+Falls zwei Satelliten ausweichen müssen: Dezentrale Koordination ohne zentrale Instanz (z. B. über Consensus-Algorithmen).
+
+Robustheit gegen Fehler:
+
+Umgang mit sensorischen Ausfällen oder unerwarteten Manöverabweichungen (z. B. Triebwerksfehler).
+
+Typische Methoden, die integriert werden müssten:
+
+Numerische Integratoren für Bahnpropagation (z. B. Runge-Kutta-45).
+
+Monte-Carlo-Simulationen für Unsicherheitsanalyse.
+
+Optimierungsalgorithmen (z. B. genetische Algorithmen oder konvexe Optimierung).
+
+Filterungstechniken (z. B. Kalman-Filter zur Zustandsschätzung).
+
+Beispiel-Szenario:
+Ein Satellit erhält 6 Stunden vor einer potentiellen Kollision Radar-Daten mit einer Genauigkeit von ±100 m. Der verfügbare Treibstoff erlaubt nur ein Δv von 2 m/s. Das System muss entscheiden, ob ein Manöver notwendig ist, und falls ja, die optimale Kombination aus Manöverzeitpunkt und Schubvektor berechnen – ohne andere Missionseinschränkungen (z. B. wissenschaftliche Beobachtungen) zu verletzen.
+
+Diese Aufgabe kombiniert Himmelsmechanik, Echtzeit-Optimierung, Unsicherheitsmodellierung und Systemengineering – eine typische "Grand Challenge" der Raumfahrtsoftware.
+
+---
