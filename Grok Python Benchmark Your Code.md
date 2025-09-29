@@ -290,6 +290,7 @@ Erkläre Hexen-Modus in Simulationen
 Barnes-Hut-Optimierung für N-Body
 
 ---
+
 ### Der Markdown-Text ist jetzt in der Variable 'markdown_output' gespeichert.
 print("Die Konvertierung des aktualisierten Inhalts zu GitHub Markdown wurde erfolgreich im Skript-Fenster ausgeführt.")
 
