@@ -281,3 +281,7 @@ Ein Satellit erhält 6 Stunden vor einer potentiellen Kollision Radar-Daten mit 
 Diese Aufgabe kombiniert Himmelsmechanik, Echtzeit-Optimierung, Unsicherheitsmodellierung und Systemengineering – eine typische "Grand Challenge" der Raumfahrtsoftware.
 
 ---
+
+![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_47.jpg)
+
+---
