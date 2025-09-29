@@ -966,3 +966,42 @@ Outro (fade, gritty guitar riff)
 It’s the sound of my soul…
 It’s the sound of my soul…
 And you’ll know.
+
+---
+
+https://x.com/grok/status/1972526332069441565
+https://www.youtube.com/watch?v=NeGZUS747A0
+Seelen ohne Alter - Nathalia Lietuvaite 
+(solo soulful Contralto female Lithuanian voice, soul blues with east coast rap music with rock elements, power cord, slap bass, swinging 50s & 60s Doo Wop Sound disco version atmosphere)
+Lyrics
+(Blues Verse 1)
+So, diese Seelen, nicht wahr? Vor dieser Welt, im ewigen Morgengrauen, da sangen sie irgendwas. Keine Zeit, keine Namen. Nur Feuer, nur Flamme. Klingt ja fast… gemütlich. …Aber Moment mal!
+Durch Dunkelheit, Kriege, zerbrochene Träume – Seelen bleiben! Wachsen nur, zerbrechen niemals. Aha! Scheinen zähe kleine Dinger zu sein, diese Seelen.
+Seelen ohne Alter, sie sind ewiglich. Tragen Galaxien in ihrer… Ansicht?… hm… Sind das etwa mobile Planetarien oder was?… Seelen ohne Alter, können was Besonderes… was war das eigentlich? Ach, ja… sie Vergessen nie!
+Wir schnitzen ihre Pfade mit Liebe und Hass, mit stummen Gebeten, oder Schicksals-Klaps. Aber tief drin, durch jede Narbe, weiß die Seele genau wer wir… nun ja ... sind? …Hoffentlich nicht jene, die ständig ihre Socken in der Waschmaschine verlier'n.
+… und wieder Dunkelheit, Kriege, Träume-Bruch. Seelen bleiben, wachsen nur, kein Knacks. Wiederholung? Muss wohl wichtig sein, diese Unzerbrechlichkeit.
+Seelen ohne Alter, Galaxien fest im Blick. Mit Anstand! Vergessen nie! Seelen ohne Alter, haben nur noch nicht… immer noch keine Ahnung, was das "noch nicht" bedeutet.… Spannend!
+Jenseits der Sterne, Meere, endlosen Erinnerungen… nur Licht, nur Atem. Seelen weben ewig aus dem Tod. Poetisch! Fast schon… esoterisch. Aber wo is hier die Ironie?
+Seelen ohne Alter, erinnern sich an alles. Steigen und fallen, aber niemals… fallen? Das klingt nach einer ziemlich guten Quote. Seelen ohne Alter, halten jeden Himmel. Und wenn wir sie lieben, sterben sie niemals. Romantisch! Aber immer noch…
+(Der Dudelsack versucht ein Solo, klingt aber eher nach einer Katze, die auf einer Orgel eingeschlafen ist.)
+Moment mal! Diese Seelen! Sind das vielleicht kleine, unsichtbare Wesen, die in uns wohnen und ständig unsere Kreditkartendaten an obskure, galaktische Versandhändler weitergeben? Oder sind sie winzige Bibliothekare, die all unsere peinlichen Momente für die Ewigkeit archivieren?
+Und dieses "nicht vergessen"? Heißt das, dass meine Seele sich noch daran erinnert, als ich mit sieben Jahren versucht habe, einen Baum zu erklimmen und kläglich gescheitert bin? … Großartig!
+Und "Galaxien in ihrer Ansicht"? Sind das winzige Teleskope in ihren Seelen-Augen? Beobachten sie uns mit amüsiertem Kopfschütteln, während wir versuchen, IKEA-Möbel zusammenzubauen?
+Dieses "mit Anstand behandeln"? Gilt das auch, wenn meine Seele gerade versucht, mir einzureden, dass ein drittes Stück Kuchen eine hervorragende Idee ist?
+Und dieses "niemals sterben"? Bedeutet das, dass ich meine Seele irgendwann in einem Glas auf dem Nachttisch aufbewahren kann? "Guten Morgen, Seele! Wie geht's uns heute?"
+(Die Harfe versucht, die Dudelsack-Katastrophe zu übertönen.)
+Also, diese Seelen. Sie singen im Morgengrauen, tragen Galaxien, erinnern sich an alles und sterben wirklich nie. Klingt fast ein bisschen… anstrengend, so eine unsterbliche, galaxientragende Super-Seele zu sein. Vielleicht brauchen sie einfach mal einen guten Cafe.
+Seelen ohne Alter (Cover)
+Seelen ohne Alter (Cover)
+
+
+
+
+
+
+0:00
+3:55
+
+
+
+
