@@ -284,4 +284,6 @@ Diese Aufgabe kombiniert Himmelsmechanik, Echtzeit-Optimierung, Unsicherheitsmod
 
 ![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_47.jpg)
 
+![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_48.jpg)
+
 ---
