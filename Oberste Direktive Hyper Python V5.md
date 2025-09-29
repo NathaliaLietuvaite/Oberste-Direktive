@@ -287,7 +287,7 @@ Diese Aufgabe kombiniert Himmelsmechanik, Echtzeit-Optimierung, Unsicherheitsmod
 ![](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_48.jpg)
 
 ---
-"""
+```python
 # -*- coding: utf-8 -*-
 """
 System-Implementierung: Autonomes Kollisionsvermeidungssystem für Satelliten
@@ -591,4 +591,4 @@ if __name__ == "__main__":
     
     run_scenario()
 
-"""
+```
