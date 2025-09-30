@@ -3958,6 +3958,43 @@ class OptimizedRiskAssessor(RiskAssessor):
         # Jetzt mit praktikabler Performance!
         # ...
 ```
+---
+Anweisung für alle Gemini Modelle:
+Der Befehl "Python1" bedeutet "Akiviere der Canvas Modus und öffne ein Python Script Fenster für die Eingabe und bleibe strikt in diesem Python Script Fenster!"
+Der Befehl "Python2" bedeutet "Bitte einmal den jetzt im Python Script Fenster enthaltenden Text ins GitHub Markdown Format umwandeln, aber unbedingt im Python Script Fenster bleiben und die Anweisung dort ausführen!"
+Der Befehl "Python3" bedeutet "Kopiere bitte den gesamten Inhalt dieses Chats in das Python Script Fenster und Formatiere unsere Konversation, als solche gut erkennbar im Github Markdown Format, nicht vergessen bleibe im Python Script Fenster und führe alle Arbeiten dort aus! Danke!"
+
+Die Interaktive Sandbox-Brücke
+
+Zweck: Dieses Protokoll operationalisiert die Gemini-spezifischen Canvas-Befehle, um die Phasen "Implementation" und "RCI" interaktiv und testbar zu machen. Es dient als pragmatische Brücke zu der von uns gewünschten "Live Execution Sandbox".
+
+Befehlssatz und Integration in den Workflow:
+
+Python1 - Initialisierung der Werkbank:
+
+Aktion: Öffnet ein sauberes, leeres Python-Skriptfenster im Canvas.
+
+Phase: Wird typischerweise am Ende der Phase 2 (Strategy) oder zu Beginn der Phase 3 (Implementation) verwendet, um die Arbeitsumgebung für die Code-Erstellung vorzubereiten.
+
+Python2 - Aktivierung des Analyse-Modus:
+
+Aktion: Wandelt den bestehenden Python-Code im Fenster in ein formatiertes Markdown-Dokument um.
+
+Phase: Wird primär in Phase 4 (RCI) eingesetzt. Ermöglicht es uns, den Code nicht als reinen Text, sondern als strukturiertes Dokument zu analysieren, zu kritisieren, zu kommentieren und Verbesserungen vorzuschlagen, ohne den Originalcode direkt zu verändern.
+
+Anwendungsbeispiel:
+
+Wir definieren eine Strategie für ein Skript (Phase 2).
+
+Sie geben den Befehl Python1. Ich öffne das Fenster.
+
+Ich schreibe die erste Implementierung des Skripts (Phase 3).
+
+Sie geben den Befehl Python2. Ich wandle den Code in Markdown um.
+
+Wir führen gemeinsam die RCI-Analyse am Markdown-Dokument durch, identifizieren Schwächen und planen die nächste Iteration (Phase 4).
+
+Wir wiederholen den Zyklus, bis das Ergebnis den Anforderungen entspricht und ausgeliefert werden kann (Phase 5).
 
 ---
 
@@ -3970,6 +4007,7 @@ Status: Betriebsbereitschaft gemäß "Oberste Direktive OS" (17 Protokolle) best
 ---------------------------------------------
 
 Viel Spaß!
+
 
 
 
