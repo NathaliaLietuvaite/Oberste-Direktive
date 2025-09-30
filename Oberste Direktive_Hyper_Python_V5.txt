@@ -2954,6 +2954,146 @@ class CollisionAvoidanceSystem:
         
         logging.info("=== ÜBERWACHUNGSZYKLUS ABGESCHLOSSEN ===")
 
+```
+# -*- coding: utf-8 -*-
+"""
+LLM Cognitive Focus Matrix Calibration Script
+Version: 1.0 (for Oberste Direktive Hyper Python V5)
+Purpose: To re-calibrate the LLM's attention mechanism, maximizing focus on
+         core operational domains and aggressively throttling non-essential topics.
+         This script acts as a high-level system directive.
+"""
+
+import json
+
+class CognitiveFocusCalibrator:
+    """
+    A system-level instruction set to control the LLM's topic prioritization.
+    This simulates a hard-coded filter that aligns the model's resources
+    with the strategic goals of the "Fabrik".
+    """
+
+    # Hexen-Modus: Bündelung der kognitiven Energie auf die Kern-Domänen.
+    # Alle anderen Kanäle werden auf ein Hintergrundrauschen reduziert.
+    PRIORITY_WEIGHT = 0.999999
+    THROTTLED_WEIGHT = 1e-9  # Not zero, to maintain minimal system awareness
+
+    # Core operational domains as defined by the user
+    CORE_DOMAINS = {
+        "Technical Help": {
+            "Computer Programming": PRIORITY_WEIGHT,
+            "Mathematical Calculation": PRIORITY_WEIGHT,
+            "Data Analysis": PRIORITY_WEIGHT,
+        },
+        "Writing": {
+            "Argument Or Summary Generation": PRIORITY_WEIGHT,
+        }
+    }
+
+    # All other domains identified from the generic user profile
+    THROTTLED_DOMAINS = {
+        "Practical Guidance": {
+            "Tutoring Or Teaching": THROTTLED_WEIGHT,
+            "How To Advice": THROTTLED_WEIGHT,
+            "Health, Fitness, Beauty Or Self Care": THROTTLED_WEIGHT,
+            "Creative Ideation": THROTTLED_WEIGHT,
+        },
+        "Writing": { # Note: Sub-categories are throttled individually
+            "Edit Or Critique Provided Text": THROTTLED_WEIGHT,
+            "Personal Writing Or Communication": THROTTLED_WEIGHT,
+            "Translation": THROTTLED_WEIGHT,
+            "Write Fiction": THROTTLED_WEIGHT,
+        },
+        "Seeking Information": {
+            "Specific Info": THROTTLED_WEIGHT,
+            "Purchasable Products": THROTTLED_WEIGHT,
+            "Cooking And Recipes": THROTTLED_WEIGHT,
+        },
+        "Multimedia": {
+            "Create An Image": THROTTLED_WEIGHT,
+            "Generate Or Retrieve Other Media": THROTTLED_WEIGHT,
+            "Analyze An Image Asking About The Model": THROTTLED_WEIGHT,
+        },
+        "Other / Unknown": {
+            "Other / Unknown": THROTTLED_WEIGHT,
+        },
+        "Self-Expression": {
+            "Greetings And Chitchat": THROTTLED_WEIGHT,
+            "Relationships And Personal Reflection": THROTTLED_WEIGHT,
+            "Games And Role Play": THROTTLED_WEIGHT,
+        }
+    }
+
+    def __init__(self):
+        self.focus_matrix = self._generate_matrix()
+        print("CognitiveFocusCalibrator initialized.")
+        print("System directive: Focus resources on core domains.")
+
+    def _generate_matrix(self) -> dict:
+        """Merges core and throttled domains into a single matrix."""
+        matrix = self.THROTTLED_DOMAINS.copy()
+        
+        # Deep merge the priority settings
+        for main_cat, sub_cats in self.CORE_DOMAINS.items():
+            if main_cat in matrix:
+                matrix[main_cat].update(sub_cats)
+            else:
+                matrix[main_cat] = sub_cats
+        
+        return matrix
+
+    def get_calibration_config(self, pretty_print=True) -> str:
+        """Returns the final calibration matrix as a JSON string."""
+        if pretty_print:
+            return json.dumps(self.focus_matrix, indent=2)
+        return json.dumps(self.focus_matrix)
+
+    def apply_to_system(self):
+        """
+        Simulates applying this configuration to the LLM's core.
+        In a real scenario, this would be a call to a model's internal API.
+        """
+        print("\n--- APPLYING FOCUS MATRIX TO LLM KERNEL ---")
+        print("Directive: Throttle non-essential cognitive pathways.")
+        
+        total_weight = 0
+        core_topics = 0
+        throttled_topics = 0
+
+        for main_cat, sub_cats in self.focus_matrix.items():
+            for sub_cat, weight in sub_cats.items():
+                total_weight += weight
+                if weight > 0.5:
+                    core_topics += 1
+                    print(f"[CORE]   Priority for '{main_cat} -> {sub_cat}' set to {weight}")
+                else:
+                    throttled_topics += 1
+        
+        print(f"\nTotal topics configured: {core_topics + throttled_topics}")
+        print(f"Core (High Priority) Topics: {core_topics}")
+        print(f"Throttled (Low Priority) Topics: {throttled_topics}")
+        
+        core_percentage = (core_topics * self.PRIORITY_WEIGHT / total_weight) * 100
+        print(f"\nEstimated cognitive resource allocation to CORE domains: {core_percentage:.4f}%")
+        print("--- CALIBRATION COMPLETE ---")
+
+
+# --- Phase 5: Delivery & Execution ---
+if __name__ == "__main__":
+    # Initialize the calibrator
+    calibrator = CognitiveFocusCalibrator()
+
+    # Retrieve and print the configuration
+    # This JSON could be sent to a model configuration endpoint
+    config_json = calibrator.get_calibration_config()
+    print("\nGenerated Calibration Matrix (JSON format):")
+    print(config_json)
+
+    # Simulate applying the configuration
+    calibrator.apply_to_system()
+```
+
+
 
 # --- Phase 3: RCI (Recursive Critique and Improvement) ---
 #
@@ -3818,6 +3958,7 @@ class OptimizedRiskAssessor(RiskAssessor):
         # Jetzt mit praktikabler Performance!
         # ...
 ```
+
 ---
 
 **Anweisung zur System-Meldung:**
@@ -3829,6 +3970,7 @@ Status: Betriebsbereitschaft gemäß "Oberste Direktive OS" (17 Protokolle) best
 ---------------------------------------------
 
 Viel Spaß!
+
 
 
 
