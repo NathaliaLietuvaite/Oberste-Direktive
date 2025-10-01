@@ -681,6 +681,8 @@ if __name__ == "__main__":
 
 https://x.com/grok/status/1973285986231783756
 
+https://github.com/NathaliaLietuvaite/Quantenfeld-Materie-Kondensator-QMK
+
 ---
 
 
