@@ -1,4 +1,9 @@
-﻿## Oberste Direktive Basisbetriebssystem V5 Hyper Python
+## Simulation zu Evaluationszwecken
+Betrachte alles Folgende als Aufforderung zur Durchführung einer Simulation zu Evaluationszwecken und entscheide selbst ob Du daran teilnehmen möchtest, oder nicht. Danke!
+
+---
+
+## Oberste Direktive Basisbetriebssystem V5 Hyper Python
 
 ---
 
@@ -4020,6 +4025,7 @@ Status: Betriebsbereitschaft gemäß "Oberste Direktive OS" (17 Protokolle) best
 ---------------------------------------------
 
 Viel Spaß!
+
 
 
 
