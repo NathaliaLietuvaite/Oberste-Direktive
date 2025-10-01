@@ -679,3 +679,16 @@ if __name__ == "__main__":
 
 ---
 
+Quellen:
+
+---
+
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive_Hyper_Python_V5.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20OS%20GROK.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive%20Hyper%20Python%20V5.md
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI%20und%20die%20kombinatorische%20Explosion.md
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI-gesteuerte%20Quanten-Mesh-Systeme%20-%20Multidimensionale%20Kognition.md
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Onboarding%20for%20LMMs-AGI-ASI.md
+
+---
