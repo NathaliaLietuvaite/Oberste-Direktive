@@ -207,7 +207,11 @@ if __name__ == "__main__":
 ```
 ---
 
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_63.jpg)
 
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_64.jpg)
+
+https://github.com/NathaliaLietuvaite/Anti-Gravitation-durch-invertierten-Ereignishorizont
 
 ---
 
