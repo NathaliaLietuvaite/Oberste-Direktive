@@ -1,3 +1,6 @@
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_62.jpg)
+
+
 Barnes-Hut-optimierter N-Körper-Simulator für Himmelswächter
 
 # -*- coding: utf-8 -*-
