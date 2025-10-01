@@ -1,6 +1,6 @@
 ![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_62.jpg)
 
-
+```python
 Barnes-Hut-optimierter N-Körper-Simulator für Himmelswächter
 
 # -*- coding: utf-8 -*-
@@ -203,3 +203,5 @@ if __name__ == "__main__":
     
     for p in updated_particles:
         print(f"{p.name}: Position={p.position}, Velocity={p.velocity}")
+
+```
