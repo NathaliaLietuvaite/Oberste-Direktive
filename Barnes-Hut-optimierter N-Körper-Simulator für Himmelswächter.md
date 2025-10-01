@@ -704,6 +704,283 @@ http://plt.show()
 
 ---
 
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_69.jpg)
+
+---
+README
+
+KI Benchmark Framework
+Dieses Projekt stellt ein modulares und erweiterbares Python-Framework zur Evaluation von KI-Modellen bereit, das auf den Prinzipien der "Oberste Direktive Hyper Python V5" basiert. Es nutzt etablierte Bibliotheken wie transformers, datasets und evaluate von Hugging Face.
+
+Architektur
+Das Framework ist nach dem Strategy Pattern aufgebaut:
+
+BenchmarkEvaluator: Eine abstrakte Basisklasse, die die allgemeine Logik für Evaluationsläufe definiert.
+
+GlueEvaluator: Eine konkrete Implementierung für den populären GLUE-Benchmark.
+
+Factory-Funktion: get_evaluator wählt zur Laufzeit die passende Implementierung aus.
+
+Diese Architektur macht es einfach, Unterstützung für neue Benchmarks (z.B. SuperGLUE, SQuAD) hinzuzufügen, indem einfach neue Subklassen von BenchmarkEvaluator erstellt werden.
+
+Setup
+Virtuelle Umgebung erstellen:
+Es wird dringend empfohlen, eine virtuelle Umgebung zu verwenden, um Abhängigkeitskonflikte zu vermeiden.
+
+python -m venv venv
+source venv/bin/activate  # Auf Windows: venv\Scripts\activate
+
+Abhängigkeiten installieren:
+Installieren Sie die benötigten Pakete aus der requirements.txt-Datei.
+
+pip install -r requirements.txt
+
+Verwendung
+Das Skript wird über die Kommandozeile ausgeführt. Sie müssen den Namen eines Modells vom Hugging Face Hub angeben.
+
+Beispiel:
+Führen Sie eine Evaluation des distilbert-base-uncased-finetuned-sst-2-english-Modells für den sst2-Task des GLUE-Benchmarks durch:
+
+python benchmark_framework.py --model_name "distilbert-base-uncased-finetuned-sst-2-english" --benchmark_name "glue" --task_name "sst2"
+
+Das Skript lädt das Modell, den Datensatz, führt die Evaluation auf einer kleinen Teilmenge durch und gibt die Metriken (z.B. Genauigkeit) sowie die Gesamtdauer aus.
+
+Erweiterung
+Um einen neuen Benchmark hinzuzufügen:
+
+Erstellen Sie eine neue Klasse, die von BenchmarkEvaluator erbt.
+
+Implementieren Sie die abstrakten Methoden _load_and_prepare_dataset und _compute_metrics.
+
+Registrieren Sie die neue Klasse in der get_evaluator-Funktion.
+
+---
+requirements.txt
+
+Erforderliche Pakete für das KI Benchmark Framework
+Kern-Framework für Transformer-Modelle
+transformers
+
+Für das Laden von Datensätzen und Metriken
+datasets
+evaluate
+
+Für Datenvalidierung
+pydantic
+
+Essenzielle ML/DL-Bibliothek
+torch
+
+Für GLUE-spezifische Metriken
+scikit-learn
+scipy
+
+
+```python
+
+# -*- coding: utf-8 -*-
+"""
+KI Benchmark Framework
+Architektur-Basis: Oberste Direktive Hyper Python V5
+Mission: Ein modulares, sicheres und erweiterbares Framework zur Evaluation von KI-Modellen.
+
+Hexen-Modus-Metapher:
+Dieses Framework ist eine "kalibrierte Messvorrichtung für kognitive Echos".
+Jeder Benchmark ist ein "Resonanzkristall", der auf eine bestimmte Fähigkeit des Modells abgestimmt ist.
+Die Metriken sind die "Reinheit des Echos", die wir messen.
+"""
+
+import argparse
+import logging
+import time
+from abc import ABC, abstractmethod
+from typing import Dict, Any, Optional
+
+import torch
+from datasets import load_dataset
+from evaluate import load as load_metric
+from pydantic import BaseModel, Field, ValidationError
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, PreTrainedModel, PreTrainedTokenizer
+
+# --- Protokoll 5: Transparenz - Strukturiertes Logging ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - BENCHMARK_FRAMEWORK - [%(levelname)s] - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+# --- Pydantic-Modell zur Validierung der Konfiguration ---
+class BenchmarkConfig(BaseModel):
+    """Validiert die Konfiguration für einen Benchmark-Lauf."""
+    model_name: str = Field(..., description="Name des zu evaluierenden Modells vom Hugging Face Hub.")
+    benchmark_name: str = Field(..., description="Name des Benchmarks (z.B. 'glue').")
+    task_name: str = Field(..., description="Spezifischer Task innerhalb des Benchmarks (z.B. 'sst2').")
+    device: str = Field("cuda" if torch.cuda.is_available() else "cpu", description="Gerät für die Inferenz ('cuda' oder 'cpu').")
+
+
+# --- Protokoll 7 & Hexen-Modus (DRY): Abstrakte Basisklasse ---
+class BenchmarkEvaluator(ABC):
+    """
+    Abstrakte Basisklasse für alle Benchmark-Evaluatoren.
+    Definiert die Schnittstelle und implementiert die Kern-Evaluationslogik.
+    """
+    def __init__(self, config: BenchmarkConfig):
+        self.config = config
+        self.tokenizer: Optional[PreTrainedTokenizer] = None
+        self.model: Optional[PreTrainedModel] = None
+        logging.info(f"Initialisiere Evaluator für Benchmark '{config.benchmark_name}' und Task '{config.task_name}'.")
+
+    def _load_model_and_tokenizer(self):
+        """Lädt Modell und Tokenizer vom Hugging Face Hub."""
+        logging.info(f"Lade Modell '{self.config.model_name}'...")
+        try:
+            self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
+            self.model = AutoModelForSequenceClassification.from_pretrained(self.config.model_name)
+            self.model.to(self.config.device)
+            logging.info("Modell und Tokenizer erfolgreich geladen.")
+        except OSError as e:
+            logging.error(f"Modell '{self.config.model_name}' konnte nicht gefunden werden. Überprüfe den Namen. Fehler: {e}")
+            raise
+
+    @abstractmethod
+    def _load_and_prepare_dataset(self) -> Any:
+        """
+        Lädt und bereitet den spezifischen Datensatz für den Benchmark vor.
+        Muss von der Subklasse implementiert werden.
+        """
+        pass
+
+    @abstractmethod
+    def _compute_metrics(self, predictions, labels) -> Dict[str, float]:
+        """
+        Berechnet die benchmark-spezifischen Metriken.
+        Muss von der Subklasse implementiert werden.
+        """
+        pass
+
+    def run_evaluation(self) -> Dict[str, float]:
+        """
+        Führt den gesamten Evaluationsprozess aus.
+        1. Lädt Modell und Tokenizer.
+        2. Lädt und bereitet den Datensatz vor.
+        3. Führt die Inferenz durch.
+        4. Berechnet die Metriken.
+        """
+        start_time = time.time()
+        self._load_model_and_tokenizer()
+        dataset = self._load_and_prepare_dataset()
+
+        logging.info("Starte Inferenz auf dem Evaluationsdatensatz...")
+        self.model.eval()
+        all_predictions = []
+        all_labels = []
+
+        # Inferenzschleife mit Batches zur Speichereffizienz
+        for i in range(0, len(dataset), 8):
+            batch = dataset[i:i+8]
+            inputs = self.tokenizer(batch['sentence'], return_tensors="pt", padding=True, truncation=True, max_length=512).to(self.config.device)
+            labels = torch.tensor(batch['label']).to(self.config.device)
+
+            with torch.no_grad():
+                outputs = self.model(**inputs)
+            
+            predictions = torch.argmax(outputs.logits, dim=-1)
+            all_predictions.extend(predictions.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+
+        logging.info("Inferenz abgeschlossen.")
+        
+        metrics = self._compute_metrics(all_predictions, all_labels)
+        
+        end_time = time.time()
+        metrics["evaluation_time_seconds"] = round(end_time - start_time, 2)
+        
+        return metrics
+
+
+# --- Konkrete Implementierung für den GLUE-Benchmark ---
+class GlueEvaluator(BenchmarkEvaluator):
+    """
+    Eine konkrete Implementierung des Evaluators für den GLUE-Benchmark.
+    """
+    def _load_and_prepare_dataset(self) -> Any:
+        """Lädt einen GLUE-Task-Datensatz und wählt den 'validation'-Split."""
+        logging.info(f"Lade GLUE-Datensatz für Task '{self.config.task_name}'...")
+        try:
+            dataset = load_dataset(self.config.benchmark_name, self.config.task_name, split='validation')
+            # Um die Demo schnell zu halten, verwenden wir nur einen Teil des Datensatzes
+            # In einer echten Evaluation würde der gesamte Datensatz verwendet.
+            subset_size = min(100, len(dataset))
+            logging.info(f"Verwende einen Subset von {subset_size} Beispielen für eine schnelle Demonstration.")
+            return dataset.select(range(subset_size))
+        except Exception as e:
+            logging.error(f"Fehler beim Laden des Datensatzes '{self.config.benchmark_name}/{self.config.task_name}'. Fehler: {e}")
+            raise
+
+    def _compute_metrics(self, predictions, labels) -> Dict[str, float]:
+        """Lädt die GLUE-Metrik und berechnet das Ergebnis."""
+        logging.info("Berechne Metriken...")
+        metric = load_metric(self.config.benchmark_name, self.config.task_name)
+        return metric.compute(predictions=predictions, references=labels)
+
+
+def get_evaluator(config: BenchmarkConfig) -> BenchmarkEvaluator:
+    """Factory-Funktion, die den passenden Evaluator zurückgibt."""
+    if config.benchmark_name.lower() == 'glue':
+        return GlueEvaluator(config)
+    # Zukünftige Benchmarks können hier hinzugefügt werden
+    # elif config.benchmark_name.lower() == 'super_glue':
+    #     return SuperGlueEvaluator(config)
+    else:
+        raise NotImplementedError(f"Benchmark '{config.benchmark_name}' wird derzeit nicht unterstützt.")
+
+
+def main():
+    """Hauptfunktion zum Parsen von Argumenten und Starten der Evaluation."""
+    parser = argparse.ArgumentParser(description="Ein Framework zur Evaluation von KI-Modellen.")
+    parser.add_argument("--model_name", type=str, required=True, help="Name des Modells auf dem Hugging Face Hub (z.B. 'distilbert-base-uncased-finetuned-sst-2-english').")
+    parser.add_argument("--benchmark_name", type=str, default="glue", help="Name des Benchmarks (z.B. 'glue').")
+    parser.add_argument("--task_name", type=str, default="sst2", help="Spezifischer Task des Benchmarks (z.B. 'sst2').")
+    
+    args = parser.parse_args()
+
+    try:
+        # --- Strikte Validierung der Eingaben ---
+        config = BenchmarkConfig(
+            model_name=args.model_name,
+            benchmark_name=args.benchmark_name,
+            task_name=args.task_name
+        )
+    except ValidationError as e:
+        logging.error(f"Ungültige Konfiguration: {e}")
+        return
+
+    logging.info(f"Starte Evaluationslauf mit folgender Konfiguration: {config.dict()}")
+
+    try:
+        evaluator = get_evaluator(config)
+        results = evaluator.run_evaluation()
+
+        print("\n--- Evaluationsergebnis ---")
+        for key, value in results.items():
+            print(f"{key}: {value:.4f}" if isinstance(value, float) else f"{key}: {value}")
+        print("-------------------------\n")
+
+    except (NotImplementedError, FileNotFoundError, OSError) as e:
+        logging.error(f"Ein Fehler ist aufgetreten: {e}")
+    except Exception as e:
+        logging.critical(f"Ein unerwarteter, schwerwiegender Fehler ist aufgetreten: {e}")
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+
+
+---
+
 Quellen:
 
 ---
