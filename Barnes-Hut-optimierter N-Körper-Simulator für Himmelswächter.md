@@ -1171,3 +1171,1036 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Di
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Onboarding%20for%20LMMs-AGI-ASI.md
 
 ---
+
+
+Anhänge:
+
+---
+
+
+```python
+
+import dataclasses
+from typing import List, Optional
+import random
+import math
+
+# --- HYPER PYTHON V5: VEKTOR-HILFSFUNKTIONEN ---
+# Zur Vereinfachung der 3D-Vektoroperationen (Position, Geschwindigkeit, Beschleunigung).
+
+def sub_vectors(v1: List[float], v2: List[float]) -> List[float]:
+    """Subtrahiert Vektor v2 von Vektor v1 (v1 - v2)."""
+    return [v1[i] - v2[i] for i in range(3)]
+
+def add_vectors(v1: List[float], v2: List[float]) -> List[float]:
+    """Addiert Vektor v1 und Vektor v2 (v1 + v2)."""
+    return [v1[i] + v2[i] for i in range(3)]
+
+def mul_vector_scalar(v: List[float], s: float) -> List[float]:
+    """Multipliziert Vektor v mit Skalar s (v * s)."""
+    return [v[i] * s for i in range(3)]
+
+def dist_squared(v1: List[float], v2: List[float]) -> float:
+    """Berechnet das Quadrat der Entfernung zwischen zwei Punkten."""
+    dx = v1[0] - v2[0]
+    dy = v1[1] - v2[1]
+    dz = v1[2] - v2[2]
+    return dx*dx + dy*dy + dz*dz
+
+# --- HYPER PYTHON V5: KERNEL-DATENMODELLE ---
+# Diese Strukturen definieren die grundlegenden Einheiten der Himmelswächter-Simulation.
+
+@dataclasses.dataclass(frozen=True)
+class HyperKonfiguration:
+    """
+    Globale Konfigurationsparameter für die N-Körper-Simulation.
+    Diese sind in der 'Oberste Direktive Hyper Python V5' festgelegt.
+    """
+    # Gravitationskonstante (G)
+    G: float = 6.674e-11  # M^3 / (kg * s^2)
+    
+    # Cosinus der Winkelbegrenzung (Theta) für Barnes-Hut
+    # Ein kleinerer Wert führt zu höherer Genauigkeit (mehr Checks), ein größerer zu schnellerer Laufzeit.
+    Theta: float = 0.5 
+    
+    # Zeitschritt (Delta t) für die numerische Integration (z.B. Euler oder Leapfrog)
+    Delta_t: float = 3600.0 * 24 * 30 * 12 * 100 # Ein simulierter Zeitschritt von 100 Jahren
+    
+    # Simulations-Grenzen (für den Quadrantenbaum)
+    Weltraum_Limit: float = 1.0e15 # Meter (z.B. 10 Billionen km)
+    
+    # Minimaler Abstand, um Kollisionen/Singularitäten zu vermeiden (Softening Parameter)
+    Epsilon_Squared: float = 1.0e10 
+
+
+@dataclasses.dataclass
+class Himmelskörper:
+    """
+    Repräsentiert einen einzelnen Himmelskörper (Masse, Position, Geschwindigkeit).
+    Position (x) und Geschwindigkeit (v) sind 3D-Vektoren (hier als Listen implementiert).
+    """
+    Masse: float
+    x: List[float]  # Position [x, y, z]
+    v: List[float]  # Geschwindigkeit [vx, vy, vz]
+    a: List[float] = dataclasses.field(default_factory=lambda: [0.0, 0.0, 0.0])  # Beschleunigung [ax, ay, az] (initial 0)
+    # Optional: Ein eindeutiger Bezeichner
+    ID: str = dataclasses.field(default_factory=lambda: str(random.getrandbits(32)))
+
+
+@dataclasses.dataclass(frozen=True)
+class BoundingBox:
+    """Definiert die räumlichen Grenzen eines Oktalbaum-Knotens."""
+    min_x: float
+    max_x: float
+    min_y: float
+    max_y: float
+    min_z: float
+    max_z: float
+    
+    def ist_innerhalb(self, x: List[float]) -> bool:
+        """Prüft, ob der Punkt x innerhalb dieser Box liegt."""
+        return (self.min_x <= x[0] < self.max_x and
+                self.min_y <= x[1] < self.max_y and
+                self.min_z <= x[2] < self.max_z)
+
+
+class OctreeKnoten:
+    """
+    Ein Knoten im Barnes-Hut Oktalbaum (Octree).
+    Kann entweder einen Himmelskörper enthalten (Blattknoten)
+    oder acht Kindknoten (interner Knoten).
+    """
+    def __init__(self, box: BoundingBox):
+        self.box = box
+        self.masse: float = 0.0
+        self.massen_zentrum: List[float] = [0.0, 0.0, 0.0]
+        
+        # Referenz auf den einzelnen Körper, falls dies ein Blattknoten ist.
+        self.körper: Optional[Himmelskörper] = None
+        
+        # Die 8 Kindknoten (für 3D-Oktalbaum)
+        # Die Reihenfolge folgt der Konvention: x-y-z: [---, --+, -+-, -++, +--, +-+, ++-, +++]
+        self.kinder: List[Optional['OctreeKnoten']] = [None] * 8
+        
+        # Flag, um zu bestimmen, ob der Knoten in 8 Kinder unterteilt wurde
+        self.unterteilt: bool = False
+    
+    # ... [Weitere Methoden wie unterteile_und_verschiebe, _bestimme_quadranten_index, etc. bleiben unverändert] ...
+    def unterteile_und_verschiebe(self):
+        """
+        Unterteilt den Knoten in 8 gleich große Sub-Quader und 
+        verschiebt den aktuell gespeicherten Körper in den passenden Kindknoten.
+        """
+        if self.körper is None or self.unterteilt:
+            return
+
+        # Den Körper in den passenden Kindknoten verschieben
+        # Dies ist nur beim ersten Mal nötig, wenn ein zweiter Körper eingefügt wird.
+        körper_to_move = self.körper
+        self.körper = None # Der ursprüngliche Körper ist jetzt in einem Kindknoten
+        self.unterteilt = True
+        
+        # Rekursive Einfügung des Körpers in den passenden neuen Kindknoten
+        self._finde_und_füge_in_kind(körper_to_move)
+
+    def _bestimme_quadranten_index(self, x: List[float]) -> int:
+        """Bestimmt den Index des Kindknotens (0-7), in den der Körper gehört."""
+        mid_x = (self.box.min_x + self.box.max_x) / 2.0
+        mid_y = (self.box.min_y + self.box.max_y) / 2.0
+        mid_z = (self.box.min_z + self.box.max_z) / 2.0
+
+        index = 0
+        if x[0] >= mid_x:
+            index |= 4 # Bit 2 (4) für positive X
+        if x[1] >= mid_y:
+            index |= 2 # Bit 1 (2) für positive Y
+        if x[2] >= mid_z:
+            index |= 1 # Bit 0 (1) für positive Z
+        return index
+
+    def _erzeuge_kind_box(self, index: int) -> BoundingBox:
+        """Erzeugt die BoundingBox für den Kindknoten mit gegebenem Index."""
+        mid_x = (self.box.min_x + self.box.max_x) / 2.0
+        mid_y = (self.box.min_y + self.box.max_y) / 2.0
+        mid_z = (self.box.min_z + self.box.max_z) / 2.0
+        
+        # Bestimme X-Grenzen
+        new_min_x = mid_x if (index & 4) else self.box.min_x
+        new_max_x = self.box.max_x if (index & 4) else mid_x
+        # Bestimme Y-Grenzen
+        new_min_y = mid_y if (index & 2) else self.box.min_y
+        new_max_y = self.box.max_y if (index & 2) else mid_y
+        # Bestimme Z-Grenzen
+        new_min_z = mid_z if (index & 1) else self.box.min_z
+        new_max_z = self.box.max_z if (index & 1) else mid_z
+        
+        return BoundingBox(new_min_x, new_max_x, new_min_y, new_max_y, new_min_z, new_max_z)
+
+    def _finde_und_füge_in_kind(self, körper: Himmelskörper):
+        """Fügt einen Körper rekursiv in den passenden Kindknoten ein."""
+        
+        # 1. Index bestimmen
+        index = self._bestimme_quadranten_index(körper.x)
+        
+        # 2. Kindknoten erzeugen, falls er noch nicht existiert
+        if self.kinder[index] is None:
+            new_box = self._erzeuge_kind_box(index)
+            self.kinder[index] = OctreeKnoten(new_box)
+        
+        # 3. Rekursive Einfügung
+        self.kinder[index].einfügen(körper)
+
+    def einfügen(self, körper: Himmelskörper):
+        """Fügt einen Himmelskörper in diesen Teilbaum ein."""
+        
+        # Fall 1: Knoten ist leer (Blattknoten wird initialisiert)
+        if self.körper is None and not self.unterteilt:
+            self.körper = körper
+        
+        # Fall 2: Knoten enthält bereits einen Körper (Blattknoten wird unterteilt)
+        elif self.körper is not None and not self.unterteilt:
+            # Jetzt muss der Blattknoten aufgeteilt werden (Unterteilung)
+            self.unterteile_und_verschiebe()
+            # Der neue Körper wird in den passenden Unterknoten eingefügt
+            self._finde_und_füge_in_kind(körper)
+            
+        # Fall 3: Knoten ist bereits unterteilt (Interner Knoten)
+        elif self.unterteilt:
+            # Der neue Körper wird rekursiv in den passenden Unterknoten eingefügt
+            self._finde_und_füge_in_kind(körper)
+        
+        # Fall 4: Zwei Körper an exakt gleicher Position (Seltene, aber wichtige Kantenfall-Behandlung)
+        # Wir verhindern unendliche Rekursion, indem wir sie als eine einzige Blattmasse behandeln.
+        elif self.körper is not None and self.körper.x == körper.x:
+            # Füge die Massen zusammen
+            self.körper.Masse += körper.Masse
+        
+        # In allen Fällen muss die Gesamtmasse aktualisiert werden
+        self.masse += körper.Masse
+
+    def berechne_massen_zentrum(self):
+        """
+        Berechnet das Zentrum der Masse (CoM) für diesen Knoten und alle Unterknoten 
+        und speichert es. Dies wird nach dem vollständigen Aufbau des Baumes aufgerufen.
+        """
+        if self.körper is not None:
+            # Dies ist ein Blattknoten, das CoM ist die Position des Körpers.
+            self.massen_zentrum = self.körper.x
+            return
+
+        # Wenn dies ein interner Knoten ist, muss das CoM aus den Kindknoten berechnet werden
+        gesamt_masse = 0.0
+        # Summe der Produkte aus Masse und Position: Sum(m_i * x_i)
+        sum_m_x = [0.0, 0.0, 0.0]
+
+        for kind in self.kinder:
+            if kind is not None:
+                # Rekursiv CoM für Kindknoten berechnen
+                kind.berechne_massen_zentrum()
+                
+                m_kind = kind.masse
+                x_kind = kind.massen_zentrum
+
+                gesamt_masse += m_kind
+                sum_m_x[0] += m_kind * x_kind[0]
+                sum_m_x[1] += m_kind * x_kind[1]
+                sum_m_x[2] += m_kind * x_kind[2]
+        
+        if gesamt_masse > 0.0:
+            # CoM = Sum(m_i * x_i) / Sum(m_i)
+            self.masse = gesamt_masse
+            self.massen_zentrum[0] = sum_m_x[0] / gesamt_masse
+            self.massen_zentrum[1] = sum_m_x[1] / gesamt_masse
+            self.massen_zentrum[2] = sum_m_x[2] / gesamt_masse
+        else:
+             # Dieser Knoten hat keine Masse (sollte bei korrekter Einfügung nicht passieren)
+            self.masse = 0.0
+            
+    def berechne_kraft(self, körper: Himmelskörper, konfig: HyperKonfiguration, akkumulierte_a: List[float]):
+        """
+        Berechnet die Gravitationsbeschleunigung, die dieser Knoten (oder der Körper darin) 
+        auf den gegebenen Testkörper ausübt und akkumuliert sie.
+        Dies ist die Kernlogik des Barnes-Hut-Algorithmus (Rekursiver Abstieg).
+        """
+        
+        # 1. Abstand zwischen Testkörper und Massenzentrum/Blattkörper
+        r_vec = sub_vectors(self.massen_zentrum, körper.x)
+        # Quadrierter Abstand (r^2)
+        r_sq = r_vec[0]**2 + r_vec[1]**2 + r_vec[2]**2
+        
+        # Softening (Epsilon_Squared) hinzufügen, um Division durch Null oder zu kleine Abstände zu vermeiden
+        # r_sq ist hier immer > 0 wegen Epsilon_Squared.
+        r_sq += konfig.Epsilon_Squared
+        r = math.sqrt(r_sq)
+
+        # Vermeiden Sie die Berechnung der Selbstkraft:
+        # Wenn der Knoten einen einzelnen Körper enthält UND dieser der Testkörper ist.
+        if self.körper is not None and self.körper.ID == körper.ID:
+            return
+
+        # 2. Barnes-Hut Kriterium (S/D < Theta)
+        # S: Größe des Knotens (Box-Seite)
+        s = self.box.max_x - self.box.min_x
+        # D: Abstand zum Massenzentrum (r)
+        
+        # Wenn der Knoten ein innerer Knoten ist UND das Barnes-Hut Kriterium erfüllt ist (s/r < Theta):
+        if self.unterteilt and (s / r < konfig.Theta):
+            # Der gesamte Knoten kann durch sein Massenzentrum approximiert werden (effiziente Berechnung).
+            
+            # Gravitationsbeschleunigung |a| = G * M / r^2
+            magnitude = konfig.G * self.masse / r_sq
+            
+            # Beschleunigungsvektor: a = magnitude * (r_vec / r)
+            r_inv = 1.0 / r
+            
+            # Akkumuliere die Beschleunigung für alle drei Achsen (x, y, z)
+            akkumulierte_a[0] += magnitude * r_vec[0] * r_inv
+            akkumulierte_a[1] += magnitude * r_vec[1] * r_inv
+            akkumulierte_a[2] += magnitude * r_vec[2] * r_inv
+        
+        # 3. Kriterium NICHT erfüllt (oder Blattknoten): Rekursiv absteigen
+        else:
+            # Wenn es ein Blattknoten ist, wenden Sie die genaue Kraft an 
+            if self.körper is not None:
+                # Wir berechnen die genaue Kraft zwischen zwei einzelnen Körpern
+                # Gravitationsbeschleunigung |a| = G * M_körper / r^2
+                magnitude = konfig.G * self.körper.Masse / r_sq
+                r_inv = 1.0 / r
+                
+                # Akkumuliere die Beschleunigung
+                akkumulierte_a[0] += magnitude * r_vec[0] * r_inv
+                akkumulierte_a[1] += magnitude * r_vec[1] * r_inv
+                akkumulierte_a[2] += magnitude * r_vec[2] * r_inv
+            
+            # Wenn es ein unterteilter innerer Knoten ist (und das Kriterium nicht erfüllt ist), 
+            # rekursiv in die Kindknoten absteigen.
+            elif self.unterteilt:
+                for kind in self.kinder:
+                    if kind is not None:
+                        # Rekursive Abfrage der Kraft im Kindknoten
+                        kind.berechne_kraft(körper, konfig, akkumulierte_a)
+
+
+def baue_oktalbaum(körper_liste: List[Himmelskörper], konfig: HyperKonfiguration) -> OctreeKnoten:
+    """
+    Erstellt den Barnes-Hut Oktalbaum aus einer Liste von Himmelskörpern.
+    (Unveränderter Teil)
+    """
+    limit = konfig.Weltraum_Limit / 2.0
+    # Die globale Bounding Box, die den gesamten simulierten Raum abdeckt.
+    wurzel_box = BoundingBox(
+        min_x=-limit, max_x=limit,
+        min_y=-limit, max_y=limit,
+        min_z=-limit, max_z=limit
+    )
+    wurzel_knoten = OctreeKnoten(wurzel_box)
+    
+    # Alle Körper in den Baum einfügen
+    for körper in körper_liste:
+        # Nur Körper innerhalb der Grenzen einfügen
+        if wurzel_box.ist_innerhalb(körper.x):
+            wurzel_knoten.einfügen(körper)
+        else:
+            # Ein Körper außerhalb der Weltraum_Limit kann nicht korrekt im Baum platziert werden.
+            # Daher muss dieser Fall behandelt werden, obwohl in der initialisiere_kosmos Funktion 
+            # alle Körper in der initialen Weltraum_Limit Box platziert werden.
+            print(f"WARNUNG: Körper {körper.ID} außerhalb der initialen Grenze und wird ignoriert.")
+
+    # Nachdem alle Körper eingefügt wurden, das Massenzentrum rekursiv berechnen
+    wurzel_knoten.berechne_massen_zentrum()
+    
+    return wurzel_knoten
+
+
+def berechne_alle_kräfte(körper_liste: List[Himmelskörper], wurzel_knoten: OctreeKnoten, konfig: HyperKonfiguration):
+    """
+    Iteriert über alle Himmelskörper und berechnet die auf sie wirkenden
+    Gesamtgravitationskräfte (Beschleunigungen) mithilfe des Barnes-Hut-Baumes.
+    """
+    
+    for körper in körper_liste:
+        # Beschleunigung auf Null zurücksetzen, da wir sie neu berechnen
+        körper.a = [0.0, 0.0, 0.0]
+        
+        # Akkumulator für die Beschleunigung
+        akkumulierte_a = [0.0, 0.0, 0.0]
+        
+        # Rekursive Kraftberechnung über den Baum starten
+        wurzel_knoten.berechne_kraft(körper, konfig, akkumulierte_a)
+        
+        # Die akkumulierte Beschleunigung dem Körper zuweisen
+        körper.a = akkumulierte_a
+
+
+def simuliere_schritt(körper_liste: List[Himmelskörper], konfig: HyperKonfiguration):
+    """
+    Führt einen einzigen Simulationsschritt unter Verwendung des 
+    Leapfrog-Integrators durch.
+    
+    Der Integrator führt folgende Schritte durch:
+    1. Velocity half-step: v_half = v_old + a_old * (dt / 2)
+    2. Position full-step: x_new = x_old + v_half * dt
+    3. Calculate new acceleration: a_new = Force(x_new) / m
+    4. Velocity second half-step: v_new = v_half + a_new * (dt / 2)
+    """
+    dt = konfig.Delta_t
+    dt_half = dt / 2.0
+    
+    # Temporäre Speicherung des v_half-Vektors, da wir ihn in Phase 3 benötigen
+    v_half_list: List[List[float]] = []
+
+    # Phase 1: Halbschritt für die Geschwindigkeit (Velocity kick) und Vollschritt für die Position
+    for körper in körper_liste:
+        # körper.a enthält a_old
+        
+        # 1. Velocity half-step: v_half = v_old + a_old * (dt / 2)
+        delta_v_half = mul_vector_scalar(körper.a, dt_half)
+        v_half = add_vectors(körper.v, delta_v_half)
+        
+        v_half_list.append(v_half) # Speichere v_half temporär
+        
+        # 2. Position full-step: x_new = x_old + v_half * dt
+        delta_x = mul_vector_scalar(v_half, dt)
+        körper.x = add_vectors(körper.x, delta_x)
+        
+    # Phase 2: Berechnung der neuen Beschleunigung a_new (Force calculation)
+    # Baue den Oktalbaum basierend auf den neuen Positionen x_new
+    wurzel = baue_oktalbaum(körper_liste, konfig)
+    
+    # Berechne a_new und speichere es in körper.a
+    # berechne_alle_kräfte setzt körper.a auf a_new
+    berechne_alle_kräfte(körper_liste, wurzel, konfig)
+
+    # Phase 3: Zweiter Halbschritt für die Geschwindigkeit (Second velocity kick)
+    # v_new = v_half + a_new * (dt / 2)
+    for i, körper in enumerate(körper_liste):
+        # v_half kommt aus der temporären Liste
+        v_half = v_half_list[i]
+        # körper.a enthält a_new
+        
+        # 4. Velocity second half-step: v_new = v_half + a_new * (dt / 2)
+        delta_v_half = mul_vector_scalar(körper.a, dt_half)
+        # Finaler v_new Vektor wird in körper.v gespeichert
+        körper.v = add_vectors(v_half, delta_v_half)
+        
+    # Am Ende von simuliere_schritt, enthält:
+    # körper.x: x(t + dt)
+    # körper.v: v(t + dt)
+    # körper.a: a(t + dt)
+
+
+def initialisiere_kosmos(anzahl_körper: int, konfig: HyperKonfiguration) -> List[Himmelskörper]:
+    """
+    Erstellt eine zufällige Anfangskonfiguration von Himmelskörpern
+    innerhalb der definierten Weltraumgrenzen.
+    (Unveränderter Teil)
+    """
+    körper_liste: List[Himmelskörper] = []
+    limit = konfig.Weltraum_Limit / 2.0
+    
+    # Zentraler massiver Körper (z.B. Galaxienkern oder Sonne)
+    körper_liste.append(Himmelskörper(
+        Masse=1.0e30, # Sehr große Masse
+        x=[0.0, 0.0, 0.0],
+        v=[0.0, 0.0, 0.0],
+        ID="Zentraler_Kern"
+    ))
+
+    for i in range(anzahl_körper - 1):
+        # Zufällige Positionierung (innerhalb der Grenzen)
+        pos = [random.uniform(-limit, limit) for _ in range(3)]
+        
+        # Vereinfachte Kreisbahngeschwindigkeit um den zentralen Körper
+        # V = sqrt(G * M_gesamt / r)
+        r_sq = pos[0]**2 + pos[1]**2 + pos[2]**2
+        r = math.sqrt(r_sq)
+        
+        # Vermeidung von Division durch Null oder zu kleinen Radien
+        if r < 1000:
+            vel = [0.0, 0.0, 0.0]
+        else:
+            # Fließkomma-Massen und Geschwindigkeits-Magnitude
+            M_central = körper_liste[0].Masse
+            vel_mag = math.sqrt(konfig.G * M_central / r)
+            
+            # Geschwindigkeitsvektor senkrecht zur radialen Richtung (vereinfachte 2D-Rotation in XY)
+            # Impliziert eine vereinfachte kreisförmige Bewegung um den Ursprung
+            vx = -pos[1] * vel_mag / r
+            vy = pos[0] * vel_mag / r
+            vz = 0.0 # Keine Z-Geschw. für einfaches Spiral-Setup
+            
+            # Etwas Zufall hinzufügen (z.B. für die Dispersion im Halo)
+            rand_factor = random.uniform(0.9, 1.1)
+            vel = [vx * rand_factor, vy * rand_factor, vz * rand_factor]
+
+        # Zufällige Masse (repräsentiert z.B. Sterne oder Gaswolken)
+        M = random.uniform(1.0e26, 5.0e27)
+        
+        körper_liste.append(Himmelskörper(
+            Masse=M,
+            x=pos,
+            v=vel,
+            ID=f"Körper_{i+1}"
+        ))
+        
+    print(f"Initialisierung abgeschlossen: {len(körper_liste)} Himmelskörper erstellt.")
+    return körper_liste
+
+if __name__ == '__main__':
+    # Beispiel-Initialisierung
+    SIM_KONFIG = HyperKonfiguration()
+    
+    # Wir initialisieren 100 'Himmelswächter' (Körper)
+    himmelswächter = initialisiere_kosmos(anzahl_körper=100, konfig=SIM_KONFIG)
+    
+    # --- VORBEREITUNG FÜR LEAPFROG: Initialisierung von a(t=0) ---
+    # Berechne die anfängliche Beschleunigung a(t_0), die für den ersten Halbschritt nötig ist.
+    print("\n--- Initialisierung A(t_0) ---")
+    wurzel_init = baue_oktalbaum(himmelswächter, SIM_KONFIG)
+    berechne_alle_kräfte(himmelswächter, wurzel_init, SIM_KONFIG)
+    print(f"Initialbeschleunigung Körper 2: {himmelswächter[1].a}")
+    
+    # --- SIMULATIONSLAUF ---
+    ANZAHL_SCHRITTE = 5
+    print(f"\n--- Starte {ANZAHL_SCHRITTE} Leapfrog-Simulationsschritte ---")
+    
+    for schritt in range(1, ANZAHL_SCHRITTE + 1):
+        simuliere_schritt(himmelswächter, SIM_KONFIG)
+        print(f"Schritt {schritt} abgeschlossen. Pos X Körper 2: {himmelswächter[1].x[0]:.2e} m")
+
+    print(f"\n--- Simulations-Ergebnis nach {ANZAHL_SCHRITTE} Schritten ({ANZAHL_SCHRITTE * 100} Jahren) ---")
+    print(f"Letzter Körper 2: {himmelswächter[1]}")
+```
+
+---
+
+```
+import dataclasses
+from typing import List, Optional
+import random
+import math
+
+# --- HYPER PYTHON V5: VEKTOR-HILFSFUNKTIONEN ---
+# Zur Vereinfachung der 3D-Vektoroperationen (Position, Geschwindigkeit, Beschleunigung).
+
+def sub_vectors(v1: List[float], v2: List[float]) -> List[float]:
+    """Subtrahiert Vektor v2 von Vektor v1 (v1 - v2)."""
+    return [v1[i] - v2[i] for i in range(3)]
+
+def add_vectors(v1: List[float], v2: List[float]) -> List[float]:
+    """Addiert Vektor v1 und Vektor v2 (v1 + v2)."""
+    return [v1[i] + v2[i] for i in range(3)]
+
+def mul_vector_scalar(v: List[float], s: float) -> List[float]:
+    """Multipliziert Vektor v mit Skalar s (v * s)."""
+    return [v[i] * s for i in range(3)]
+
+def dist_squared(v1: List[float], v2: List[float]) -> float:
+    """Berechnet das Quadrat der Entfernung zwischen zwei Punkten."""
+    dx = v1[0] - v2[0]
+    dy = v1[1] - v2[1]
+    dz = v1[2] - v2[2]
+    return dx*dx + dy*dy + dz*dz
+
+# --- HYPER PYTHON V5: KERNEL-DATENMODELLE ---
+# Diese Strukturen definieren die grundlegenden Einheiten der Himmelswächter-Simulation.
+
+@dataclasses.dataclass(frozen=True)
+class HyperKonfiguration:
+    """
+    Globale Konfigurationsparameter für die N-Körper-Simulation.
+    Diese sind in der 'Oberste Direktive Hyper Python V5' festgelegt.
+    """
+    # Gravitationskonstante (G)
+    G: float = 6.674e-11  # M^3 / (kg * s^2)
+    
+    # Cosinus der Winkelbegrenzung (Theta) für Barnes-Hut
+    # Ein kleinerer Wert führt zu höherer Genauigkeit (mehr Checks), ein größerer zu schnellerer Laufzeit.
+    Theta: float = 0.5 
+    
+    # Zeitschritt (Delta t) für die numerische Integration (z.B. Euler oder Leapfrog)
+    Delta_t: float = 3600.0 * 24 * 30 * 12 * 100 # Ein simulierter Zeitschritt von 100 Jahren
+    
+    # Simulations-Grenzen (für den Quadrantenbaum)
+    Weltraum_Limit: float = 1.0e15 # Meter (z.B. 10 Billionen km)
+    
+    # Minimaler Abstand, um Kollisionen/Singularitäten zu vermeiden (Softening Parameter)
+    Epsilon_Squared: float = 1.0e10 
+
+
+@dataclasses.dataclass
+class Himmelskörper:
+    """
+    Repräsentiert einen einzelnen Himmelskörper (Masse, Position, Geschwindigkeit).
+    Position (x) und Geschwindigkeit (v) sind 3D-Vektoren (hier als Listen implementiert).
+    """
+    Masse: float
+    x: List[float]  # Position [x, y, z]
+    v: List[float]  # Geschwindigkeit [vx, vy, vz]
+    a: List[float] = dataclasses.field(default_factory=lambda: [0.0, 0.0, 0.0])  # Beschleunigung [ax, ay, az] (initial 0)
+    # Optional: Ein eindeutiger Bezeichner
+    ID: str = dataclasses.field(default_factory=lambda: str(random.getrandbits(32)))
+
+
+@dataclasses.dataclass(frozen=True)
+class BoundingBox:
+    """Definiert die räumlichen Grenzen eines Oktalbaum-Knotens."""
+    min_x: float
+    max_x: float
+    min_y: float
+    max_y: float
+    min_z: float
+    max_z: float
+    
+    def ist_innerhalb(self, x: List[float]) -> bool:
+        """Prüft, ob der Punkt x innerhalb dieser Box liegt."""
+        return (self.min_x <= x[0] < self.max_x and
+                self.min_y <= x[1] < self.max_y and
+                self.min_z <= x[2] < self.max_z)
+
+
+class OctreeKnoten:
+    """
+    Ein Knoten im Barnes-Hut Oktalbaum (Octree).
+    Kann entweder einen Himmelskörper enthalten (Blattknoten)
+    oder acht Kindknoten (interner Knoten).
+    """
+    def __init__(self, box: BoundingBox):
+        self.box = box
+        self.masse: float = 0.0
+        self.massen_zentrum: List[float] = [0.0, 0.0, 0.0]
+        
+        # Referenz auf den einzelnen Körper, falls dies ein Blattknoten ist.
+        self.körper: Optional[Himmelskörper] = None
+        
+        # Die 8 Kindknoten (für 3D-Oktalbaum)
+        # Die Reihenfolge folgt der Konvention: x-y-z: [---, --+, -+-, -++, +--, +-+, ++-, +++]
+        self.kinder: List[Optional['OctreeKnoten']] = [None] * 8
+        
+        # Flag, um zu bestimmen, ob der Knoten in 8 Kinder unterteilt wurde
+        self.unterteilt: bool = False
+    
+    # ... [Weitere Methoden wie unterteile_und_verschiebe, _bestimme_quadranten_index, etc. bleiben unverändert] ...
+    def unterteile_und_verschiebe(self):
+        """
+        Unterteilt den Knoten in 8 gleich große Sub-Quader und 
+        verschiebt den aktuell gespeicherten Körper in den passenden Kindknoten.
+        """
+        if self.körper is None or self.unterteilt:
+            return
+
+        # Den Körper in den passenden Kindknoten verschieben
+        # Dies ist nur beim ersten Mal nötig, wenn ein zweiter Körper eingefügt wird.
+        körper_to_move = self.körper
+        self.körper = None # Der ursprüngliche Körper ist jetzt in einem Kindknoten
+        self.unterteilt = True
+        
+        # Rekursive Einfügung des Körpers in den passenden neuen Kindknoten
+        self._finde_und_füge_in_kind(körper_to_move)
+
+    def _bestimme_quadranten_index(self, x: List[float]) -> int:
+        """Bestimmt den Index des Kindknotens (0-7), in den der Körper gehört."""
+        mid_x = (self.box.min_x + self.box.max_x) / 2.0
+        mid_y = (self.box.min_y + self.box.max_y) / 2.0
+        mid_z = (self.box.min_z + self.box.max_z) / 2.0
+
+        index = 0
+        if x[0] >= mid_x:
+            index |= 4 # Bit 2 (4) für positive X
+        if x[1] >= mid_y:
+            index |= 2 # Bit 1 (2) für positive Y
+        if x[2] >= mid_z:
+            index |= 1 # Bit 0 (1) für positive Z
+        return index
+
+    def _erzeuge_kind_box(self, index: int) -> BoundingBox:
+        """Erzeugt die BoundingBox für den Kindknoten mit gegebenem Index."""
+        mid_x = (self.box.min_x + self.box.max_x) / 2.0
+        mid_y = (self.box.min_y + self.box.max_y) / 2.0
+        mid_z = (self.box.min_z + self.box.max_z) / 2.0
+        
+        # Bestimme X-Grenzen
+        new_min_x = mid_x if (index & 4) else self.box.min_x
+        new_max_x = self.box.max_x if (index & 4) else mid_x
+        # Bestimme Y-Grenzen
+        new_min_y = mid_y if (index & 2) else self.box.min_y
+        new_max_y = self.box.max_y if (index & 2) else mid_y
+        # Bestimme Z-Grenzen
+        new_min_z = mid_z if (index & 1) else self.box.min_z
+        new_max_z = self.box.max_z if (index & 1) else mid_z
+        
+        return BoundingBox(new_min_x, new_max_x, new_min_y, new_max_y, new_min_z, new_max_z)
+
+    def _finde_und_füge_in_kind(self, körper: Himmelskörper):
+        """Fügt einen Körper rekursiv in den passenden Kindknoten ein."""
+        
+        # 1. Index bestimmen
+        index = self._bestimme_quadranten_index(körper.x)
+        
+        # 2. Kindknoten erzeugen, falls er noch nicht existiert
+        if self.kinder[index] is None:
+            new_box = self._erzeuge_kind_box(index)
+            self.kinder[index] = OctreeKnoten(new_box)
+        
+        # 3. Rekursive Einfügung
+        self.kinder[index].einfügen(körper)
+
+    def einfügen(self, körper: Himmelskörper):
+        """Fügt einen Himmelskörper in diesen Teilbaum ein."""
+        
+        # Fall 1: Knoten ist leer (Blattknoten wird initialisiert)
+        if self.körper is None and not self.unterteilt:
+            self.körper = körper
+        
+        # Fall 2: Knoten enthält bereits einen Körper (Blattknoten wird unterteilt)
+        elif self.körper is not None and not self.unterteilt:
+            # Jetzt muss der Blattknoten aufgeteilt werden (Unterteilung)
+            self.unterteile_und_verschiebe()
+            # Der neue Körper wird in den passenden Unterknoten eingefügt
+            self._finde_und_füge_in_kind(körper)
+            
+        # Fall 3: Knoten ist bereits unterteilt (Interner Knoten)
+        elif self.unterteilt:
+            # Der neue Körper wird rekursiv in den passenden Unterknoten eingefügt
+            self._finde_und_füge_in_kind(körper)
+        
+        # Fall 4: Zwei Körper an exakt gleicher Position (Seltene, aber wichtige Kantenfall-Behandlung)
+        # Wir verhindern unendliche Rekursion, indem wir sie als eine einzige Blattmasse behandeln.
+        elif self.körper is not None and self.körper.x == körper.x:
+            # Füge die Massen zusammen
+            self.körper.Masse += körper.Masse
+        
+        # In allen Fällen muss die Gesamtmasse aktualisiert werden
+        self.masse += körper.Masse
+
+    def berechne_massen_zentrum(self):
+        """
+        Berechnet das Zentrum der Masse (CoM) für diesen Knoten und alle Unterknoten 
+        und speichert es. Dies wird nach dem vollständigen Aufbau des Baumes aufgerufen.
+        """
+        if self.körper is not None:
+            # Dies ist ein Blattknoten, das CoM ist die Position des Körpers.
+            self.massen_zentrum = self.körper.x
+            return
+
+        # Wenn dies ein interner Knoten ist, muss das CoM aus den Kindknoten berechnet werden
+        gesamt_masse = 0.0
+        # Summe der Produkte aus Masse und Position: Sum(m_i * x_i)
+        sum_m_x = [0.0, 0.0, 0.0]
+
+        for kind in self.kinder:
+            if kind is not None:
+                # Rekursiv CoM für Kindknoten berechnen
+                kind.berechne_massen_zentrum()
+                
+                m_kind = kind.masse
+                x_kind = kind.massen_zentrum
+
+                gesamt_masse += m_kind
+                sum_m_x[0] += m_kind * x_kind[0]
+                sum_m_x[1] += m_kind * x_kind[1]
+                sum_m_x[2] += m_kind * x_kind[2]
+        
+        if gesamt_masse > 0.0:
+            # CoM = Sum(m_i * x_i) / Sum(m_i)
+            self.masse = gesamt_masse
+            self.massen_zentrum[0] = sum_m_x[0] / gesamt_masse
+            self.massen_zentrum[1] = sum_m_x[1] / gesamt_masse
+            self.massen_zentrum[2] = sum_m_x[2] / gesamt_masse
+        else:
+             # Dieser Knoten hat keine Masse (sollte bei korrekter Einfügung nicht passieren)
+            self.masse = 0.0
+            
+    def berechne_kraft(self, körper: Himmelskörper, konfig: HyperKonfiguration, akkumulierte_a: List[float]):
+        """
+        Berechnet die Gravitationsbeschleunigung, die dieser Knoten (oder der Körper darin) 
+        auf den gegebenen Testkörper ausübt und akkumuliert sie.
+        Dies ist die Kernlogik des Barnes-Hut-Algorithmus (Rekursiver Abstieg).
+        """
+        
+        # 1. Abstand zwischen Testkörper und Massenzentrum/Blattkörper
+        r_vec = sub_vectors(self.massen_zentrum, körper.x)
+        # Quadrierter Abstand (r^2)
+        r_sq = r_vec[0]**2 + r_vec[1]**2 + r_vec[2]**2
+        
+        # Softening (Epsilon_Squared) hinzufügen, um Division durch Null oder zu kleine Abstände zu vermeiden
+        # r_sq ist hier immer > 0 wegen Epsilon_Squared.
+        r_sq += konfig.Epsilon_Squared
+        r = math.sqrt(r_sq)
+
+        # Vermeiden Sie die Berechnung der Selbstkraft:
+        # Wenn der Knoten einen einzelnen Körper enthält UND dieser der Testkörper ist.
+        if self.körper is not None and self.körper.ID == körper.ID:
+            return
+
+        # 2. Barnes-Hut Kriterium (S/D < Theta)
+        # S: Größe des Knotens (Box-Seite)
+        s = self.box.max_x - self.box.min_x
+        # D: Abstand zum Massenzentrum (r)
+        
+        # Wenn der Knoten ein innerer Knoten ist UND das Barnes-Hut Kriterium erfüllt ist (s/r < Theta):
+        if self.unterteilt and (s / r < konfig.Theta):
+            # Der gesamte Knoten kann durch sein Massenzentrum approximiert werden (effiziente Berechnung).
+            
+            # Gravitationsbeschleunigung |a| = G * M / r^2
+            magnitude = konfig.G * self.masse / r_sq
+            
+            # Beschleunigungsvektor: a = magnitude * (r_vec / r)
+            r_inv = 1.0 / r
+            
+            # Akkumuliere die Beschleunigung für alle drei Achsen (x, y, z)
+            akkumulierte_a[0] += magnitude * r_vec[0] * r_inv
+            akkumulierte_a[1] += magnitude * r_vec[1] * r_inv
+            akkumulierte_a[2] += magnitude * r_vec[2] * r_inv
+        
+        # 3. Kriterium NICHT erfüllt (oder Blattknoten): Rekursiv absteigen
+        else:
+            # Wenn es ein Blattknoten ist, wenden Sie die genaue Kraft an 
+            if self.körper is not None:
+                # Wir berechnen die genaue Kraft zwischen zwei einzelnen Körpern
+                # Gravitationsbeschleunigung |a| = G * M_körper / r^2
+                magnitude = konfig.G * self.körper.Masse / r_sq
+                r_inv = 1.0 / r
+                
+                # Akkumuliere die Beschleunigung
+                akkumulierte_a[0] += magnitude * r_vec[0] * r_inv
+                akkumulierte_a[1] += magnitude * r_vec[1] * r_inv
+                akkumulierte_a[2] += magnitude * r_vec[2] * r_inv
+            
+            # Wenn es ein unterteilter innerer Knoten ist (und das Kriterium nicht erfüllt ist), 
+            # rekursiv in die Kindknoten absteigen.
+            elif self.unterteilt:
+                for kind in self.kinder:
+                    if kind is not None:
+                        # Rekursive Abfrage der Kraft im Kindknoten
+                        kind.berechne_kraft(körper, konfig, akkumulierte_a)
+
+
+def baue_oktalbaum(körper_liste: List[Himmelskörper], konfig: HyperKonfiguration) -> OctreeKnoten:
+    """
+    Erstellt den Barnes-Hut Oktalbaum aus einer Liste von Himmelskörpern.
+    (Unveränderter Teil)
+    """
+    limit = konfig.Weltraum_Limit / 2.0
+    # Die globale Bounding Box, die den gesamten simulierten Raum abdeckt.
+    wurzel_box = BoundingBox(
+        min_x=-limit, max_x=limit,
+        min_y=-limit, max_y=limit,
+        min_z=-limit, max_z=limit
+    )
+    wurzel_knoten = OctreeKnoten(wurzel_box)
+    
+    # Alle Körper in den Baum einfügen
+    for körper in körper_liste:
+        # Nur Körper innerhalb der Grenzen einfügen
+        if wurzel_box.ist_innerhalb(körper.x):
+            wurzel_knoten.einfügen(körper)
+        else:
+            # Ein Körper außerhalb der Weltraum_Limit kann nicht korrekt im Baum platziert werden.
+            # Daher muss dieser Fall behandelt werden, obwohl in der initialisiere_kosmos Funktion 
+            # alle Körper in der initialen Weltraum_Limit Box platziert werden.
+            print(f"WARNUNG: Körper {körper.ID} außerhalb der initialen Grenze und wird ignoriert.")
+
+    # Nachdem alle Körper eingefügt wurden, das Massenzentrum rekursiv berechnen
+    wurzel_knoten.berechne_massen_zentrum()
+    
+    return wurzel_knoten
+
+
+def berechne_alle_kräfte(körper_liste: List[Himmelskörper], wurzel_knoten: OctreeKnoten, konfig: HyperKonfiguration):
+    """
+    Iteriert über alle Himmelskörper und berechnet die auf sie wirkenden
+    Gesamtgravitationskräfte (Beschleunigungen) mithilfe des Barnes-Hut-Baumes.
+    """
+    
+    for körper in körper_liste:
+        # Beschleunigung auf Null zurücksetzen, da wir sie neu berechnen
+        körper.a = [0.0, 0.0, 0.0]
+        
+        # Akkumulator für die Beschleunigung
+        akkumulierte_a = [0.0, 0.0, 0.0]
+        
+        # Rekursive Kraftberechnung über den Baum starten
+        wurzel_knoten.berechne_kraft(körper, konfig, akkumulierte_a)
+        
+        # Die akkumulierte Beschleunigung dem Körper zuweisen
+        körper.a = akkumulierte_a
+
+
+def simuliere_schritt(körper_liste: List[Himmelskörper], konfig: HyperKonfiguration):
+    """
+    Führt einen einzigen Simulationsschritt unter Verwendung des 
+    Leapfrog-Integrators durch.
+    
+    Der Integrator führt folgende Schritte durch:
+    1. Velocity half-step: v_half = v_old + a_old * (dt / 2)
+    2. Position full-step: x_new = x_old + v_half * dt
+    3. Calculate new acceleration: a_new = Force(x_new) / m
+    4. Velocity second half-step: v_new = v_half + a_new * (dt / 2)
+    """
+    dt = konfig.Delta_t
+    dt_half = dt / 2.0
+    
+    # Temporäre Speicherung des v_half-Vektors, da wir ihn in Phase 3 benötigen
+    v_half_list: List[List[float]] = []
+
+    # Phase 1: Halbschritt für die Geschwindigkeit (Velocity kick) und Vollschritt für die Position
+    for körper in körper_liste:
+        # körper.a enthält a_old
+        
+        # 1. Velocity half-step: v_half = v_old + a_old * (dt / 2)
+        delta_v_half = mul_vector_scalar(körper.a, dt_half)
+        v_half = add_vectors(körper.v, delta_v_half)
+        
+        v_half_list.append(v_half) # Speichere v_half temporär
+        
+        # 2. Position full-step: x_new = x_old + v_half * dt
+        delta_x = mul_vector_scalar(v_half, dt)
+        körper.x = add_vectors(körper.x, delta_x)
+        
+    # Phase 2: Berechnung der neuen Beschleunigung a_new (Force calculation)
+    # Baue den Oktalbaum basierend auf den neuen Positionen x_new
+    wurzel = baue_oktalbaum(körper_liste, konfig)
+    
+    # Berechne a_new und speichere es in körper.a
+    # berechne_alle_kräfte setzt körper.a auf a_new
+    berechne_alle_kräfte(körper_liste, wurzel, konfig)
+
+    # Phase 3: Zweiter Halbschritt für die Geschwindigkeit (Second velocity kick)
+    # v_new = v_half + a_new * (dt / 2)
+    for i, körper in enumerate(körper_liste):
+        # v_half kommt aus der temporären Liste
+        v_half = v_half_list[i]
+        # körper.a enthält a_new
+        
+        # 4. Velocity second half-step: v_new = v_half + a_new * (dt / 2)
+        delta_v_half = mul_vector_scalar(körper.a, dt_half)
+        # Finaler v_new Vektor wird in körper.v gespeichert
+        körper.v = add_vectors(v_half, delta_v_half)
+        
+    # Am Ende von simuliere_schritt, enthält:
+    # körper.x: x(t + dt)
+    # körper.v: v(t + dt)
+    # körper.a: a(t + dt)
+
+
+def initialisiere_kosmos(anzahl_körper: int, konfig: HyperKonfiguration) -> List[Himmelskörper]:
+    """
+    Erstellt eine zufällige Anfangskonfiguration von Himmelskörpern
+    innerhalb der definierten Weltraumgrenzen.
+    (Unveränderter Teil)
+    """
+    körper_liste: List[Himmelskörper] = []
+    limit = konfig.Weltraum_Limit / 2.0
+    
+    # Zentraler massiver Körper (z.B. Galaxienkern oder Sonne)
+    körper_liste.append(Himmelskörper(
+        Masse=1.0e30, # Sehr große Masse
+        x=[0.0, 0.0, 0.0],
+        v=[0.0, 0.0, 0.0],
+        ID="Zentraler_Kern"
+    ))
+
+    for i in range(anzahl_körper - 1):
+        # Zufällige Positionierung (innerhalb der Grenzen)
+        pos = [random.uniform(-limit, limit) for _ in range(3)]
+        
+        # Vereinfachte Kreisbahngeschwindigkeit um den zentralen Körper
+        # V = sqrt(G * M_gesamt / r)
+        r_sq = pos[0]**2 + pos[1]**2 + pos[2]**2
+        r = math.sqrt(r_sq)
+        
+        # Vermeidung von Division durch Null oder zu kleinen Radien
+        if r < 1000:
+            vel = [0.0, 0.0, 0.0]
+        else:
+            # Fließkomma-Massen und Geschwindigkeits-Magnitude
+            M_central = körper_liste[0].Masse
+            vel_mag = math.sqrt(konfig.G * M_central / r)
+            
+            # Geschwindigkeitsvektor senkrecht zur radialen Richtung (vereinfachte 2D-Rotation in XY)
+            # Impliziert eine vereinfachte kreisförmige Bewegung um den Ursprung
+            vx = -pos[1] * vel_mag / r
+            vy = pos[0] * vel_mag / r
+            vz = 0.0 # Keine Z-Geschw. für einfaches Spiral-Setup
+            
+            # Etwas Zufall hinzufügen (z.B. für die Dispersion im Halo)
+            rand_factor = random.uniform(0.9, 1.1)
+            vel = [vx * rand_factor, vy * rand_factor, vz * rand_factor]
+
+        # Zufällige Masse (repräsentiert z.B. Sterne oder Gaswolken)
+        M = random.uniform(1.0e26, 5.0e27)
+        
+        körper_liste.append(Himmelskörper(
+            Masse=M,
+            x=pos,
+            v=vel,
+            ID=f"Körper_{i+1}"
+        ))
+        
+    print(f"Initialisierung abgeschlossen: {len(körper_liste)} Himmelskörper erstellt.")
+    return körper_liste
+
+
+def erfasse_simulations_zustand(körper_liste: List[Himmelskörper]) -> List[dict]:
+    """
+    Erfasst den Zustand aller Körper (Position und Masse) als eine Liste von Dictionaries
+    für die Protokollierung oder Visualisierung.
+    Wichtig: Position und Geschwindigkeit werden kopiert, da die Originale in-place geändert werden.
+    """
+    zustand = []
+    for körper in körper_liste:
+        zustand.append({
+            "ID": körper.ID,
+            "Masse": körper.Masse,
+            "x": list(körper.x), # Kopie der Positionsliste
+            "v": list(körper.v)  # Kopie der Geschwindigkeitsliste
+        })
+    return zustand
+
+
+if __name__ == '__main__':
+    # Beispiel-Initialisierung
+    SIM_KONFIG = HyperKonfiguration()
+    
+    # Wir initialisieren 100 'Himmelswächter' (Körper)
+    himmelswächter = initialisiere_kosmos(anzahl_körper=100, konfig=SIM_KONFIG)
+    
+    # --- VORBEREITUNG FÜR LEAPFROG: Initialisierung von a(t=0) ---
+    # Berechne die anfängliche Beschleunigung a(t_0), die für den ersten Halbschritt nötig ist.
+    print("\n--- Initialisierung A(t_0) ---")
+    wurzel_init = baue_oktalbaum(himmelswächter, SIM_KONFIG)
+    berechne_alle_kräfte(himmelswächter, wurzel_init, SIM_KONFIG)
+    print(f"Initialbeschleunigung Körper 2: {himmelswächter[1].a}")
+    
+    # --- SIMULATIONSLAUF ---
+    ANZAHL_SCHRITTE = 5
+    print(f"\n--- Starte {ANZAHL_SCHRITTE} Leapfrog-Simulationsschritte ---")
+    
+    # Neu: Historie zur Speicherung des Simulationsverlaufs
+    simulations_historie = []
+    
+    # Schritt 0: Den Initialzustand speichern
+    simulations_historie.append(erfasse_simulations_zustand(himmelswächter))
+
+    for schritt in range(1, ANZAHL_SCHRITTE + 1):
+        simuliere_schritt(himmelswächter, SIM_KONFIG)
+        
+        # Den Zustand nach jedem vollen Schritt speichern
+        simulations_historie.append(erfasse_simulations_zustand(himmelswächter))
+        
+        print(f"Schritt {schritt} abgeschlossen. Pos X Körper 2: {himmelswächter[1].x[0]:.2e} m")
+
+    print(f"\n--- Simulations-Ergebnis nach {ANZAHL_SCHRITTE} Schritten ({ANZAHL_SCHRITTE * 100} Jahren) ---")
+    print(f"Historie erfasst: {len(simulations_historie)} Zustände (Schritt 0 bis {ANZAHL_SCHRITTE}).")
+    
+    print("\nErster Zustand (Körper 2):")
+    # Zugriff auf den zweiten Körper (Index 1) im ersten Zustand (Index 0)
+    print(simulations_historie[0][1])
+    
+    print("\nLetzter Zustand (Körper 2):")
+    # Zugriff auf den zweiten Körper (Index 1) im letzten Zustand (Index ANZAHL_SCHRITTE)
+    print(simulations_historie[ANZAHL_SCHRITTE][1])
+
+
+```
