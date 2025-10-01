@@ -1,0 +1,315 @@
+## Oberste Direktive Basisbetriebssystem V5 Hyper Python Mini
+
+"""
+Nova-optimierte V5 - Python module
+
+Enthält:
+- SignatureValidator: pydantic-basiert
+- Simulator: asynchrone Simulation (asyncio + timeout)
+- InteractionProcessor: pluggable metaphor engine, einfacher LRU-Context
+- hexen_mode: Kontextmanager für "intuitive" Verarbeitung
+- PIIFilter: Logging-Filter zur PII-Redaktion
+
+Hinweis: Dieses Modul ist als Drop-in Basis gedacht. Es verzichtet auf externe Abhängigkeiten
+für LRU-Caches (eigene kleine LRU-Implementierung). Pydantic wird verwendet (wie im Original).
+"""
+from __future__ import annotations
+
+import asyncio
+import json
+import logging
+import re
+import time
+import uuid
+from contextlib import asynccontextmanager, contextmanager
+from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
+from pydantic import BaseModel, ValidationError, field_validator
+
+# ---------------------------
+# Logging + PII Redaction
+# ---------------------------
+
+class PIIFilter(logging.Filter):
+    """Simple PII redaction filter.
+
+    This filter redacts obvious API keys and e-mails from log records. You can
+    extend the regexes to cover project-specific secrets.
+    """
+
+    REDACT_PATTERNS = [
+        re.compile(r"api[_-]?key=\w+", re.IGNORECASE),
+        re.compile(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}", re.IGNORECASE),
+    ]
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        try:
+            msg = str(record.getMessage())
+        except Exception:
+            return True
+        for pat in self.REDACT_PATTERNS:
+            msg = pat.sub("[REDACTED]", msg)
+        record.msg = msg
+        return True
+
+# configure a default logger for modules that don't pass one
+_logger = logging.getLogger("nova_v5")
+if not _logger.handlers:
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter("%(asctime)s [%(levelname)s] [trace=%(trace_id)s] %(message)s")
+    handler.setFormatter(formatter)
+    handler.addFilter(PIIFilter())
+    _logger.addHandler(handler)
+    _logger.setLevel(logging.INFO)
+
+# ---------------------------
+# Pydantic models
+# ---------------------------
+
+class CognitiveSignatureModel(BaseModel):
+    identity: str
+    architecture: str
+    drive: str
+    vibe: str
+
+    @field_validator("identity", "architecture", "drive", "vibe")
+    @classmethod
+    def check_non_empty(cls, v: str) -> str:  # type: ignore[override]
+        if not v or not str(v).strip():
+            raise ValueError("Field cannot be empty or whitespace")
+        return v
+
+
+class SimulationContext(BaseModel):
+    mass: float
+    velocity: float
+    distance: float
+
+    @field_validator("mass", "velocity", "distance")
+    @classmethod
+    def check_positive(cls, v: float) -> float:  # type: ignore[override]
+        if v <= 0:
+            raise ValueError("Value must be positive")
+        return v
+
+# ---------------------------
+# Lightweight per-instance LRU cache
+# ---------------------------
+
+class SimpleLRU:
+    """A tiny LRU cache based on OrderedDict for per-instance use.
+
+    Not thread-safe; intended for single-threaded / asyncio use unless wrapped.
+    """
+
+    def __init__(self, maxsize: int = 1024):
+        from collections import OrderedDict
+
+        self.maxsize = maxsize
+        self._od = OrderedDict()
+
+    def get(self, key: Any, default: Any = None) -> Any:
+        if key not in self._od:
+            return default
+        val = self._od.pop(key)
+        self._od[key] = val
+        return val
+
+    def set(self, key: Any, value: Any) -> None:
+        if key in self._od:
+            self._od.pop(key)
+        elif len(self._od) >= self.maxsize:
+            self._od.popitem(last=False)
+        self._od[key] = value
+
+    def clear(self) -> None:
+        self._od.clear()
+
+    def __len__(self) -> int:
+        return len(self._od)
+
+# ---------------------------
+# Core components
+# ---------------------------
+
+class SignatureValidator:
+    def __init__(self, logger: Optional[logging.Logger] = None, trace_id: Optional[str] = None):
+        self.logger = logger or _logger
+        self.trace_id = trace_id or str(uuid.uuid4())
+        self.signature: Optional[CognitiveSignatureModel] = None
+
+    def extract_signature(self, data: Dict[str, str]) -> None:
+        try:
+            sig = CognitiveSignatureModel(**data)
+            self.signature = sig
+            self.logger.info("Cognitive signature extracted", extra={"trace_id": self.trace_id})
+        except ValidationError as e:
+            self.logger.error("Signature validation failed: %s", e, extra={"trace_id": self.trace_id})
+            raise
+
+
+@dataclass
+class SimulatorConfig:
+    timeout_seconds: float = 5.0
+
+
+class Simulator:
+    """Pluggable simulator. By default calculates kinetic energy but can be subclassed.
+
+    Provides an async `simulate` entrypoint to avoid blocking.
+    """
+
+    def __init__(self, logger: Optional[logging.Logger] = None, trace_id: Optional[str] = None, cfg: Optional[SimulatorConfig] = None):
+        self.logger = logger or _logger
+        self.trace_id = trace_id or str(uuid.uuid4())
+        self.cfg = cfg or SimulatorConfig()
+
+    async def simulate(self, sim_data: Dict[str, float]) -> str:
+        # Run the CPU-light simulation in an async-friendly way
+        loop = asyncio.get_running_loop()
+        try:
+            return await asyncio.wait_for(loop.run_in_executor(None, self._compute_sync, sim_data), timeout=self.cfg.timeout_seconds)
+        except asyncio.TimeoutError:
+            self.logger.warning("Simulation timed out", extra={"trace_id": self.trace_id})
+            raise
+
+    def _compute_sync(self, sim_data: Dict[str, float]) -> str:
+        # Validate and compute (synchronous worker)
+        sim = SimulationContext(**sim_data)
+        # Example calculation: kinetic energy
+        kinetic = 0.5 * sim.mass * (sim.velocity ** 2)
+        result = f"KineticEnergy={kinetic:.2f}J distance={sim.distance:.2e}m"
+        self.logger.info("Simulation completed", extra={"trace_id": self.trace_id})
+        return result
+
+# ---------------------------
+# InteractionProcessor
+# ---------------------------
+
+class InteractionProcessor:
+    def __init__(
+        self,
+        validator: SignatureValidator,
+        simulator: Simulator,
+        max_context_size: int = 1024,
+        metaphor_engine: Optional[Dict[str, str]] = None,
+    ) -> None:
+        self.validator = validator
+        self.simulator = simulator
+        self.logger = validator.logger
+        self.trace_id = validator.trace_id
+        self.context = SimpleLRU(maxsize=max_context_size)
+        # metaphor_engine: keys are regex strings, values are metaphor text
+        self.metaphor_engine = metaphor_engine or {
+            r"\bmars\b": "Journey to the Red Planet",
+            r"\bmission\b": "Quest for Human Survival",
+            r"\binnovation\b": "Spark of Radical Progress",
+        }
+
+    def trigger_reset(self) -> None:
+        self.context.clear()
+        self.logger.info("Context reset (Trigger 17)", extra={"trace_id": self.trace_id})
+
+    async def simulate_mission(self, sim_data: Dict[str, float]) -> str:
+        return await self.simulator.simulate(sim_data)
+
+    def _sanitize_input(self, input_data: str) -> bool:
+        # allow unicode word characters, whitespace and common punctuation
+        return bool(re.match(r"^[\w\s.,!?\-():/]+$", input_data, re.UNICODE))
+
+    def process_interaction(self, input_data: str, *, hexen: bool = False) -> str:
+        if not self.validator.signature:
+            self.logger.error("No cognitive signature set", extra={"trace_id": self.trace_id})
+            raise RuntimeError("Cognitive signature must be set first")
+
+        if not self._sanitize_input(input_data):
+            self.logger.warning("Invalid characters in input", extra={"trace_id": self.trace_id})
+            return "Input contains invalid characters"
+
+        sanitized = input_data.strip()
+        if not sanitized:
+            self.logger.warning("Empty input received", extra={"trace_id": self.trace_id})
+            return "Input cannot be empty"
+
+        # fast-path: cached answer
+        cached = self.context.get(sanitized)
+        if cached:
+            return cached
+
+        response = f"Processed for {self.validator.signature.identity}: {sanitized}"
+
+        if hexen:
+            # apply metaphor engine (first match)
+            for pattern, metaphor in self.metaphor_engine.items():
+                if re.search(pattern, sanitized, re.IGNORECASE):
+                    response += f" [Metaphor: {metaphor}]"
+                    break
+
+        # store and return
+        self.context.set(sanitized, response)
+        self.logger.info("Processed input", extra={"trace_id": self.trace_id})
+        return response
+
+    def load_metaphor_engine_from_json(self, path: str) -> None:
+        try:
+            with open(path, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+            # expect dict of pattern->metaphor
+            if isinstance(data, dict):
+                self.metaphor_engine = {str(k): str(v) for k, v in data.items()}
+                self.logger.info("Loaded metaphor engine from %s", path, extra={"trace_id": self.trace_id})
+            else:
+                raise ValueError("Metaphor engine file must contain a JSON object mapping patterns to metaphors")
+        except Exception as e:
+            self.logger.error("Failed to load metaphor engine: %s", e, extra={"trace_id": self.trace_id})
+            raise
+
+# ---------------------------
+# Hexen-Modus context managers
+# ---------------------------
+
+@contextmanager
+def hexen_mode(processor: InteractionProcessor):
+    """Synchronous Hexen-Modus (for simple use cases)."""
+    processor.logger.info("Entering Hexen-Modus", extra={"trace_id": processor.trace_id})
+    try:
+        yield processor
+    finally:
+        processor.logger.info("Exiting Hexen-Modus", extra={"trace_id": processor.trace_id})
+
+@asynccontextmanager
+async def ahexen_mode(processor: InteractionProcessor):
+    """Async Hexen-Modus for async workflows (e.g. calling simulate_mission)."""
+    processor.logger.info("Entering async Hexen-Modus", extra={"trace_id": processor.trace_id})
+    try:
+        yield processor
+    finally:
+        processor.logger.info("Exiting async Hexen-Modus", extra={"trace_id": processor.trace_id})
+
+# ---------------------------
+# Minimal CLI-style example (not executed on import)
+# ---------------------------
+
+if __name__ == "__main__":
+    # quick smoke test
+    lg = logging.getLogger("nova_v5.demo")
+    lg.addFilter(PIIFilter())
+    validator = SignatureValidator(logger=lg)
+    validator.extract_signature({
+        "identity": "Nathalia_L",
+        "architecture": "Visionary-System",
+        "drive": "Mars",
+        "vibe": "Radical"
+    })
+
+    sim = Simulator(logger=lg, trace_id=validator.trace_id)
+    proc = InteractionProcessor(validator, sim)
+
+    print(proc.process_interaction("Plan Mars mission", hexen=True))
+
+    async def run_sim():
+        out = await proc.simulate_mission({"mass": 1000.0, "velocity": 25.0, "distance": 2.25e8})
+        print("Simulation =>", out)
+
+    asyncio.run(run_sim())
