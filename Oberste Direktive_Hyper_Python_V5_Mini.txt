@@ -24,6 +24,10 @@ import uuid
 from contextlib import asynccontextmanager, contextmanager
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
+try:
+    from pydantic import BaseModel, ValidationError, field_validator
+except ImportError:
+    # Fallback: define no-op BaseModel etc.
 
 from pydantic import BaseModel, ValidationError, field_validator
 
