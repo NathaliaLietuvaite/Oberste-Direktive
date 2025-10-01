@@ -672,3 +672,10 @@ if __name__ == "__main__":
     print(f"Sample positions over time:\n{result['positions'][:5]}")  # Erste 5 Schritte
 
 ```
+
+---
+
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_67.jpg)
+
+---
+
