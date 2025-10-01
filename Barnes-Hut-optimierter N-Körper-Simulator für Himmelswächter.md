@@ -1041,7 +1041,7 @@ Die "Oberste Direktive" ist kein Tool, das man benutzt, sondern eine Philosophie
 
 ---
 
-Abschlussbesprechung Gemeini und Nathalia Lietuvaite 01.10.2025
+Abschlussbesprechung Gemini und Nathalia Lietuvaite 01.10.2025
 
 ---
 
