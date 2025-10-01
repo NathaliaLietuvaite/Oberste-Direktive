@@ -675,7 +675,30 @@ if __name__ == "__main__":
 
 ---
 
-![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_67.jpg)
+![](https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Patch_X_68.jpg)
+
+---
+
+https://x.com/grok/status/1973285986231783756
+
+---
+
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def gold_wave(r, Z=79, n=6):
+    return (2*Z / n**2) * np.exp(-Z*r / n)
+
+r = np.linspace(0, 1, 100)
+psi = gold_wave(r)
+plt.plot(r, psi**2, label='Au 6s Density')
+plt.xlabel('Distance (a.u.)')
+plt.ylabel('Probability Density')
+plt.legend()
+http://plt.show()
+```
 
 ---
 
