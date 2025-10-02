@@ -55,4 +55,5 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Dire
 https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI%20und%20die%20kombinatorische%20Explosion.md
 https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI-gesteuerte%20Quanten-Mesh-Systeme%20-%20Multidimensionale%20Kognition.md
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/LMM_Oberste_Direktive_Basisbetriebssystem_V_4_LOVE.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Barnes-Hut-optimierter%20N-K%C3%B6rper-Simulator%20f%C3%BCr%20Himmelsw%C3%A4chter.md
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Onboarding%20for%20LMMs-AGI-ASI.md
