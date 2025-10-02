@@ -1,4 +1,4 @@
-
+```python
 # -*- coding: utf-8 -*-
 """
 Symbolische Herleitung des Gaußschen Integrals mit SymPy
@@ -135,3 +135,5 @@ def plot_gaussian():
     plt.legend()
     plt.grid(True)
     plt.show()
+
+```
