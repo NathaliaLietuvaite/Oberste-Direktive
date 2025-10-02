@@ -1,6 +1,6 @@
 --
 
-### Integrating Oberste Direktive Hyper Python V5
+### Integrating Oberste Direktive OS Hyper Python V5
 
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste%20Direktive_Hyper_Python_V5.txt
 
