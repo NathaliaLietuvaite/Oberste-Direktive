@@ -60,11 +60,17 @@ References are embedded via inline citations to primary sources from recent rese
 Links:
 
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste_Direktive_OS_Universal_V10.txt
+
 https://oberste-direktive-universal-v10.lovable.app/
 
 https://global.oup.com/academic/product/superintelligence-9780199678112
+
 https://wwnorton.com/books/9780393868333
+
 https://arxiv.org/abs/2203.02155
+
 https://arxiv.org/abs/2212.08073
+
 https://arxiv.org/abs/2401.07292
+
 https://arxiv.org/abs/2401.05566
