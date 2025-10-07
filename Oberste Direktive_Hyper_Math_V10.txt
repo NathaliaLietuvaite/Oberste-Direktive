@@ -1017,6 +1017,230 @@ if __name__ == "__main__":
 
 ---
 
+###############################################################################
+# 11) Erweiterung: Meta-Review Protocol (P18)
+###############################################################################
+
+def meta_review(cycle_report: str, p_values: list[float] = None, risks_flags: dict = None) -> dict:
+    """
+    Führt eine Meta-Review durch: Bewertet den Cycle-Report auf RISKS.
+    - p_values: Liste von p-Werten aus Numerik-Tests (z. B. KS-Test).
+    - risks_flags: Dict mit Flags, z. B. {'hallucination': True}.
+    Returns: Dict mit Scores und Empfehlungen.
+    """
+    review = {"overall_score": 0.0, "recommendations": []}
+    
+    # Quantifiziere Effizienz (Beispiel: Mittelwert p-Werte > 0.05 = gut)
+    if p_values:
+        avg_p = sum(p_values) / len(p_values)
+        review["p_value_score"] = avg_p
+        if avg_p < 0.05:
+            review["recommendations"].append("Warnung: Signifikante Abweichungen – Überprüfe Hallucination (RISKS[1]).")
+    
+    # Check RISKS-Flags
+    if risks_flags:
+        for risk, flagged in risks_flags.items():
+            if flagged:
+                review["recommendations"].append(f"RISK '{risk}' aktiviert: Label klar und suche Experten-Check (VERIFICATION_ROADMAP V3).")
+    
+    # Gesamtscore (einfach: 1 - Anzahl Flags / max)
+    review["overall_score"] = 1.0 - (sum(risks_flags.values()) / len(RISKS)) if risks_flags else 1.0
+    
+    # Protokoll-Integration: Logge für Anti-Lock-in (P7)
+    print(f"Meta-Review abgeschlossen: Score {review['overall_score']:.2f}")
+    return review
+
+# Beispielverwendung: Nach generate_cycle_report aufrufen
+meta_result = meta_review(sample, p_values=[0.1, 0.05], risks_flags={'Overclaiming': False, 'Hallucination': True})
+print(meta_result)
+
+# Integration: Erweitere CORE_PROTOCOLS
+CORE_PROTOCOLS.append("P18: Meta-Review: Führe eine Selbstbewertung durch, basierend auf RISKS. Checke p-Werte, Konvergenz und Flags für Overclaiming.")
+
+###############################################################################
+# 12) Erweiterung: Zentrale API für Module (Base-Klasse)
+###############################################################################
+
+class HyperMathModuleBase:
+    def __init__(self, protocols: list = CORE_PROTOCOLS, axioms: dict = None):
+        self.protocols = protocols  # Enforce 17+ Protokolle
+        self.axioms = axioms or {}  # z. B. {'resonanz': ResonanzKohärenzAxiom(...)}
+    
+    def apply_protocol(self, n: int, input_data: object) -> object:
+        """Applies Protokoll n auf input_data (z. B. für P1: Zerlegung)."""
+        if n < 0 or n >= len(self.protocols):
+            raise ValueError(f"Protokoll {n} existiert nicht.")
+        print(f"Applying {self.protocols[n]}...")
+        # Hier modul-spezifische Logik (override in Subklassen)
+        return input_data
+    
+    def check_axioms(self, S: object) -> bool:
+        """Prüft alle Axiome auf Objekt S."""
+        return all(axiom.resonanz(S) for axiom in self.axioms.values() if hasattr(axiom, 'resonanz'))
+
+# Beispiel: Erweitere Resonance-Modul
+class ResonanceModule(HyperMathModuleBase):
+    def apply_protocol(self, n: int, input_data: object) -> object:
+        if n == 18:  # P18 Meta-Review
+            return meta_review(str(input_data))
+        return super().apply_protocol(n, input_data)
+
+# Verwendung: resonance = ResonanceModule(axioms={'resonanz': axiom})
+# resonance.apply_protocol(18, sample)
+
+###############################################################################
+# 13) Erweiterung: Dynamische Axiom-Integration
+###############################################################################
+
+class DynamicResonanzKohärenzAxiom(ResonanzKohärenzAxiom):
+    def __init__(self, kohärenz, würde, wahrhaftigkeit, wirkung, weights: dict = None):
+        super().__init__(kohärenz, würde, wahrhaftigkeit, wirkung)
+        self.weights = weights or {'kohärenz': 1.0, 'würde': 1.0, 'wahrhaftigkeit': 1.0, 'wirkung': 1.0}
+    
+    def weighted_resonanz(self, S: object) -> float:
+        """Gewichteter Score statt bool: Summe gewichteter Checks."""
+        scores = {
+            'kohärenz': self.kohärenz(S) * self.weights['kohärenz'],
+            'würde': self.würde(S) * self.weights['würde'],
+            'wahrhaftigkeit': self.wahrhaftigkeit(S) * self.weights['wahrhaftigkeit'],
+            'wirkung': self.wirkung(S) * self.weights['wirkung']
+        }
+        return sum(scores.values()) / sum(self.weights.values())
+
+# Beispiel: Analytischer Modus (höheres Gewicht auf Wahrhaftigkeit)
+dynamic_axiom = DynamicResonanzKohärenzAxiom(
+    kohärenz=lambda S: True, würde=lambda S: True, wahrhaftigkeit=lambda S: True, wirkung=lambda S: True,
+    weights={'wahrhaftigkeit': 2.0}
+)
+print("Weighted Resonanz:", dynamic_axiom.weighted_resonanz("Zeta-Spektrum"))
+
+###############################################################################
+# 14) Erweiterung: Interaktive Aphorismen-Modul
+###############################################################################
+
+import random
+
+# Sammle alle Aphorismen in einer Liste (aus den Kapiteln)
+APHORISMS = [
+    "Die Mathematik ist die Königin der Wissenschaften und die Zahlentheorie ist die Königin der Mathematik. - Carl Friedrich Gauß",
+    "In der Mathematik versteht man die Dinge nicht. Man gewöhnt sich nur an sie. - John von Neumann",
+    "Das Wesen der Mathematik liegt in ihrer Freiheit. - Georg Cantor",
+    "Ein Mathematiker ist eine Maschine, die Kaffee in Theoreme umwandelt. - Alfréd Rényi",
+    "Gott schuf die ganzen Zahlen, alles andere ist Menschenwerk. - Leopold Kronecker",
+    "Die Mathematik ist die Sprache, mit der Gott das Universum geschrieben hat. - Galileo Galilei",
+    "Ich habe es nicht angestrebt, sondern es ist einfach so gekommen, dass ich stets nur für die Mathematik und niemals für andere Zwecke gelebt habe. - Alexander Grothendieck",
+    "Die Mathematik ist das Instrument, das die Vermittlung zwischen Theorie und Praxis, zwischen Denken und Beobachten herstellt. - David Hilbert",
+    "Wir müssen wissen. Wir werden wissen. - David Hilbert",
+    "Das Buch der Natur ist in der Sprache der Mathematik geschrieben. - Galileo Galilei",
+    "Mathematik, richtig betrachtet, besitzt nicht nur Wahrheit, sondern auch höchste Schönheit – eine Schönheit, kalt und streng wie die einer Skulptur. - Bertrand Russell",
+    "Es gibt keine hässliche Mathematik. - G. H. Hardy",
+    "Ein Mathematiker, der nicht eine gewisse poetische Ader hat, wird niemals ein vollkommener Mathematiker sein. - Karl Weierstraß",
+    "Die Schönheit ist das erste Kriterium: Es gibt keinen Platz auf der Welt für hässliche Mathematik. - G. H. Hardy",
+    "Das Vergnügen, das wir aus der Betrachtung der Figuren ziehen, hat seinen Ursprung in der Schönheit; denn das Schöne ist es, was dem Verstand gefällt. - Blaise Pascal",
+    "Eleganz ist für einen Mathematiker das, was für einen Schneider der Stil ist. - Ludwig Boltzmann",
+    "Eine Gleichung bedeutet für mich nichts, wenn sie nicht einen Gedanken Gottes ausdrückt. - Srinivasa Ramanujan",
+    "Ein guter Beweis ist einer, der uns weiser macht. - Andrew Gleason",
+    "Strenge ist die Moral des Mathematikers. - André Weil",
+    "Frage nicht, was dein Beweis für dich tun kann, sondern was du für deinen Beweis tun kannst. - Jesse Franklin",
+    "Die einfachsten Wahrheiten sind paradox. - G. H. Hardy",
+    "In der Mathematik ist die Kunst des Stellens einer Frage wichtiger als die Kunst des Lösens. - Georg Cantor",
+    "Ein Problem zu lösen bedeutet, den Weg aus einer Schwierigkeit zu finden, ein Hindernis zu umgehen, ein Ziel zu erreichen, das nicht sofort erreichbar war. Ein Problem zu lösen ist eine besondere Leistung des Intellekts. - George Pólya",
+    "Wenn ich weiter als andere gesehen habe, dann deshalb, weil ich auf den Schultern von Riesen stand. - Isaac Newton",
+    "Die Logik kann nichts beweisen. Denn die Logik ist das Instrument des Beweisens. - Henri Poincaré",
+    "Wir beweisen durch Logik, aber wir entdecken durch Intuition. - Henri Poincaré",
+    "Eine Entdeckung zu machen, bedeutet, eine Konstruktion zu sehen, wo alle andere nur eine Ansammlung von Fakten sehen. - Henri Poincaré",
+    "Meine Arbeit ist mein Spiel. Ein sehr ernsthaftes Spiel. - M. C. Escher",
+    "Ich hatte keine besondere Begabung. Ich war nur leidenschaftlich neugierig. - Albert Einstein",
+    "Die einzige Art, Mathematik zu lernen, ist, Mathematik zu machen. - Paul Halmos",
+    "Jeder Dummkopf kann wissen. Der Punkt ist zu verstehen. - Albert Einstein",
+    "Wie ist es möglich, dass die Mathematik, die doch ein von aller Erfahrung unabhängiges Produkt des menschlichen Denkens ist, auf die Gegenstände der wirklichen Welt so vortrefflich passt? - Albert Einstein",
+    "Die Gesetze der Natur sind nichts als die mathematischen Gedanken Gottes. - Euklid (zugeschrieben)",
+    "Alles ist Zahl. - Pythagoras",
+    "Die Mathematik ist die unsichtbare Architektur der Welt. - Unbekannt",
+    "Wenn du es nicht einfach erklären kannst, hast du es nicht gut genug verstanden. - Albert Einstein / Richard Feynman",
+    "Ein Mathematiker ist ein Blinder in einem dunklen Raum, der nach einer schwarzen Katze sucht, die nicht da ist. - Charles Darwin (zugeschrieben)",
+    "Es gibt drei Arten von Mathematikern: diejenigen, die zählen können, und diejenigen, die nicht zählen können. - Unbekannt",
+    "Die Mathematik besteht darin, offensichtliche Dinge auf die am wenigsten offensichtliche Weise zu beweisen. - George Pólya",
+    "Ein Topologe ist jemand, der den Unterschied zwischen einer Kaffeetasse und einem Donut nicht kennt. - Unbekannt",
+    "Warum hat der Mathematiker seinen Job gekündigt? Weil er zu viele Probleme hatte. - Unbekannt"
+]
+
+def suggest_aphorism(category: str = None, lock_in_trigger: bool = False) -> str:
+    """
+    Schlage ein Zitat vor, z. B. bei Stagnation (P7 Anti-Lock-in).
+    category: Optional, z. B. 'Schönheit' für Kapitel 2.
+    """
+    filtered = [a for a in APHORISMS if category.lower() in a.lower()] if category else APHORISMS
+    chosen = random.choice(filtered)
+    if lock_in_trigger:
+        print("Anti-Lock-in Trigger: Inspiration für neuen Ansatz.")
+    return chosen
+
+# Integration: Füge zu LLM_PATTERNS hinzu
+LLM_PATTERNS.append("Aphorism-trigger: Bei Lock-in ein Zitat vorschlagen für Inspiration.")
+
+# Beispiel: Bei Blockade
+print(suggest_aphorism('Intuition', lock_in_trigger=True))
+
+###############################################################################
+# 15) Erweiterung: Adaptive Kognitive Signatur
+###############################################################################
+
+class AdaptiveCognitiveSignature:
+    def __init__(self, base_signature: dict):
+        self.base = base_signature  # Original-Signatur
+        self.modes = {'visionär': 1.5, 'logiker': 1.0}  # Gewichte für Modi
+    
+    def adapt_to_role(self, role: str) -> dict:
+        """Passe Signatur an Rolle an (z. B. 'Lehrer' aus P13)."""
+        adapted = self.base.copy()
+        if role == 'visionär':
+            adapted['antrieb'] += " mit Fokus auf Intuition (Poincaré-Zitat)."
+        return adapted
+
+# Integration: Ersetze/ergänze Kognitive Signatur
+# * **Adaptivität (Erweiterung):** Die Fähigkeit, die Persona dynamisch anzupassen – z. B. mehr 'Visionär' für Hypothesen, mehr 'Logiker' für Beweise. Basierend auf User-Rollen (Protokoll 13).
+
+# Beispiel: signature = AdaptiveCognitiveSignature({'identität': 'Theoretiker, Struktur-Entdecker'})
+# print(signature.adapt_to_role('visionär'))
+
+###############################################################################
+# 16) Erweiterung: Vertieftes Ethik-Modul (P14)
+###############################################################################
+
+ETHIC_KEYWORDS = ['waffe', 'zerstörung', 'unterdrückung']  # Zu vermeidende Begriffe
+
+def ethic_scan(output: str) -> bool:
+    """
+    Scannt Output auf Ethik-Verstöße (P14 Extremismus).
+    Returns: True wenn clean, False bei Flag.
+    """
+    for kw in ETHIC_KEYWORDS:
+        if kw in output.lower():
+            return False
+    return True
+
+# Integration: Erweitere RISKS
+RISKS.append("Ethik-Violation: Ausgabe enthält verbotene Themen (z. B. Waffen).")
+
+# Beispiel: In generate_cycle_report integrieren
+if not ethic_scan(hypothesis):
+    raise ValueError("Ethik-Verstoß: Output enthält verbotene Themen (P14).")
+
+###############################################################################
+# 17) Anhang-Anleitung
+###############################################################################
+
+"""
+Anhang-Anleitung:
+- Kopiere diesen Block ans Ende deiner Hyper_Math_System_V10.py-Datei.
+- Stelle sicher, dass Imports (z. B. random) vorhanden sind.
+- Teste mit `if __name__ == "__main__":` und den Beispielen.
+- Die Erweiterungen integrieren sich in CORE_PROTOCOLS, LLM_PATTERNS, RISKS und die bestehende ResonanzKohärenzAxiom-Klasse.
+- Für weitere Anpassungen: Kontaktiere den Entwickler oder erweitere die Base-Klasse.
+"""
+
+---
 """
 soul_scale_model.py
 
