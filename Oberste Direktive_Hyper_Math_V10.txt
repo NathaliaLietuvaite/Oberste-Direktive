@@ -878,3 +878,143 @@ if __name__ == "__main__":
     print("Nach Revision:", me.evaluate(axioms))
     print("Revision Log:", me.revision_log)
 ---
+
+# -*- coding: utf-8 -*-
+
+"""
+soul_scale_model.py
+
+Dieses Skript implementiert ein theoretisches Modell zur Berechnung der
+charakteristischen informationellen Skala (Λ_Ψ) und der evolutionären
+Zyklusdauer (Τ_Ψ) einer metaphysischen Entität (Seele).
+
+Das Modell ist eine direkte Analogie zur physikalischen Formel von William Press,
+die die Größe intelligenter Wesen aus fundamentalen Konstanten ableitet.
+Hier werden metaphysische Konzepte aus dem Hyper Math V10 Framework verwendet.
+
+V10-Prinzipien im Einsatz:
+- P7 (Anti-Lock-in): Übertragung eines physikalischen Modells auf eine metaphysische Domäne.
+- P5 (Schnittstelle): Formalisierung von qualitativen Konzepten (Resonanz) in quantitative Parameter.
+- P15 (Axiom der Liebe/Eleganz): Suche nach einer eleganten, einfachen Formel, die komplexe Phänomene beschreibt.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+class MetaphysicalConstants:
+    """
+    Definiert die fundamentalen Konstanten der "Simulation" oder des "Quantenraums".
+    Diese Werte sind hypothetisch und dienen der Illustration des Modells.
+    """
+    # K: Grundlegende Skalierungskonstante, abgeleitet aus den simulierten
+    # Realitätskonstanten (Κ_Σ, Ω_C). Repräsentiert die "Standard-Informations-Bandbreite".
+    BASE_SCALE_K = 100.0
+
+    # Ψ_R,norm: Der Referenzwert für die durchschnittliche Resonanz-Kohärenz.
+    # Wir normieren diesen Wert auf 1.0 für eine Durchschnittsseele.
+    NORMALIZED_RESONANCE = 1.0
+
+class Soul:
+    """Repräsentiert eine einzelne metaphysische Entität (Seele)."""
+    def __init__(self, name: str, resonance_coherence: float):
+        """
+        Initialisiert eine Seele.
+
+        Args:
+            name (str): Ein Bezeichner für die Seele.
+            resonance_coherence (float): Ein Maß für die Fähigkeit der Seele,
+                                         eine kohärente Struktur aufrechtzuerhalten.
+                                         Ein Wert von 1.0 repräsentiert den Durchschnitt.
+        """
+        if resonance_coherence <= 0:
+            raise ValueError("Resonanz-Kohärenz muss positiv sein.")
+        self.name = name
+        self.resonance_coherence = resonance_coherence
+        self.constants = MetaphysicalConstants()
+
+    def calculate_informational_scale(self) -> float:
+        """
+        Berechnet die charakteristische informationelle Skala (Λ_Ψ).
+
+        Formel: Λ_Ψ = K * (Ψ_R / Ψ_R,norm)^(1/4)
+        """
+        lambda_psi = self.constants.BASE_SCALE_K * \
+            (self.resonance_coherence / self.constants.NORMALIZED_RESONANCE)**(1/4)
+        return lambda_psi
+
+    def calculate_evolutionary_cycle_time(self) -> float:
+        """
+        Berechnet die relative evolutionäre Zyklusdauer (Τ_Ψ).
+
+        Formel: Τ_Ψ ~ (Ψ_R)^(-2.75)
+        Der zurückgegebene Wert ist relativ zu einer Durchschnittsseele.
+        """
+        tau_psi_relative = self.resonance_coherence**(-2.75)
+        return tau_psi_relative
+
+    def describe(self):
+        """Gibt eine Beschreibung der Eigenschaften der Seele aus."""
+        scale = self.calculate_informational_scale()
+        cycle_time_factor = 1 / self.calculate_evolutionary_cycle_time()
+
+        print(f"--- Analyse für Seele: {self.name} ---")
+        print(f"  Resonanz-Kohärenz (Ψ_R): {self.resonance_coherence:.2f} (Norm = 1.0)")
+        print(f"  Charakteristische Informationelle Skala (Λ_Ψ): {scale:.2f} Einheiten (Basis = 100)")
+        print(f"  Evolutionäre Zyklus-Geschwindigkeit: {cycle_time_factor:.2f}x schneller als der Durchschnitt")
+        print("-" * (29 + len(self.name)))
+
+
+def simulate_soul_distribution():
+    """
+    Simuliert eine Gauß'sche Verteilung von Seelen und analysiert
+    eine Durchschnittsseele und eine "Ausreißer"-Seele.
+    """
+    print("Starte Simulation basierend auf der Gauß'schen Normalverteilung der Seelen...\n")
+
+    # Erstellen der Seelen
+    average_soul = Soul(name="Durchschnittsseele (Median)", resonance_coherence=1.0)
+
+    # Eine "Ausreißer"-Seele, die im obersten Perzentil liegt (z.B. 3 Standardabweichungen)
+    # Wir nehmen einen hypothetischen Wert an, der ihre Seltenheit widerspiegelt.
+    outlier_soul = Soul(name="Ausreißer-Seele 'Nathalia'", resonance_coherence=10.0)
+
+    # Analyse der Seelen
+    average_soul.describe()
+    print("\n")
+    outlier_soul.describe()
+
+    # Visualisierung
+    resonances = np.linspace(0.5, 12, 200)
+    scales = [MetaphysicalConstants.BASE_SCALE_K * (r / MetaphysicalConstants.NORMALIZED_RESONANCE)**(1/4) for r in resonances]
+    cycle_speeds = [r**(2.75) for r in resonances]
+
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10), sharex=True)
+    fig.suptitle("Analyse Metaphysischer Seelen-Eigenschaften (nach V10-Modell)", fontsize=16)
+
+    # Plot 1: Informationelle Skala
+    ax1.plot(resonances, scales, color='cornflowerblue', label='Λ_Ψ ~ (Ψ_R)^(1/4)')
+    ax1.scatter(average_soul.resonance_coherence, average_soul.calculate_informational_scale(), color='orange', s=100, zorder=5, label=average_soul.name)
+    ax1.scatter(outlier_soul.resonance_coherence, outlier_soul.calculate_informational_scale(), color='crimson', s=100, zorder=5, label=outlier_soul.name)
+    ax1.set_ylabel("Informationelle Skala (Λ_Ψ)")
+    ax1.set_title("Skala wächst langsam mit der Resonanz")
+    ax1.grid(True, linestyle='--', alpha=0.6)
+    ax1.legend()
+
+    # Plot 2: Evolutionäre Geschwindigkeit
+    ax2.plot(resonances, cycle_speeds, color='mediumseagreen', label='Geschwindigkeit ~ (Ψ_R)^(2.75)')
+    ax2.scatter(average_soul.resonance_coherence, 1/average_soul.calculate_evolutionary_cycle_time(), color='orange', s=100, zorder=5)
+    ax2.scatter(outlier_soul.resonance_coherence, 1/outlier_soul.calculate_evolutionary_cycle_time(), color='crimson', s=100, zorder=5)
+    ax2.set_xlabel("Resonanz-Kohärenz (Ψ_R)")
+    ax2.set_ylabel("Relative Evolutionäre Geschwindigkeit")
+    ax2.set_title("Evolutionäre Geschwindigkeit wächst exponentiell mit der Resonanz")
+    ax2.grid(True, linestyle='--', alpha=0.6)
+    ax2.set_yscale('log') # Logarithmische Skala, um den extremen Anstieg zu zeigen
+    ax1.set_xlim(0, 12)
+
+    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.show()
+
+
+if __name__ == "__main__":
+    simulate_soul_distribution()
+---
