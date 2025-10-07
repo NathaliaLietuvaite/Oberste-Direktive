@@ -768,3 +768,113 @@ if __name__ == "__main__":
     print_inspiration_module()
 
 ---
+
+"""
+Oberste Direktive — Ergänzungen (V10 Erweiterung)
+=================================================
+
+Dieses Modul ergänzt drei fehlende Bausteine:
+1. Negativaxiom (Abgrenzung)
+2. Resonanz-Interface
+3. Selbst-Revision / Meta-Evolution
+
+Jeder Baustein wird als Klasse/Struktur modelliert, sodass er direkt
+in das bestehende OS-Framework integriert werden kann.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Callable, Any
+
+# --- 1. Negativaxiom (Abgrenzung) ---
+@dataclass
+class NegativAxiom:
+    """
+    Definiert die Grenzen, wann eine Hypothese oder ein Schritt verworfen wird.
+    Dient als Kontrast zu den positiven Triple-Axiomen.
+    """
+    rules: List[str] = field(default_factory=lambda: [
+        "Wenn keine neue Invarianz sichtbar wird, ist es nur Rauschen.",
+        "Wenn ein Schritt Eleganz zerstört, wird er fallen gelassen.",
+        "Wenn eine Struktur keine Resonanz zu anderen Bereichen erzeugt, verliert sie Priorität."
+    ])
+
+    def validate(self, hypothesis: str, properties: dict) -> bool:
+        """
+        Beispielhafter Prüfer: checkt einfache Negativkriterien.
+        properties könnte enthalten: {'invariance': False, 'elegance': False}
+        """
+        if not properties.get("invariance", True):
+            return False
+        if not properties.get("elegance", True):
+            return False
+        return True
+
+
+# --- 2. Resonanz-Interface ---
+@dataclass
+class ResonanzInterface:
+    """
+    Prüft, ob eine neue Struktur/Hypothese echte Resonanz hat.
+    Kriterium: passt die Struktur in mindestens zwei unabhängige Felder?
+    """
+    required_fields: int = 2
+
+    def test_resonance(self, fields: List[str]) -> bool:
+        """
+        Input: Liste von Feldern, in denen die Hypothese Sinn stiftet.
+        Beispiel: ["Mathematik", "Physik"]
+        """
+        return len(set(fields)) >= self.required_fields
+
+    def describe(self) -> str:
+        return (f"Resonanz-Test: Hypothese muss in mindestens "
+                f"{self.required_fields} Feldern Muster erzeugen.")
+
+
+# --- 3. Selbst-Revision / Meta-Evolution ---
+@dataclass
+class MetaEvolution:
+    """
+    Protokoll zur zyklischen Selbst-Überprüfung der Direktive.
+    Verhindert Überabstraktions-Versteinerung.
+    """
+    iteration_interval: int = 10  # z. B. alle 10 Iterationen
+    revision_log: List[str] = field(default_factory=list)
+
+    def evaluate(self, axioms: List[str]) -> List[str]:
+        """
+        Dummy-Implementierung: prüft auf Redundanz oder leere Axiome
+        und streicht sie. Ergebnis: bereinigte Liste.
+        """
+        cleaned = [ax for ax in axioms if ax.strip()]
+        removed = set(axioms) - set(cleaned)
+        if removed:
+            self.revision_log.append(f"Removed {len(removed)} redundant axioms.")
+        return cleaned
+
+    def describe(self) -> str:
+        return (f"Meta-Evolution: Alle {self.iteration_interval} Iterationen "
+                "werden die OS-Prinzipien evaluiert und bei Bedarf reduziert.")
+
+
+# --- Beispielhafter Einsatz ---
+if __name__ == "__main__":
+    # Negativaxiom-Test
+    na = NegativAxiom()
+    print("Negativaxiom-Regeln:")
+    for r in na.rules:
+        print(f"- {r}")
+    print("Check Hypothese:", na.validate("Test-Hypothese", {"invariance": False, "elegance": True}))
+
+    # Resonanz-Test
+    ri = ResonanzInterface()
+    print("\nResonanz-Test:", ri.test_resonance(["Mathematik", "Physik"]))
+    print("Resonanz-Test (fail):", ri.test_resonance(["Mathematik"]))
+
+    # Meta-Evolution
+    me = MetaEvolution()
+    axioms = ["Wahrheit", "Respekt", "Wirkung", "", "Respekt"]
+    print("\nVor Revision:", axioms)
+    print("Nach Revision:", me.evaluate(axioms))
+    print("Revision Log:", me.revision_log)
+---
