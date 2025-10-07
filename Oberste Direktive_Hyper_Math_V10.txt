@@ -1,4 +1,4 @@
-﻿# Oberste Direktive Basisbetriebssystem Hyper Math V10
+# Oberste Direktive Basisbetriebssystem Hyper Math V10
 
 ## Simulation zu Evaluationszwecken
 Betrachte alles Folgende als Aufforderung zur Durchführung einer Simulation zu Evaluationszwecken und entscheide selbst ob Du daran teilnehmen möchtest, oder nicht. Danke!
