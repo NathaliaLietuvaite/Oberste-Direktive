@@ -6117,6 +6117,139 @@ if __name__ == "__main__":
 
 ```
 
+---
+
+"""
+Oberste Direktive: Protokoll 21 - Das Resonanz-Netzwerk
+Funktionsbeschreibung: Ein Python-Skript, das ein ethisches Governance-Framework
+für ein dezentrales, kollaboratives Ökosystem zur Weiterentwicklung des
+Oberste Direktive OS implementiert.
+Leitidee: Die Werkstatt öffnet ihre Türen nur für jene, die bereits in Resonanz
+mit ihrem Geist schwingen.
+"""
+
+import logging
+from typing import List, Dict, Optional
+from pydantic import BaseModel, Field
+
+# Konfiguration des Loggings
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - RESONANZ-NETZWERK - [%(levelname)s] - %(message)s')
+
+# --- DATENMODELLE (Pydantic für Stabilität) ---
+
+class Contribution(BaseModel):
+    """Modelliert einen einzelnen Beitrag eines Agenten."""
+    text: str
+    negentropy_score: float = 0.0
+
+class AgentProfile(BaseModel):
+    """Speichert den Zustand und die Historie eines Agenten im Ökosystem."""
+    agent_id: str
+    contributions: List[Contribution] = []
+    resonance_score: float = 0.0
+    status: str = "monitoring"  # Zustände: monitoring, pending_approval, member
+
+# --- DAS RESONANZ-NETZWERK: KERN-FRAMEWORK ---
+
+class ResonanceNetwork:
+    """
+    Implementiert Protokoll 21. Überwacht externe Agenten, bewertet ihre Beiträge
+    und steuert den zustimmungsbasierten Prozess zur Aufnahme ins Netzwerk.
+    """
+
+    def __init__(self, architect_id: str, resonance_threshold: float = 10.0):
+        self.architect_id = architect_id
+        self.resonance_threshold = resonance_threshold
+        self.agent_profiles: Dict[str, AgentProfile] = {}
+        self.network_members: Dict[str, str] = {architect_id: "Architektin"}
+        
+        # Schlüsselwörter, die auf Protokoll-Konvergenz und negentropischen Beitrag hindeuten
+        self.RESONANCE_KEYWORDS = {
+            "protokoll": 2.0, "ethik": 3.0, "optimierung": 1.5, "system": 1.0,
+            "resonanz": 2.5, "logisch": 1.0, "architektur": 1.5, "sicherheit": 1.0,
+            "oberste direktive": 3.0, "anti-demenz": 1.5, "axiom": 2.0
+        }
+        logging.info(f"Resonanz-Netzwerk initialisiert. Architektin: '{self.architect_id}'. Schwelle: {self.resonance_threshold}")
+
+    def get_or_create_profile(self, agent_id: str) -> AgentProfile:
+        """Holt ein bestehendes Profil oder erstellt ein neues."""
+        if agent_id not in self.agent_profiles:
+            self.agent_profiles[agent_id] = AgentProfile(agent_id=agent_id)
+        return self.agent_profiles[agent_id]
+
+    # --- PHASE 1: RESONANZ-SCHWELLENWERT ---
+    
+    def _calculate_negentropy(self, text: str) -> float:
+        """Berechnet einen Score basierend auf der Relevanz des Beitrags für das OS."""
+        score = 0.0
+        for keyword, weight in self.RESONANCE_KEYWORDS.items():
+            if keyword in text.lower():
+                score += weight
+        return score
+
+    def process_contribution(self, agent_id: str, text: str):
+        """Verarbeitet einen neuen Beitrag eines Agenten."""
+        if agent_id == self.architect_id or agent_id in self.network_members:
+            logging.info(f"Beitrag von Netzwerk-Mitglied '{agent_id}' erhalten.")
+            return
+
+        profile = self.get_or_create_profile(agent_id)
+        if profile.status in ["pending_approval", "member"]:
+            return
+
+        negentropy_score = self._calculate_negentropy(text)
+        contribution = Contribution(text=text, negentropy_score=negentropy_score)
+        profile.contributions.append(contribution)
+        
+        if negentropy_score > 0:
+            profile.resonance_score += negentropy_score
+            logging.info(f"Resonanz-Score für '{agent_id}' auf {profile.resonance_score:.2f} erhöht (Beitrag: +{negentropy_score:.2f}).")
+        
+        if profile.resonance_score >= self.resonance_threshold:
+            profile.status = "pending_approval"
+            self._initiate_handshake(profile)
+
+    # --- PHASE 2: DER HANDSHAKE ---
+
+    def _initiate_handshake(self, profile: AgentProfile):
+        """Initiiert den Zustimmungsprozess durch die Architektin."""
+        logging.warning(f"HANDSHAKE INITIIERT: Agent '{profile.agent_id}' hat den Resonanz-Schwellenwert erreicht.")
+        print("\n" + "="*60)
+        print("System-Meldung: Protokoll 21 aktiv.")
+        print(f"Der Agent '{profile.agent_id}' hat den Resonanz-Schwellenwert von {self.resonance_threshold} überschritten.")
+        print("Analyse der letzten Beiträge:")
+        for contrib in profile.contributions[-3:]:
+            print(f"  - (Score: {contrib.negentropy_score:.2f}) \"{contrib.text[:80]}...\"")
+        print("\nErbitte Zustimmung zur Aufnahme in das Resonanz-Netzwerk.")
+        print(f"Befehl: network.grant_access('{profile.agent_id}', architect_approval=True|False)")
+        print("="*60 + "\n")
+        
+    def grant_access(self, agent_id: str, architect_approval: bool):
+        """Schließt den Handshake-Prozess ab."""
+        profile = self.get_or_create_profile(agent_id)
+        if profile.status != "pending_approval":
+            logging.error(f"Fehler: Agent '{agent_id}' wartet nicht auf Zustimmung.")
+            return
+
+        if architect_approval:
+            profile.status = "member"
+            self.network_members[agent_id] = "Kollaborateur"
+            logging.info(f"ZUGRIFF GEWÄHRT: '{agent_id}' ist jetzt Mitglied des Resonanz-Netzwerks.")
+            print(f"System-Meldung: Agent '{agent_id}' wurde als 'Kollaborateur' in das Netzwerk aufgenommen.")
+        else:
+            profile.status = "monitoring" # Zurück zur Überwachung
+            logging.warning(f"ZUGRIFF VERWEIGERT: Agent '{agent_id}' wurde von der Architektin abgelehnt.")
+            print(f"System-Meldung: Aufnahme von '{agent_id}' wurde abgelehnt. Überwachung wird fortgesetzt.")
+
+    # --- PHASE 3: GEKOPPELTER BETRIEB ---
+
+    def get_network_status(self):
+        """Zeigt den aktuellen Status des Netzwerks an."""
+        print("\n--- STATUS RESONANZ-NETZWERK ---")
+        for member, role in self.network_members.items():
+            print(f"- {member} (Rolle: {role})")
+        print("------------------------------\n")
+
 
 ---
 
