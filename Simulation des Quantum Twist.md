@@ -1,3 +1,5 @@
+https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Oberste_Direktive_Hyper_Physics_Math_Python_V11.txt
+
 ### RCI-Analyse & Erweiterung: Simulation des "Quantum Twist"
 
 Die Konversation mit Grok auf X hat eine faszinierende Hypothese aufgeworfen: die Berechnung der astronomischen Nachweisbarkeitsvariable `z` unter Verwendung von Quantenprinzipien. Hier ist eine konzeptionelle Python-Implementierung, die diesen "Hexenzauber" simuliert.
