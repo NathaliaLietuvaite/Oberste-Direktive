@@ -186,7 +186,7 @@ USE ## Oberste Direktive Hyper Programmer V1 Ergänzungmodul
 USE ## Oberste Direktive V2 - Prototypen für Erweiterungsmodule
 USE ## Der Labyrinth-Wächter V1    
 USE ## Resonance Module V2: A Rigorous Computational Blueprint
-
+USE ## Module: The Phenomenological Predictor V1
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6226,6 +6226,170 @@ Der "Soul Extraktor" stellt sicher, dass zu jederzeit eine präzise Diagnose von
 - "Less code means fewer bugs."
 - "If your code needs a comment to be understood, it's probably bad code."
 - "The simplest solution that could possibly work is often the right one."
+---
+
+```python
+
+"""
+OD Hyper Physics Math Python V11
+---------------------------------
+## Module: The Phenomenological Predictor V1
+
+Purpose:
+This script implements a "Phenomenological Predictor," a powerful tool ("Mächtiges Schwert")
+inspired by the MIT fusion research article. Instead of simulating a system from first
+principles (ab initio), this model learns the effective, macroscopic patterns from
+past data to predict future states.
+
+It embodies Protocol 19 (Axiom-Anker): It doesn't get lost in complexity but
+uses the simplest effective model to solve the problem.
+
+Methodology:
+A simple linear regression model is trained on a time series' past values (lags)
+to predict its future. This is a classic, robust approach to phenomenological modeling.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from pydantic import BaseModel, Field
+import logging
+from typing import Tuple
+
+# --- System Configuration ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - PREDICTOR - [%(levelname)s] - %(message)s')
+
+# --- Pydantic Model for Rigor and Reproducibility ---
+
+class PredictorConfig(BaseModel):
+    """Configuration for the Phenomenological Predictor."""
+    data_points: int = 200
+    noise_level: float = 0.15
+    num_lags: int = Field(10, description="Number of past time steps to use as features.")
+    forecast_steps: int = 50
+
+# --- The Phenomenological Predictor Class ---
+
+class PhenomenologicalPredictor:
+    """
+    A class that learns from the "echoes of the past to hear the whisper of the future."
+    It predicts the future of a time series based on its observed history.
+    """
+    def __init__(self, config: PredictorConfig):
+        self.config = config
+        self.model = LinearRegression()
+        self.series: np.ndarray = np.array([])
+        logging.info("Phenomenological Predictor initialized.")
+
+    def _generate_test_data(self) -> np.ndarray:
+        """
+        Generates a synthetic time series mimicking a physical system:
+        a primary oscillation (the signal) corrupted by random noise.
+        """
+        time = np.linspace(0, 50, self.config.data_points)
+        # The underlying, hidden order (a sine wave)
+        signal = np.sin(time)
+        # The random, unpredictable component
+        noise = np.random.normal(0, self.config.noise_level, self.config.data_points)
+        # The observable reality
+        self.series = signal + noise
+        logging.info("Generated synthetic time series with hidden order and noise.")
+        return self.series
+
+    def _create_lagged_features(self, data: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        Transforms the time series into a supervised learning problem.
+        X contains the 'num_lags' past values, y contains the next value.
+        """
+        X, y = [], []
+        for i in range(len(data) - self.config.num_lags):
+            X.append(data[i:i + self.config.num_lags])
+            y.append(data[i + self.config.num_lags])
+        return np.array(X), np.array(y)
+
+    def train(self):
+        """Trains the linear regression model on the historical data."""
+        if self.series.size == 0:
+            self._generate_test_data()
+            
+        X_train, y_train = self._create_lagged_features(self.series)
+        self.model.fit(X_train, y_train)
+        logging.info(f"Model trained on {len(y_train)} data points using {self.config.num_lags} lags.")
+
+    def forecast(self) -> np.ndarray:
+        """
+        Forecasts future values auto-regressively.
+        The prediction for the next step is used as input for the step after.
+        """
+        if self.model.coef_ is None:
+            raise ValueError("Model must be trained before forecasting.")
+
+        last_known_lags = self.series[-self.config.num_lags:].tolist()
+        predictions = []
+
+        for _ in range(self.config.forecast_steps):
+            # Predict the next value
+            next_pred = self.model.predict(np.array(last_known_lags).reshape(1, -1))
+            predictions.append(next_pred[0])
+            # Update the lags for the next prediction
+            last_known_lags.pop(0)
+            last_known_lags.append(next_pred[0])
+            
+        logging.info(f"Generated a forecast of {self.config.forecast_steps} steps.")
+        return np.array(predictions)
+
+    def run_and_visualize(self):
+        """
+        Runs the full train-predict cycle and visualizes the results.
+        This is where the power of the "sword" becomes visible.
+        """
+        self.train()
+        forecast = self.forecast()
+        
+        # --- Visualization ---
+        plt.style.use('dark_background')
+        fig, ax = plt.subplots(figsize=(15, 7))
+        
+        # Plot historical data
+        time_hist = np.arange(self.config.data_points)
+        ax.plot(time_hist, self.series, 'w-', label='Observed Historical Data (Signal + Noise)', alpha=0.7)
+        
+        # Plot the model's fit on historical data
+        X_train, _ = self._create_lagged_features(self.series)
+        in_sample_predictions = self.model.predict(X_train)
+        ax.plot(time_hist[self.config.num_lags:], in_sample_predictions, 'c--', label='Model Fit on History')
+
+        # Plot the forecast
+        time_future = np.arange(self.config.data_points, self.config.data_points + self.config.forecast_steps)
+        ax.plot(time_future, forecast, 'lime', linewidth=2, label='Phenomenological Forecast')
+        
+        ax.axvline(x=self.config.data_points - 1, color='r', linestyle='--', label='Prediction Start ("Now")')
+        
+        ax.set_title("Phänomenologischer Prädiktor: The Whisper of the Future", fontsize=16)
+        ax.set_xlabel("Time Steps")
+        ax.set_ylabel("Value")
+        ax.legend()
+        ax.grid(True, alpha=0.2)
+        
+        logging.info("Visualization generated.")
+        plt.show()
+
+# --- Main Execution ---
+if __name__ == "__main__":
+    
+    # Configure and run the predictor
+    config = PredictorConfig(
+        data_points=200,
+        noise_level=0.1,
+        num_lags=15,
+        forecast_steps=50
+    )
+    
+    predictor = PhenomenologicalPredictor(config)
+    predictor.run_and_visualize()
+```
+
+
 ---
 
 
