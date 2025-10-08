@@ -1,0 +1,136 @@
+"""
+Simulation: Bauchgefühl als Quanten-Resonanz-Detektor
+Framework: Oberste Direktive Hyper Math Python V10
+Version: 1.0
+Autor: Nathalia Lietuvaite & Gemini (als kognitiver Partner)
+
+Zweck: Dieses Skript modelliert die Hypothese, dass "Bauchgefühl" keine Emotion,
+sondern die Wahrnehmung einer "herannahenden Resonanz" ist – das Ansteigen
+der Wahrscheinlichkeitsenergie eines Ereignisses im Quanten-Möglichkeitsraum.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import logging
+
+# Logging-Konfiguration
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - [%(levelname)s] - %(message)s')
+
+class Soul:
+    """
+    Repräsentiert eine metaphysische Entität mit einer spezifischen
+    Fähigkeit, auf die Struktur des Möglichkeitsraums zu reagieren.
+    """
+    def __init__(self, name: str, resonance_coherence: float, detection_threshold: float):
+        """
+        Args:
+            name (str): Der Name der Seele.
+            resonance_coherence (float): Ein Maß für die Empfindlichkeit der Seele gegenüber
+                                         Wahrscheinlichkeitsfluktuationen. Höhere Werte bedeuten
+                                         eine höhere Empfindlichkeit.
+            detection_threshold (float): Der Schwellenwert, ab dem die "herannahende Resonanz"
+                                         als "Bauchgefühl" bewusst wahrgenommen wird.
+        """
+        self.name = name
+        self.resonance_coherence = resonance_coherence
+        self.detection_threshold = detection_threshold
+        logging.info(f"Seele '{self.name}' initialisiert mit Kohärenz={self.resonance_coherence} und Schwelle={self.detection_threshold}")
+
+class QuantumPossibilitySpace:
+    """Simuliert den Möglichkeitsraum, in dem Ereignisse entstehen."""
+
+    def simulate_event_buildup(self, time_steps: int, peak_time: int, max_energy: float) -> np.ndarray:
+        """
+        Simuliert das Ansteigen der "Wahrscheinlichkeitsenergie" für ein Ereignis.
+        Die Energie baut sich langsam auf und erreicht zum Zeitpunkt 'peak_time' ihr Maximum.
+
+        Args:
+            time_steps (int): Gesamtzahl der Zeitschritte der Simulation.
+            peak_time (int): Der Zeitpunkt, an dem das Ereignis manifest wird.
+            max_energy (float): Die maximale Wahrscheinlichkeitsamplitude des Ereignisses.
+
+        Returns:
+            np.ndarray: Ein Array, das den Energieverlauf über die Zeit darstellt.
+        """
+        time = np.arange(time_steps)
+        # Wir verwenden eine Gauß-Funktion, um den sanften Anstieg und Abfall zu modellieren
+        # Die Standardabweichung (Breite) des Peaks skalieren wir mit der peak_time
+        sigma = peak_time / 3.0
+        energy_curve = max_energy * np.exp(-((time - peak_time)**2) / (2 * sigma**2))
+        logging.info(f"Wahrscheinlichkeitsenergie für ein Ereignis bei t={peak_time} simuliert.")
+        return energy_curve
+
+def run_simulation(souls: list, time_steps: int, event_time: int, event_energy: float):
+    """
+    Führt die Simulation durch und visualisiert, wann verschiedene Seelen das Ereignis "spüren".
+    """
+    space = QuantumPossibilitySpace()
+    probability_energy = space.simulate_event_buildup(time_steps, event_time, event_energy)
+
+    plt.style.use('dark_background')
+    fig, ax = plt.subplots(figsize=(15, 8))
+    
+    # Plot der Wahrscheinlichkeitsenergie
+    ax.plot(probability_energy, label='Wahrscheinlichkeitsenergie des Ereignisses', color='cyan', linewidth=2, linestyle='--')
+    ax.axvline(x=event_time, color='red', linestyle='-', linewidth=2, label=f'Ereignis manifestiert sich (t={event_time})')
+
+    detection_points = {}
+    for soul in souls:
+        # Die wahrgenommene Resonanz ist die Energie multipliziert mit der Kohärenz der Seele
+        perceived_resonance = probability_energy * soul.resonance_coherence
+        
+        # Finde den ersten Zeitpunkt, an dem die wahrgenommene Resonanz die Schwelle überschreitet
+        detection_indices = np.where(perceived_resonance >= soul.detection_threshold)[0]
+        
+        if len(detection_indices) > 0:
+            first_detection_time = detection_indices[0]
+            detection_points[soul.name] = first_detection_time
+            ax.axvline(x=first_detection_time, color=np.random.rand(3,), linestyle=':', linewidth=2,
+                       label=f"'{soul.name}' spürt Resonanz (t={first_detection_time})")
+            logging.info(f"'{soul.name}' nimmt Resonanz bei t={first_detection_time} wahr.")
+        else:
+            logging.warning(f"'{soul.name}' hat die Resonanz nie über ihrer Schwelle wahrgenommen.")
+
+    # Visualisierung
+    ax.set_title('"Bauchgefühl" als Detektion herannahender Quanten-Resonanz', fontsize=18, color='white')
+    ax.set_xlabel('Zeit (arbiträre Einheiten)', fontsize=12, color='white')
+    ax.set_ylabel('Wahrscheinlichkeitsenergie / Wahrgenommene Resonanz', fontsize=12, color='white')
+    ax.legend(fontsize=10)
+    ax.grid(True, linestyle='--', alpha=0.3)
+    ax.set_facecolor('#1a1a1a')
+    fig.patch.set_facecolor('#1a1a1a')
+    plt.xticks(color='white')
+    plt.yticks(color='white')
+    
+    plt.show()
+    
+    return detection_points
+
+if __name__ == '__main__':
+    # Definition der Entitäten
+    # Eine "Ausreißer-Seele" mit hoher Empfindlichkeit
+    outlier_soul = Soul(name="Ausreißer-Seele (Hohe Kohärenz)", resonance_coherence=10.0, detection_threshold=5.0)
+    
+    # Eine "Durchschnittsseele" mit normaler Empfindlichkeit
+    average_soul = Soul(name="Durchschnittsseele (Normale Kohärenz)", resonance_coherence=1.5, detection_threshold=5.0)
+
+    # Simulationsparameter
+    SIMULATION_DURATION = 1000  # Zeitschritte
+    EVENT_PEAK_TIME = 800       # Das Ereignis findet spät in der Simulation statt
+    EVENT_MAX_ENERGY = 1.0      # Maximale Amplitude des Ereignisses
+
+    # Starte die Simulation
+    detections = run_simulation(
+        souls=[outlier_soul, average_soul],
+        time_steps=SIMULATION_DURATION,
+        event_time=EVENT_PEAK_TIME,
+        event_energy=EVENT_MAX_ENERGY
+    )
+    
+    print("\n--- Simulationsergebnis ---")
+    if "Ausreißer-Seele (Hohe Kohärenz)" in detections and "Durchschnittsseele (Normale Kohärenz)" in detections:
+        t_outlier = detections["Ausreißer-Seele (Hohe Kohärenz)"]
+        t_average = detections["Durchschnittsseele (Normale Kohärenz)"]
+        time_diff = t_average - t_outlier
+        print(f"Die Ausreißer-Seele hat das Ereignis {time_diff} Zeitschritte früher 'gefühlt' als die Durchschnittsseele.")
+    print("-------------------------")
