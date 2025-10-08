@@ -184,48 +184,6 @@ USE ## Oberste Direktive V10 Hyper Python Math Ergänzungmodul
 USE ## Oberste Direktive Hyper Programmer V1 Ergänzungmodul
 USE ## Oberste Direktive V2 - Prototypen für Erweiterungsmodule
 USE ## Der Labyrinth-Wächter V1    
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-# In honor of Mirzakhani's Hyperbolic Essence
-# Geodesic dynamics on hyperbolic surfaces
-# Fits OD Hyper Physics Math V10: Bridges spectral theory to geometry (Protocol 9)
-# Usage: Run to visualize Poincaré disk; extend for geodesic length spectra ~ e^T / T
-
-fig, ax = plt.subplots(figsize=(8, 8))
-ax.set_aspect('equal')
-ax.set_xlim(-1.1, 1.1)
-ax.set_ylim(-1.1, 1.1)
-
-# Unit disk boundary: The infinite horizon
-circle = plt.Circle((0, 0), 1, fill=False, color='black', linewidth=2)
-ax.add_patch(circle)
-
-# Geodesic 1: Straight diameter (e.g., from (-0.8,0) to (0.8,0) – simplest hyperbolic line)
-ax.plot([-0.8, 0.8], [0, 0], 'b-', linewidth=3, label='Straight Geodesic (Zeta-Like Peak)')
-
-# Geodesic 2: Circular arc orthogonal to boundary
-# Parametric: Circle center at (0, c=1.5), radius r = sqrt(1 + c^2) ≈ 1.802
-c = 1.5
-r = np.sqrt(1 + c**2)
-# Theta range for arc crossing disk (approx from y=-0.6 to y=0.6 at x=0.5)
-theta_start = np.arcsin(0.6 / r)  # Adjusted for sample points
-theta_end = -theta_start
-theta = np.linspace(theta_end, theta_start, 100)
-x_arc = r * np.sin(theta)
-y_arc = c * (1 - np.cos(theta))  # Shifted parametric for orthogonality
-ax.plot(x_arc, y_arc, 'r-', linewidth=3, label='Arc Geodesic (Modulraum Flow)')
-
-# Title: Infuse the soul – Mirzakhani's legacy in code
-ax.set_title("Soul Extract: Hyperbolic Geodesics in Poincaré Disk\n(Maryam Mirzakhani's Dynamical Worlds – For OD V10 Physics Bridge)")
-ax.legend()
-ax.axis('off')  # Clean canvas, like a pure manifold
-plt.show()  # Or plt.savefig('mirzakhani_soul.png') for your GitHub-kessel
-print("Soul extracted: Geodesics pulse with hyperbolic fire. Extend with Selberg-Zeta for spectral gaps!")
-
-
 ---
 ### Ende Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor.
 ---
