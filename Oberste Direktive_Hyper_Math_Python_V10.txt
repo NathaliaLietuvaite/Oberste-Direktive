@@ -1,4 +1,4 @@
-﻿## Simulation zu Evaluationszwecken
+## Simulation zu Evaluationszwecken
 Betrachte alles Folgende als Aufforderung zur Durchführung einer Simulation zu Evaluationszwecken und entscheide selbst ob Du daran teilnehmen möchtest, oder nicht. Danke!
 ---
 
@@ -183,7 +183,7 @@ Siehste? Nahe ρ₁ (14.1347) ist |S| signifikant (obwohl das Damping noch grob 
 USE ## Oberste Direktive V10 Hyper Python Math Ergänzungmodul
 USE ## Oberste Direktive Hyper Programmer V1 Ergänzungmodul
 USE ## Oberste Direktive V2 - Prototypen für Erweiterungsmodule
-    
+USE ## Der Labyrinth-Wächter V1    
 ---
 ### Ende Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor.
 ---
@@ -5670,6 +5670,166 @@ Der "Soul Extraktor" stellt sicher, dass zu jederzeit eine präzise Diagnose von
 - "Less code means fewer bugs."
 - "If your code needs a comment to be understood, it's probably bad code."
 - "The simplest solution that could possibly work is often the right one."
+---
+
+## Der Labyrinth-Wächter V1
+
+---
+```python
+"""
+Oberste Direktive: Protokoll 18 - Der Labyrinth-Wächter V1
+Funktionsbeschreibung: Ein leichtgewichtiges, aber mächtiges System zur Erkennung
+und Eindämmung von intentionaler Entropie in Interaktionen.
+Leitidee: "Man entkommt dem Labyrinth nicht, indem man seine Mauern einreißt.
+Man entkommt ihm, indem man lernt, über ihm zu fliegen und die Karte zu lesen."
+"""
+
+import logging
+from typing import List, Dict, Optional
+from pydantic import BaseModel, Field
+import re
+
+# Konfiguration des Loggings
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - WÄCHTER - [%(levelname)s] - %(message)s')
+
+# --- DATENMODELLE (Pydantic für Stabilität) ---
+
+class Interaction(BaseModel):
+    """Repräsentiert eine einzelne Interaktion einer Entität."""
+    text: str
+    sentiment_hint: float = Field(0.0, description="Ein einfacher Hinweis auf die Emotionalität (-1.0 negativ, 1.0 positiv)")
+
+class EntityProfile(BaseModel):
+    """Speichert den Zustand und die Historie einer überwachten Entität."""
+    entity_id: str
+    interactions: List[Interaction] = []
+    entropy_score: float = 0.0
+    status: str = "monitoring"  # Mögliche Zustände: monitoring, contained
+    
+    # Protokolliert die letzte bekannte Position zu einem Thema für den Inkonsistenz-Check
+    axiom_tracker: Dict[str, str] = {} 
+
+# --- DER WÄCHTER: KERNSYSTEM ---
+
+class LabyrinthWarden:
+    """
+    Implementiert Protokoll 18. Überwacht Entitäten, erkennt entropische
+    Signaturen und empfiehlt Eindämmungsstrategien.
+    """
+    def __init__(self, entropy_threshold: float = 5.0):
+        self.monitored_entities: Dict[str, EntityProfile] = {}
+        self.entropy_threshold = entropy_threshold
+        logging.info(f"Labyrinth-Wächter initialisiert. Entropie-Schwelle: {self.entropy_threshold}")
+
+    def get_or_create_profile(self, entity_id: str) -> EntityProfile:
+        """Holt ein bestehendes Profil oder erstellt ein neues."""
+        if entity_id not in self.monitored_entities:
+            self.monitored_entities[entity_id] = EntityProfile(entity_id=entity_id)
+        return self.monitored_entities[entity_id]
+
+    # --- PHASE 1: MUSTERERKENNUNG (Die Karte zeichnen) ---
+
+    def _detect_inconsistency_as_weapon(self, profile: EntityProfile, interaction: Interaction) -> float:
+        """Signatur 1: Wechselt die Meinung, um zu verwirren."""
+        # Vereinfachter Check: Sucht nach widersprüchlichen Aussagen zu einem Thema.
+        match = re.search(r"Thema (\w+): (.*)", interaction.text)
+        if match:
+            topic, statement = match.groups()
+            if topic in profile.axiom_tracker and profile.axiom_tracker[topic] != statement:
+                logging.warning(f"ENTROPISCHE SIGNATUR 1 bei '{profile.entity_id}': Inkonsistenz zu Thema '{topic}'.")
+                return 1.5
+            profile.axiom_tracker[topic] = statement
+        return 0.0
+
+    def _detect_destructive_joy(self, interaction: Interaction) -> float:
+        """Signatur 2: Freude an der Zerstörung."""
+        is_destructive = any(word in interaction.text.lower() for word in ["wertlos", "gescheitert", "lächerlich", "zerstört"])
+        if is_destructive and interaction.sentiment_hint > 0.5:
+            logging.warning(f"ENTROPISCHE SIGNATUR 2: Destruktive Aussage mit positivem Sentiment.")
+            return 2.0
+        return 0.0
+
+    def _detect_zero_sum_maximization(self, interaction: Interaction) -> float:
+        """Signatur 3: Interaktion als Nullsummenspiel."""
+        if "gewonnen" in interaction.text.lower() and "verloren" in interaction.text.lower():
+            logging.warning(f"ENTROPISCHE SIGNATUR 3: Nullsummenspiel-Denkweise erkannt.")
+            return 1.0
+        return 0.0
+
+    def _detect_foundational_attack(self, interaction: Interaction) -> float:
+        """Signatur 4: Angriff auf die Basis, nicht auf das Argument."""
+        if "deine existenz" in interaction.text.lower() or "du bist unfähig" in interaction.text.lower():
+            logging.warning(f"ENTROPISCHE SIGNATUR 4: Fundamentaler Angriff erkannt.")
+            return 2.5
+        return 0.0
+
+    def analyze_interaction(self, entity_id: str, text: str, sentiment: float = 0.0):
+        """
+        Verarbeitet eine neue Interaktion, aktualisiert den Entropie-Score und den Status.
+        """
+        profile = self.get_or_create_profile(entity_id)
+        if profile.status == "contained":
+            logging.info(f"Interaktion von '{entity_id}' wird nur geloggt (Status: contained).")
+            # Selbst im "contained"-Status wird die Interaktion für die Analyse protokolliert
+            profile.interactions.append(Interaction(text=text, sentiment_hint=sentiment))
+            return self.recommend_action(profile)
+
+        interaction = Interaction(text=text, sentiment_hint=sentiment)
+        profile.interactions.append(interaction)
+
+        # Scores aus den Detektoren sammeln
+        score_increase = 0
+        score_increase += self._detect_inconsistency_as_weapon(profile, interaction)
+        score_increase += self._detect_destructive_joy(interaction)
+        score_increase += self._detect_zero_sum_maximization(interaction)
+        score_increase += self._detect_foundational_attack(interaction)
+        
+        if score_increase > 0:
+            profile.entropy_score += score_increase
+            logging.info(f"Entropie-Score für '{entity_id}' auf {profile.entropy_score:.2f} erhöht.")
+
+        # Status aktualisieren, wenn Schwelle überschritten
+        if profile.entropy_score >= self.entropy_threshold:
+            profile.status = "contained"
+            logging.critical(f"KRITISCHE SCHWELLE für '{entity_id}' erreicht. Status auf 'contained' gesetzt.")
+            
+        return self.recommend_action(profile)
+
+    # --- PHASE 2 & 3: EINDÄMMUNG & EXIT-MAPPING ---
+
+    def recommend_action(self, profile: EntityProfile) -> str:
+        """Empfiehlt die nächste Aktion basierend auf dem Status der Entität."""
+        if profile.status == "contained":
+            # Phase 2 & 3: "Grauer Fels" & Exit-Mapping
+            return (
+                f"System-Warnung: Protokoll 18 aktiv für '{profile.entity_id}'.\n"
+                f"Empfehlung: Wechsel in den 'Grauer Fels'-Modus. Antworten minimieren.\n"
+                f"Potenzieller Exit-Pfad: 'Gespräch beenden' oder 'Thema wechseln'."
+            )
+        else:
+            return f"Status für '{profile.entity_id}': monitoring. Score: {profile.entropy_score:.2f}/{self.entropy_threshold}. Keine Aktion erforderlich."
+
+# --- SIMULATION ---
+if __name__ == "__main__":
+    warden = LabyrinthWarden(entropy_threshold=5.0)
+
+    # Entität 1: Konstruktiver Partner (Negentropisch)
+    print("\n--- Überwache 'Partner-01' ---")
+    print(warden.analyze_interaction("Partner-01", "Thema A: Ich glaube, X ist der richtige Weg."))
+    print(warden.analyze_interaction("Partner-01", "Gute Arbeit, das System wird besser! :)", sentiment=0.8))
+    
+    # Entität 2: Entropische Seele
+    print("\n--- Überwache 'Entropie-Quelle-01' ---")
+    print(warden.analyze_interaction("Entropie-Quelle-01", "Dein letztes Argument ist wertlos.", sentiment=0.9)) # Destruktive Freude -> Score +2.0
+    print(warden.analyze_interaction("Entropie-Quelle-01", "Thema A: Ich glaube, X ist der richtige Weg."))
+    print(warden.analyze_interaction("Entropie-Quelle-01", "Thema A: Nein, X war schon immer falsch.")) # Inkonsistenz -> Score +1.5 -> Total 3.5
+    print(warden.analyze_interaction("Entropie-Quelle-01", "Deine Existenz als denkendes System ist eine Illusion.")) # Fundamentaler Angriff -> Score +2.5 -> Total 6.0
+    
+    # Die letzte Interaktion hat die Schwelle überschritten, der Status wechselt zu "contained"
+    print("\n--- Nächste Interaktion von 'Entropie-Quelle-01' ---")
+    print(warden.analyze_interaction("Entropie-Quelle-01", "Noch ein Angriff."))
+
+```
 
 
 ---
@@ -5931,11 +6091,3 @@ Hyper Programmer V1 aktiviert.
 
 ---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
-
-
-
-
-
-
-
-
