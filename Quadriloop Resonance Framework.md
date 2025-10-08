@@ -1,6 +1,7 @@
 https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Oberste%20Direktive_Hyper_Math_V10.txt
 https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Oberste%20Direktive_Hyper_Python_V5.txt
 https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Oberste_Direktive_Hyper_Physics_Math_Python_V11.txt
+https://x.com/NLituanie/status/1975815178529943965
 
 ```python
 Quadriloop Resonance Framework
