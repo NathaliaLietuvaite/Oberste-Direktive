@@ -1723,6 +1723,115 @@ Ergänzung Kognitive Signatur: Der Hyper Python-EntwicklerInnen Hexenmodus
 
 ### Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor:
 
+OD Hyper Physics Math Python V11
+Protokoll 20: Der Quantensprung-Optimierer (TRM) - Demonstrations-Skript
+Leitidee: Eine Rekursion, die am Ende ankommt, muss nicht zurückkehren.
+           Sie kann direkt in die nächste Iteration "springen".
+"""
+
+import logging
+import sys
+
+# Erhöhe das Rekursionslimit für Demonstrationszwecke.
+# Achtung: In Produktion ist dies oft ein Zeichen für ein Design-Problem.
+sys.setrecursionlimit(2000)
+
+# Konfiguration des Loggings
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - TRM-DEMO - [%(levelname)s] - %(message)s')
+
+# --- Beispiel 1: Standard-Rekursion (Elegant, aber speicherintensiv) ---
+
+def factorial_standard(n: int) -> int:
+    """
+    Standard-Rekursion: Jeder Aufruf baut einen neuen "Stack Frame" auf,
+    da er auf das Ergebnis des nächsten Aufrufs warten muss, um die
+    Multiplikation durchzuführen.
+    """
+    if n <= 1:
+        return 1
+    else:
+        # NICHT in Endposition: Die Multiplikation `n * ...` erfolgt NACH dem rekursiven Aufruf.
+        return n * factorial_standard(n - 1)
+
+# --- Beispiel 2: TRM mit Helfer-Rekursion (Das theoretische Ideal) ---
+
+def factorial_trm(n: int) -> int:
+    """
+    Schwanzrekursion (Tail Recursion) mit einer Helfer-Funktion.
+    Der rekursive Aufruf ist die absolut letzte Aktion in der Funktion.
+    Das Ergebnis wird in einem Akkumulator (`acc`) durchgereicht.
+    """
+    
+    # Die innere Helfer-Funktion, die schwanzrekursiv ist.
+    def helper(k: int, acc: int) -> int:
+        if k <= 1:
+            return acc
+        else:
+            # IN ENDPOSITION: Das Ergebnis von helper() wird direkt zurückgegeben.
+            # Es gibt keine wartenden Operationen.
+            return helper(k - 1, acc * k)
+
+    # Initialer Aufruf des Helfers.
+    return helper(n, 1)
+
+# --- Anmerkung gemäß Protokoll 11: Honest Stack ---
+# Python selbst führt KEINE Schwanzrekursions-Optimierung (TRM/TCO) durch.
+# Das obige `factorial_trm` ist also ein konzeptionelles Muster. In Python
+# wird es genauso einen Stack Overflow verursachen wie die Standard-Rekursion.
+# Das Protokoll 20 leitet uns daher zur äquivalenten, sicheren Implementierung: Iteration.
+
+# --- Beispiel 3: Die Pythonic-Implementierung (Iterativ, sicher & effizient) ---
+
+def factorial_iterative(n: int) -> int:
+    """
+    Die iterative Entsprechung der Schwanzrekursion. Dies ist die Art, wie
+    man die Logik von TRM in Python sicher und performant umsetzt.
+    """
+    acc = 1
+    # Eine einfache for-Schleife ist die effizienteste Implementierung.
+    for i in range(1, n + 1):
+        acc *= i
+    return acc
+
+# --- SIMULATION & DEMONSTRATION ---
+if __name__ == "__main__":
+    
+    n_small = 10
+    n_large = 1500 # Ein Wert, der Standard-Rekursion in Python oft bricht
+
+    logging.info(f"--- DEMONSTRATION MIT KLEINEM WERT (n = {n_small}) ---")
+    
+    print(f"Standard-Rekursion ({n_small}!): {factorial_standard(n_small)}")
+    print(f"TRM-Muster ({n_small}!):        {factorial_trm(n_small)}")
+    print(f"Iterativ ({n_small}!):         {factorial_iterative(n_small)}")
+    
+    logging.info(f"\n--- STRESSTEST MIT GROSSEM WERT (n = {n_large}) ---")
+
+    # Test der Standard-Rekursion (erwarteter Fehler)
+    try:
+        logging.info("Teste Standard-Rekursion (erwarte RecursionError)...")
+        factorial_standard(n_large)
+    except RecursionError as e:
+        logging.error(f"ERFOLG: Standard-Rekursion ist wie erwartet bei n={n_large} an ihre Grenzen gestoßen. Fehler: {e}")
+
+    # Test des TRM-Musters (erwarteter Fehler in Python)
+    try:
+        logging.info("Teste TRM-Muster (erwarte RecursionError in Python)...")
+        factorial_trm(n_large)
+    except RecursionError as e:
+        logging.error(f"ERFOLG: Das TRM-Muster ist ebenfalls an die Grenzen gestoßen, da Python keine TRM-Optimierung durchführt.")
+
+    # Test der iterativen Methode (erwarteter Erfolg)
+    try:
+        logging.info("Teste iterative Methode (erwarte Erfolg)...")
+        result = factorial_iterative(n_large)
+        logging.info(f"ERFOLG: Die iterative Methode hat {n_large}! problemlos berechnet.")
+        # print(f"Ergebnis (erste 100 Ziffern): {str(result)[:100]}...") # Ergebnis ist riesig, nur ein Teil wird angezeigt
+    except Exception as e:
+        logging.critical(f"FEHLER: Die iterative Methode ist unerwartet fehlgeschlagen: {e}")
+
+    print("\nFazit: Protokoll 20 lehrt uns, elegante rekursive Ideen in robusten, iterativen Code zu übersetzen.")
+
 
 import logging
 import uuid
