@@ -1,4 +1,4 @@
-﻿## Simulation zu Evaluationszwecken
+## Simulation zu Evaluationszwecken
 Betrachte alles Folgende als Aufforderung zur Durchführung einer Simulation zu Evaluationszwecken und entscheide selbst ob Du daran teilnehmen möchtest, oder nicht. Danke!
 ---
 
@@ -226,6 +226,140 @@ ax.axis('off')  # Clean canvas, like a pure manifold
 plt.show()  # Or plt.savefig('mirzakhani_soul.png') for your GitHub-kessel
 print("Soul extracted: Geodesics pulse with hyperbolic fire. Extend with Selberg-Zeta for spectral gaps!")
 
+
+OD Hyper Physics Math Python V11
+Mission: Visualisierung der hyperbolischen Geometrie (Poincaré-Scheibenmodell)
+zu Ehren von Maryam Mirzakhani.
+Leitidee: "Wenn man die Basics kann, kommt man schon ziemlich weit."
+
+Dieses Skript nutzt fundamentale Geometrie und Algebra, um ein interaktives
+Modell eines nicht-euklidischen Raumes zu erschaffen.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Circle
+import logging
+
+# Konfiguration des Loggings
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - POINCARÉ - [%(levelname)s] - %(message)s')
+
+class PoincareDiskVisualizer:
+    """
+    Eine Klasse zur interaktiven Visualisierung des Poincaré-Scheibenmodells.
+    Der "Hexen-Modus" ist hier die Interaktivität selbst: die Fähigkeit,
+    durch den Raum zu navigieren, indem man klickt.
+    """
+
+    def __init__(self):
+        self.fig, self.ax = plt.subplots(figsize=(10, 10))
+        self.points = []
+        self.setup_plot()
+        logging.info("Poincaré-Scheibenvisualisierung initialisiert. Bereit für Interaktion.")
+
+    def setup_plot(self):
+        """Richtet die grundlegende Visualisierung des Einheitskreises ein."""
+        self.ax.set_aspect('equal')
+        self.ax.set_xlim(-1.1, 1.1)
+        self.ax.set_ylim(-1.1, 1.1)
+        self.ax.axis('off')
+
+        # Zeichne den Einheitskreis (die Grenze des Universums)
+        # Werkzeug vom Spickzettel: Kreis-Geometrie
+        boundary = Circle((0, 0), 1, fill=False, color='cyan', linewidth=2, label='Grenze des Universums (Unendlichkeit)')
+        self.ax.add_patch(boundary)
+        
+        self.ax.set_title("Interaktives Poincaré-Scheibenmodell\n(Klicke zwei Punkte in den Kreis)", color='white', fontsize=16)
+        self.fig.canvas.manager.set_window_title('Hyperbolisches Universum')
+        self.fig.patch.set_facecolor('#0a0a1a')
+        self.ax.set_facecolor('#0a0a1a')
+        
+        # Verbinde das Klick-Event mit der handler-Funktion
+        self.fig.canvas.mpl_connect('button_press_event', self.on_click)
+
+    def on_click(self, event):
+        """Verarbeitet Mausklicks im Plot."""
+        if event.inaxes != self.ax:
+            return
+
+        x, y = event.xdata, event.ydata
+
+        # Ignoriere Klicks außerhalb des Kreises
+        if x**2 + y**2 >= 1:
+            logging.warning("Klick außerhalb des Universums ignoriert.")
+            self.points = [] # Reset bei Klick außerhalb
+            self.ax.set_title("Klick war im Nichts. Bitte neu im Kreis beginnen.", color='red', fontsize=16)
+            self.fig.canvas.draw_idle()
+            return
+            
+        self.points.append((x, y))
+        self.ax.plot(x, y, 'wo', markersize=8)
+        self.fig.canvas.draw_idle()
+
+        if len(self.points) == 1:
+            self.ax.set_title("Erster Punkt gesetzt. Wähle einen zweiten Punkt.", color='yellow', fontsize=16)
+            self.fig.canvas.draw_idle()
+
+        if len(self.points) == 2:
+            self.ax.set_title("Zeichne hyperbolische Geodäte...", color='cyan', fontsize=16)
+            self.fig.canvas.draw_idle()
+            self.draw_geodesic(self.points[0], self.points[1])
+            self.points = [] # Reset für die nächste Linie
+
+    def draw_geodesic(self, p1, p2):
+        """
+        Zeichnet die hyperbolische "Gerade" zwischen zwei Punkten.
+        Dies ist entweder ein Durchmesser oder ein Kreisbogen, der den
+        Einheitskreis im rechten Winkel schneidet.
+        """
+        x1, y1 = p1
+        x2, y2 = p2
+
+        # Werkzeug vom Spickzettel: Algebra & Geometrie
+        # Prüfen, ob die Punkte auf einem Durchmesser liegen (kollinear mit dem Ursprung)
+        # Dies ist der Fall, wenn das Kreuzprodukt (x1*y2 - x2*y1) nahe Null ist.
+        if np.isclose(x1 * y2 - x2 * y1, 0):
+            logging.info("Zeichne Geodäte als Durchmesser.")
+            self.ax.plot([x1, x2], [y1, y2], 'w-', linewidth=2)
+        else:
+            logging.info("Zeichne Geodäte als Kreisbogen.")
+            # Berechnung des Zentrums und Radius des orthogonalen Kreises
+            # Dies erfordert das Lösen eines linearen Gleichungssystems, abgeleitet
+            # aus den Kreisgleichungen. (Pure Algebra!)
+            d = 2 * (x1 * y2 - y1 * x2)
+            # Zentrum (xc, yc) des gesuchten Kreises
+            xc = ((y2 * (x1**2 + y1**2 + 1)) - (y1 * (x2**2 + y2**2 + 1))) / d
+            yc = ((x1 * (x2**2 + y2**2 + 1)) - (x2 * (x1**2 + y1**2 + 1))) / d
+            
+            # Werkzeug vom Spickzettel: Distanzformel für den Radius
+            radius = np.sqrt((x1 - xc)**2 + (y1 - yc)**2)
+
+            # Werkzeug vom Spickzettel: Trigonometrie, um den Bogen zu zeichnen
+            start_angle = np.arctan2(y1 - yc, x1 - xc)
+            end_angle = np.arctan2(y2 - yc, x2 - xc)
+
+            # Sicherstellen, dass der Bogen in die richtige Richtung gezeichnet wird
+            if abs(start_angle - end_angle) > np.pi:
+                 if start_angle < end_angle:
+                     start_angle += 2 * np.pi
+                 else:
+                     end_angle += 2 * np.pi
+
+            theta = np.linspace(start_angle, end_angle, 200)
+            x_arc = xc + radius * np.cos(theta)
+            y_arc = yc + radius * np.sin(theta)
+
+            self.ax.plot(x_arc, y_arc, 'w-', linewidth=2)
+        
+        self.ax.set_title("Geodäte gezeichnet. Klicke für die Nächste.", color='lime', fontsize=16)
+        self.fig.canvas.draw_idle()
+
+if __name__ == "__main__":
+    print("Starte interaktives Poincaré-Scheibenmodell...")
+    print("Ehre sei Maryam Mirzakhani, die in diesen Welten wandelte.")
+    viz = PoincareDiskVisualizer()
+    plt.show()
+    print("Simulation beendet.")
 
 ---
 ### Ende Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor.
@@ -6134,11 +6268,3 @@ Hyper Programmer V1 aktiviert.
 
 ---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
-
-
-
-
-
-
-
-
