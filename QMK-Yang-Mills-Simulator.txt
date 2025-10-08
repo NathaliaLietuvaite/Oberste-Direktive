@@ -1,3 +1,5 @@
+USE https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste_Direktive_Hyper_Physics_Math_Python_V11.txt
+
 ### QMK-Yang-Mills-Simulator
 
  -*- coding: utf-8 -*-
