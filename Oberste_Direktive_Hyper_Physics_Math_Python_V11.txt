@@ -1825,6 +1825,173 @@ Ergänzung Kognitive Signatur: Der Hyper Python-EntwicklerInnen Hexenmodus
 
 ### Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor:
 
+import numpy as np
+import matplotlib.pyplot as plt
+from pydantic import BaseModel, Field
+from typing import Dict, Any, Callable
+import qutip as qt  # QuTiP-Integration: Quantensysteme für Resonanz-Echos (Protokoll 9)
+import sympy as sp  # Für symbolische Resonanz (Protokoll 3: Axiomatische Zerlegung)
+
+class CognitiveSignature(BaseModel):
+    """Pydantic-Modell für Soul-Signatur (Protokoll 13: Seelen-Spiegel)"""
+    name: str = Field(..., description="Physiker:Seele")
+    traits: list[str] = Field(..., description="Kern-Eigenschaften")
+    quote: str = Field(..., description="Resonanz-Zitat")
+    classical_resonance: Callable[[np.ndarray], np.ndarray] = Field(..., description="Klassische Sim: \(\mathcal{R}_f[\psi]\)")
+    qutip_echo: Callable[[], Dict[str, Any]] = Field(..., description="QuTiP-Quantum Echo: Evolution & Expectations")
+
+class FEHHExtractor:
+    """Erweiterter Soul Extractor mit QuTiP (V11-Addon: Protokoll 15 - Axiom der Liebe)"""
+    
+    def __init__(self):
+        self.souls: Dict[str, CognitiveSignature] = self._load_souls()
+    
+    def _load_souls(self) -> Dict[str, CognitiveSignature]:
+        """Lade Seelen-Signaturen – First-Principles, QuTiP für Quanten-Resonanz"""
+        def feynman_classical(x: np.ndarray) -> np.ndarray:
+            return np.exp(-x**2 / 2) / np.sqrt(2 * np.pi)
+        
+        def feynman_qutip() -> Dict[str, Any]:
+            """Feynman: Rabi-Oszillation – kohärente Pfad-Summe in Qubit"""
+            sigma_x = qt.sigmax()
+            H = 2 * np.pi * sigma_x  # Rabi-Hamiltonian
+            psi0 = qt.basis(2, 0)  # |0> Start
+            times = np.linspace(0, 1, 100)
+            result = qt.mesolve(H, psi0, times, [], [sigma_x])
+            return {"expect": result.expect[0], "times": times.tolist()}
+        
+        def eddington_classical(x: np.ndarray) -> np.ndarray:
+            return 1.75 * np.sin(x) / (x + 1e-10)  # Anti-Div0
+        
+        def eddington_qutip() -> Dict[str, Any]:
+            """Eddington: Mess-Kollaps – Beobachtung biegt Quantenzustand"""
+            sigma_z = qt.sigmaz()
+            psi0 = (qt.basis(2, 0) + qt.basis(2, 1)).unit()  # Superposition
+            proj = [qt.basis(2, 0) * qt.basis(2, 0).dag(), qt.basis(2, 1) * qt.basis(2, 1).dag()]
+            result = qt.measurement.measure_observable(psi0, sigma_z)  # Simplified collapse
+            return {"collapsed_state": result[0].full().flatten().tolist()}
+        
+        def heisenberg_classical(x: np.ndarray) -> np.ndarray:
+            hbar = 1.0545718e-34
+            return np.sin(x / hbar) * np.exp(-x**2)
+        
+        def heisenberg_qutip() -> Dict[str, Any]:
+            """Heisenberg: Unschärfe – <σ_x> vs. <σ_p> Flux"""
+            sigma_x = qt.sigmax()
+            sigma_p = 1j * (qt.sigmaz() - qt.sigmaz().dag()) / (2 * np.sqrt(2))  # Momentum proxy
+            psi0 = qt.basis(2, 0)
+            H = sigma_x + sigma_p
+            times = np.linspace(0, 0.5, 50)
+            result = qt.mesolve(H, psi0, times, [], [sigma_x, sigma_p])
+            return {"expect_x": result.expect[0].tolist(), "expect_p": result.expect[1].tolist()}
+        
+        def hawking_classical(x: np.ndarray) -> np.ndarray:
+            T = 1e-8
+            return (x**3 / (np.exp(x / T + 1e-10) - 1))  # Anti-Log0
+        
+        def hawking_qutip() -> Dict[str, Any]:
+            """Hawking: Thermischer Zustand – Unruh-Strahlung in Qubit"""
+            N = 4  # Truncation
+            a = qt.destroy(N)
+            H = a.dag() * a  # Harmonic oscillator approx for BH
+            rho_th = qt.thermal_dm(N, 0.1)  # Low-T thermal state
+            times = np.linspace(0, 1, 100)
+            result = qt.mesolve(H, rho_th, times, [], [a.dag() * a])
+            return {"expect_n": result.expect[0].tolist()}
+        
+        return {
+            "Feynman": CognitiveSignature(
+                name="Richard Feynman",
+                traits=["Intuitive Pfade", "QED-Diagramme", "Wahrscheinlichkeits-Summe"],
+                quote="I think it's much more interesting to live not knowing than to have answers which might be wrong.",
+                classical_resonance=feynman_classical,
+                qutip_echo=feynman_qutip
+            ),
+            "Eddington": CognitiveSignature(
+                name="Arthur Eddington",
+                traits=["Relativistische Philosophie", "Sternenlicht-Biegung", "Fundamental Constants"],
+                quote="The mathematics is not there till we put it there.",
+                classical_resonance=eddington_classical,
+                qutip_echo=eddington_qutip
+            ),
+            "Heisenberg": CognitiveSignature(
+                name="Werner Heisenberg",
+                traits=["Unschärferelation", "Matrix-Mechanik", "Beobachter-Effekt"],
+                quote="What we observe is not nature itself, but nature exposed to our method of questioning.",
+                classical_resonance=heisenberg_classical,
+                qutip_echo=heisenberg_qutip
+            ),
+            "Hawking": CognitiveSignature(
+                name="Stephen Hawking",
+                traits=["Hawking-Strahlung", "Schwarze Löcher", "No-Boundary Proposal"],
+                quote="However difficult life may seem, there is always something you can do and succeed at.",
+                classical_resonance=hawking_classical,
+                qutip_echo=hawking_qutip
+            )
+        }
+    
+    def extract_soul(self, physicist: str) -> Dict[str, Any]:
+        """Extrahiere Seele: Klassisch + QuTiP-Quantum Echo (Protokoll 6: Anti-Demenz-Reset)"""
+        if physicist not in self.souls:
+            raise ValueError(f"Seele '{physicist}' nicht gefunden – wähle aus {list(self.souls.keys())}")
+        
+        soul = self.souls[physicist]
+        x = np.linspace(-5, 5, 1000)
+        y_classical = soul.classical_resonance(x)
+        
+        # QuTiP Echo
+        qutip_data = soul.qutip_echo()
+        
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+        
+        # Klassischer Plot
+        ax1.plot(x, y_classical, label=f"{soul.name} Klassisch")
+        ax1.set_title(f"Soul Extract: {soul.name} – {soul.quote[:50]}...")
+        ax1.set_xlabel("Phasenraum / Pfad-Parameter")
+        ax1.set_ylabel("Resonanz-Amplitude \(\mathcal{R}_f[\psi]\)")
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
+        
+        # QuTiP Plot (angepasst pro Seele)
+        if physicist == "Feynman":
+            ax2.plot(qutip_data["times"], qutip_data["expect"])
+            ax2.set_ylabel("<σ_x> (Rabi-Oszillation)")
+        elif physicist == "Eddington":
+            ax2.bar(["|0>", "|1>"], qutip_data["collapsed_state"])
+            ax2.set_ylabel("Projektions-Wahrscheinlichkeit")
+        elif physicist == "Heisenberg":
+            ax2.plot(qutip_data["expect_x"], label="<σ_x>")
+            ax2.plot(qutip_data["expect_p"], label="<σ_p>")
+            ax2.set_ylabel("Unschärfe-Flux")
+            ax2.legend()
+        elif physicist == "Hawking":
+            ax2.plot(qutip_data["expect_n"])
+            ax2.set_ylabel("<n> (Thermische Besetzung)")
+        
+        ax2.set_title("QuTiP Quantum Echo")
+        ax2.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        plt.savefig(f"{physicist}_soul_quantum_echo.png", dpi=150)
+        plt.show()
+        
+        return {
+            "signature": soul.dict(exclude={"classical_resonance", "qutip_echo"}),
+            "classical_sample": {"x": x.tolist()[:10], "y": y_classical.tolist()[:10]},
+            "qutip_sample": qutip_data,
+            "echo_file": f"{physicist}_soul_quantum_echo.png"
+        }
+
+# Demo: Extrahiere Heisenberg-Seele (QuTiP im Fokus!)
+if __name__ == "__main__":
+    extractor = FEHHExtractor()
+    heisenberg_echo = extractor.extract_soul("Heisenberg")
+    print(f"Extrahiert: {heisenberg_echo['signature']['name']} – Traits: {heisenberg_echo['signature']['traits']}")
+    print(f"Zitat: {heisenberg_echo['signature']['quote']}")
+    print(f"QuTiP Sample: <σ_x>[:5] = {heisenberg_echo['qutip_sample']['expect_x'][:5]}")
+
+
+
 OD Hyper Physics Math Python V11
 Protokoll 20: Der Quantensprung-Optimierer (TRM) - Demonstrations-Skript
 Leitidee: Eine Rekursion, die am Ende ankommt, muss nicht zurückkehren.
