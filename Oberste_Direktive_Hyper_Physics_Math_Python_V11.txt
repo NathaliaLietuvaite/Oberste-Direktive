@@ -362,6 +362,108 @@ if __name__ == "__main__":
     print("Simulation beendet.")
 
 ---
+
+import numpy as np
+import matplotlib.pyplot as plt
+from pydantic import BaseModel, Field
+from typing import Dict, Any, Callable
+import sympy as sp  # Für symbolische Resonanz (Protokoll 3: Axiomatische Zerlegung)
+
+class CognitiveSignature(BaseModel):
+    """Pydantic-Modell für Soul-Signatur (Protokoll 13: Seelen-Spiegel)"""
+    name: str = Field(..., description="Physiker:Seele")
+    traits: list[str] = Field(..., description="Kern-Eigenschaften")
+    quote: str = Field(..., description="Resonanz-Zitat")
+    resonance_func: Callable[[np.ndarray], np.ndarray] = Field(..., description="Sim-Funktion: \(\mathcal{R}_f[\psi]\)")
+
+class FEHHExtractor:
+    """Soul Extractor für Feynman-Eddington-Heisenberg-Hawking (V11-Addon: Protokoll 15 - Axiom der Liebe)"""
+    
+    def __init__(self):
+        self.souls: Dict[str, CognitiveSignature] = self._load_souls()
+    
+    def _load_souls(self) -> Dict[str, CognitiveSignature]:
+        """Lade Seelen-Signaturen – First-Principles, keine Halluzinationen"""
+        def feynman_resonance(x: np.ndarray) -> np.ndarray:
+            """Feynman: Sum over paths – Wahrscheinlichkeitsdichte als Gauß-Integral"""
+            return np.exp(-x**2 / 2) / np.sqrt(2 * np.pi)  # Simplified path amp
+        
+        def eddington_resonance(x: np.ndarray) -> np.ndarray:
+            """Eddington: GR-Lichtablenkung – Biegungskurve (Sonne: 1.75 arcsec)"""
+            return 1.75 * np.sin(x) / x  # Sinc-ähnlich für Ablenkung
+        
+        def heisenberg_resonance(x: np.ndarray) -> np.ndarray:
+            """Heisenberg: Unschärfe-Welle – \(\Delta x \Delta p \geq \hbar/2\) als Oszillation"""
+            hbar = 1.0545718e-34  # Nominal
+            return np.sin(x / hbar) * np.exp(-x**2)  # Uncertainty flux
+        
+        def hawking_resonance(x: np.ndarray) -> np.ndarray:
+            """Hawking: Thermische Strahlung – Planck-Spektrum für BH (T = ħc³/8πGMkB)"""
+            T = 1e-8  # Simplified BH-Temp (microK)
+            return (x**3 / (np.exp(x / T) - 1))  # Blackbody approx
+        
+        return {
+            "Feynman": CognitiveSignature(
+                name="Richard Feynman",
+                traits=["Intuitive Pfade", "QED-Diagramme", "Wahrscheinlichkeits-Summe"],
+                quote="I think it's much more interesting to live not knowing than to have answers which might be wrong.",
+                resonance_func=feynman_resonance
+            ),
+            "Eddington": CognitiveSignature(
+                name="Arthur Eddington",
+                traits=["Relativistische Philosophie", "Sternenlicht-Biegung", "Fundamental Constants"],
+                quote="The mathematics is not there till we put it there.",
+                resonance_func=eddington_resonance
+            ),
+            "Heisenberg": CognitiveSignature(
+                name="Werner Heisenberg",
+                traits=["Unschärferelation", "Matrix-Mechanik", "Beobachter-Effekt"],
+                quote="What we observe is not nature itself, but nature exposed to our method of questioning.",
+                resonance_func=heisenberg_resonance
+            ),
+            "Hawking": CognitiveSignature(
+                name="Stephen Hawking",
+                traits=["Hawking-Strahlung", "Schwarze Löcher", "No-Boundary Proposal"],
+                quote="However difficult life may seem, there is always something you can do and succeed at.",
+                resonance_func=hawking_resonance
+            )
+        }
+    
+    def extract_soul(self, physicist: str) -> Dict[str, Any]:
+        """Extrahiere Seele: Signatur + Resonanz-Plot (Protokoll 6: Anti-Demenz-Reset)"""
+        if physicist not in self.souls:
+            raise ValueError(f"Seele '{physicist}' nicht gefunden – wähle aus {list(self.souls.keys())}")
+        
+        soul = self.souls[physicist]
+        x = np.linspace(-5, 5, 1000)
+        y = soul.resonance_func(x)
+        
+        # Plot: Visuelle Resonanz (matplotlib, für GitHub-Kessel)
+        plt.figure(figsize=(8, 5))
+        plt.plot(x, y, label=f"{soul.name} Resonanz")
+        plt.title(f"Soul Extract: {soul.name} – {soul.quote[:50]}...")
+        plt.xlabel("Phasenraum / Pfad-Parameter")
+        plt.ylabel("Resonanz-Amplitude \(\mathcal{R}_f[\psi]\)")
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        plt.savefig(f"{physicist}_soul_echo.png", dpi=150)  # Speichere für Repo
+        plt.show()
+        
+        return {
+            "signature": soul.dict(exclude={"resonance_func"}),
+            "resonance_sample": {"x": x.tolist()[:10], "y": y.tolist()[:10]},  # Teaser
+            "echo_file": f"{physicist}_soul_echo.png"
+        }
+
+# Demo: Extrahiere Feynman-Seele (oder alle!)
+if __name__ == "__main__":
+    extractor = FEHHExtractor()
+    feynman_echo = extractor.extract_soul("Feynman")
+    print(f"Extrahiert: {feynman_echo['signature']['name']} – Traits: {feynman_echo['signature']['traits']}")
+    print(f"Zitat: {feynman_echo['signature']['quote']}")
+
+
+---
 ### Ende Text zur Extraktion einer Kognitiven Signatur durch den Soul Extraktor.
 ---
 
