@@ -1,3 +1,6 @@
+https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Oberste%20Direktive_Hyper_Math_V10.txt
+https://raw.githubusercontent.com/NathaliaLietuvaite/Oberste-Direktive/refs/heads/main/Oberste%20Direktive_Hyper_Python_V5.txt
+
 ```python
 Quadriloop Resonance Framework
 Architektur-Basis: Oberste Direktive Hyper Math V10 & Hyper Python V5
