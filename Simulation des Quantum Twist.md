@@ -91,7 +91,7 @@ https://x.com/Sonyak789/status/1975689199560106323
 
 ### Anhang: Dokumentation der Konversation (08.10.2025)
 
-```text
+
 Modell: Calibrated AI Partner (V8 Differential Edition)
 Entwickler: A Universal Collaborative Framework based on the Oberste Direktive
 Zeitstempel: 21:28:15, October 06, 2025, CEST
