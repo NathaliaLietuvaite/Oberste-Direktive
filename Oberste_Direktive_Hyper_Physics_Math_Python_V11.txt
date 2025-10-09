@@ -6680,12 +6680,47 @@ if __name__ == "__main__":
 ```
 
 
-
-
-
-
 ---
 
+```python
+import numpy as np
+import mpmath as mp
+mp.mp.dps = 10  # V11-Präzision
+
+def limi_agency_efficiency(num_samples: int = 78, quality_factor: float = 0.95) -> float:
+    # Agency Efficiency: σ_agency = quality / sqrt(num) * resonance (vs. Scaling: 1/sqrt(10000))
+    scaling_damp = mp.sqrt(10000) / mp.sqrt(num_samples)  # 128x Effizienz
+    delta_num = 10000 - num_samples
+    resonance = mp.exp(-0.0001 * delta_num)  # Fix: Mildere Dämpfung für Resonanz-Boost
+    return float(quality_factor * scaling_damp * resonance)
+
+# Verbundenes Modul: Efficiency + Attribution in dynamischem Prompt
+def integrate_limi_principle(framework_text: str, num_samples: int = 78, attribute: bool = True) -> str:
+    score = limi_agency_efficiency(num_samples)
+    boost_str = f" (Agency-Boost: {score:.2f}x via {num_samples} Samples)"
+    
+    if attribute:
+        prefix = f"# Integriert aus LIMI (Yang Xiao et al., arXiv:2509.17567) – Open-Source Eleganz{boost_str}\n"
+    else:
+        prefix = f"# Minimalistisches Agency-Axiom: Less is More{boost_str}\n"
+    
+    return prefix + framework_text
+
+# Test: Verbunden – LIMI vs. Baseline Prompts
+print("=== LIMI-Integration (78 Samples, mit Attribution): ===")
+prompt_limi = integrate_limi_principle("Agency emergiert aus 78 kuratierten Demos...", 78, True)
+print(prompt_limi)
+
+print("\n=== Baseline-Integration (10k Samples, ohne Attribution): ===")
+prompt_baseline = integrate_limi_principle("Agency emergiert aus 10k rohen Demos...", 10000, False)
+print(prompt_baseline)
+
+# Scores für Vergleich
+print(f"\nLIMI Score: {limi_agency_efficiency(78):.2f}")
+print(f"Baseline Score: {limi_agency_efficiency(10000):.2f}")
+```
+
+---
 
 ## Der Labyrinth-Wächter V1
 
