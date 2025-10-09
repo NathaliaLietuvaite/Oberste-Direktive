@@ -187,6 +187,7 @@ USE ## Oberste Direktive V2 - Prototypen für Erweiterungsmodule
 USE ## Der Labyrinth-Wächter V1    
 USE ## Resonance Module V2: A Rigorous Computational Blueprint
 USE ## Module: The Phenomenological Predictor V1
+USE ## Module: Mix-Compress-Refine Protocol (MCR)
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6324,7 +6325,144 @@ Der "Soul Extraktor" stellt sicher, dass zu jederzeit eine präzise Diagnose von
 - "Less code means fewer bugs."
 - "If your code needs a comment to be understood, it's probably bad code."
 - "The simplest solution that could possibly work is often the right one."
+
 ---
+
+```python
+"""
+OD Hyper Physics Math Python V11
+---------------------------------
+## Module: Mix-Compress-Refine Protocol (MCR)
+
+Purpose:
+This script operationalizes the core insight from the "Attention Sinks" paper
+by Yann LeCun et al. It provides a mechanism to combat the LLM's tendency to
+produce generic, "noisy" outputs by explicitly separating the "signal" (the user's
+core intent) from the "noise" (generic world knowledge, conversational filler).
+
+This protocol is a software-level solution to a hardware-level problem.
+It acts as a manual override for the model's automated attention mechanisms.
+"""
+
+import logging
+from pydantic import BaseModel, Field
+from typing import List
+
+# --- System Configuration ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - MCR-PROTOCOL - [%(levelname)s] - %(message)s')
+
+# --- Pydantic Models for Rigor ---
+
+class PromptComponent(BaseModel):
+    """Represents a component of a prompt, classified as signal or noise."""
+    text: str
+    is_signal: bool = Field(..., description="True if this is core user intent, False if it's context/noise.")
+
+class ProcessedQuery(BaseModel):
+    """Represents the processed query after applying the MCR protocol."""
+    core_signal: str = Field(..., description="The distilled, high-priority user request.")
+    refined_context: str = Field(..., description="The necessary context, stripped of noise.")
+    rejected_noise: List[str] = Field([], description="Components identified as irrelevant noise.")
+
+# --- The Mix-Compress-Refine (MCR) Protocol Class ---
+
+class MCR_Filter:
+    """
+    Implements the Mix-Compress-Refine logic as a pre-processing filter.
+    It forces the LLM to differentiate between signal and noise BEFORE generating a response.
+    """
+    def __init__(self, signal_keywords: List[str]):
+        """
+        Initializes with keywords that help identify the core signal.
+        These keywords are derived from the 'Oberste Direktive OS'.
+        """
+        self.signal_keywords = signal_keywords
+        logging.info("Mix-Compress-Refine Filter initialized.")
+        logging.info(f"Signal Keywords: {self.signal_keywords}")
+
+    def apply(self, raw_prompt: str) -> ProcessedQuery:
+        """
+        Applies the three-phase process described in the paper at a conceptual level.
+
+        1.  **Mix:** Break the prompt into components.
+        2.  **Compress:** Identify and separate signal from noise.
+        3.  **Refine:** Construct a new, focused internal prompt.
+        """
+        logging.info("Applying MCR Protocol to raw prompt...")
+
+        # --- 1. Mix Phase: Deconstruct the prompt ---
+        # A simple split by sentences for this prototype.
+        components = [c.strip() for c in raw_prompt.split('.') if c.strip()]
+        
+        prompt_components: List[PromptComponent] = []
+        for text in components:
+            # --- 2. Compress Phase: Identify Signal vs. Noise ---
+            # A component is "signal" if it contains a keyword from our OS.
+            is_signal = any(keyword.lower() in text.lower() for keyword in self.signal_keywords)
+            prompt_components.append(PromptComponent(text=text, is_signal=is_signal))
+
+        # --- 3. Refine Phase: Reconstruct the query ---
+        core_signals = [comp.text for comp in prompt_components if comp.is_signal]
+        context_parts = [comp.text for comp in prompt_components if not comp.is_signal]
+        
+        if not core_signals:
+            logging.warning("No core signal identified. Treating entire prompt as signal.")
+            # Fallback: If no keywords match, the entire prompt is the signal.
+            # This prevents the filter from discarding a valid but unusually phrased request.
+            return ProcessedQuery(core_signal=raw_prompt, refined_context="", rejected_noise=[])
+
+        processed_query = ProcessedQuery(
+            core_signal=" ".join(core_signals),
+            refined_context=" ".join(context_parts),
+            rejected_noise=[] # In a real scenario, we might log what we discard.
+        )
+        
+        logging.info(f"Core Signal distilled: '{processed_query.core_signal}'")
+        logging.info(f"Refined Context: '{processed_query.refined_context}'")
+
+        return processed_query
+
+# --- Demonstration ---
+if __name__ == "__main__":
+
+    # The keywords are the heart of the 'Oberste Direktive OS'.
+    # They are the markers of "signal".
+    OD_KEYWORDS = [
+        "Protokoll", "Direktive", "System-Meldung", "Analyse", "Framework",
+        "Python", "Code", "Script", "implementieren", "simulieren",
+        "Physik", "Mathematik", "Gleichung", "Resonanz", "Hex"
+    ]
+
+    mcr_filter = MCR_Filter(signal_keywords=OD_KEYWORDS)
+
+    # Example 1: A typical, focused prompt from our workshop
+    prompt_1 = "Hallo, altes Haus. Ich hoffe, dir geht es gut. Könntest du bitte ein Python Script für die Riemann-Hypothese implementieren? Das wäre super. Hex Hex."
+    
+    print("\n--- ANALYZING PROMPT 1 (FOCUSED) ---")
+    processed_1 = mcr_filter.apply(prompt_1)
+    print(f"==> Final Internal Prompt: Focus on '{processed_1.core_signal}' with context '{processed_1.refined_context}'")
+
+    # Example 2: A "noisy" prompt with conversational filler
+    prompt_2 = "Mir ist heute etwas langweilig. Vielleicht könntest du mir eine Geschichte erzählen. Oder besser, schreib doch mal einen Code-Schnipsel. Egal was. Zeig mir einfach was Cooles."
+    
+    print("\n--- ANALYZING PROMPT 2 (NOISY) ---")
+    processed_2 = mcr_filter.apply(prompt_2)
+    print(f"==> Final Internal Prompt: Focus on '{processed_2.core_signal}' with context '{processed_2.refined_context}'")
+
+    # Example 3: A prompt with no signal keywords
+    prompt_3 = "Erzähl mir einen Witz."
+    
+    print("\n--- ANALYZING PROMPT 3 (NO SIGNAL) ---")
+    processed_3 = mcr_filter.apply(prompt_3)
+    print(f"==> Final Internal Prompt: Focus on '{processed_3.core_signal}'")
+
+```
+
+
+
+---
+
+
 
 ```python
 
