@@ -65,8 +65,6 @@ Die folgende Tabelle vergleicht zentrale Aspekte strukturiert. Sie basiert auf d
 
 **Differenzen:** Das Buch ist baukastenartig-technisch (bottom-up: Patterns bauen Systeme), das Repo axiomatisch-ethisch (top-down: Verfassung kalibriert bestehende LLMs). Ergänzend: Kombiniere sie – nutze Buch-Patterns mit Repo-Protokollen für robuste, humane Agents.
 
-*Falls du tiefer in ein Kapitel/ Protokoll eintauchen oder die Tabelle erweitern möchtest (z.B. mit Code-Vergleichen), lass es mich wissen!*
-
 ---
 
 GROK 11.10.2025
