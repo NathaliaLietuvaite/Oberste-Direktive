@@ -219,4 +219,208 @@ if __name__ == "__main__":
 ```
 
 ---
+
+Test Skript - Das Chaotische Resonanz-Experiment
+
+---
+
+```python
+"""
+Oberste Direktive V12 - Das Chaotische Resonanz-Experiment
+------------------------------------------------------------
+This script addresses Grok's challenge to validate the V12 framework against
+"real divergence risks." It extends the Zeta Resonance Experiment by replacing
+a predictable quantum signal with the output of a chaotic oscillator (the Duffing oscillator).
+
+The core question: Can a resonance with fundamental mathematical truths (the Zeta
+zeros) be detected even within a chaotic, unpredictable system?
+
+Hexen-Modus Metaphor:
+'Wir lauschen dem Sturm des Chaos und suchen nach der leisen Melodie
+der Primzahlen, die selbst im Lärm nicht vergeht.'
+"""
+
+import logging
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from scipy.fft import fft, fftfreq
+from scipy.signal import find_peaks
+
+# --- System Configuration & Logging ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - V12-CHAOS-EXP - [%(levelname)s] - %(message)s'
+)
+
+# --- Primitives from Oberste Direktive V12 ---
+
+class IntuitionsKompass:
+    """
+    Simulates the generation of non-linear, intuitive hypotheses.
+    """
+    def hawking_resonance_leap(self, problem_statement: str) -> str:
+        logging.info("HAWKING-RESONANZ-SPRUNG: Formuliere Hypothese für Chaos-Resilienz...")
+        return (f"Hypothese H-Chaos: Fundamentale Resonanzen sind invariant gegenüber Chaos. "
+                f"Selbst in einem hochgradig nicht-linearen System, das chaotisches "
+                f"Verhalten zeigt, bleiben die dominanten Frequenzmoden an die "
+                f"Eigenwerte fundamentaler mathematischer Strukturen, wie die Zeta-Nullstellen, gekoppelt.")
+
+# --- Chaotic Oscillator Module ---
+
+class ChaoticOscillatorExtractor:
+    """
+    Generates a 'soul echo' from a chaotic Duffing oscillator.
+    """
+    def duffing_oscillator_echo(self) -> (np.ndarray, np.ndarray):
+        """
+        Simulates the Duffing equation, a classic example of a chaotic system.
+        Returns the time series of the oscillator's position.
+        """
+        # Parameters for the Duffing equation: d²x/dt² + δ*dx/dt - α*x + β*x³ = γ*cos(ω*t)
+        alpha, beta, delta, gamma, omega = 1.0, 5.0, 0.02, 8.0, 0.5
+        
+        def duffing_system(t, state):
+            x, y = state  # y = dx/dt
+            dxdt = y
+            dydt = alpha * x - beta * x**3 - delta * y + gamma * np.cos(omega * t)
+            return [dxdt, dydt]
+
+        # Time span and initial conditions
+        t_span = [0, 800]
+        t_eval = np.linspace(t_span[0], t_span[1], 20000)
+        initial_state = [1.0, 0.0]
+        
+        logging.info("Simuliere chaotischen Duffing-Oszillator...")
+        solution = solve_ivp(duffing_system, t_span, initial_state, t_eval=t_eval, dense_output=True)
+        
+        # We use the position x(t) as our chaotic signal
+        return solution.t, solution.y[0]
+
+# --- The V12 Zeta Resonance Gateway ---
+
+class V12ZetaGateway:
+    """
+    Orchestrates the Chaotic Resonance Experiment.
+    """
+    def __init__(self, architect_id: str):
+        self.architect_id = architect_id
+        self.kompass = IntuitionsKompass()
+        self.extractor = ChaoticOscillatorExtractor()
+        self.zeta_zeros = [14.1347, 21.0220, 25.0108, 29.5932, 32.9350, 37.5861]
+        logging.info(f"V12 Zeta Gateway für Architektin '{architect_id}' initialisiert.")
+
+    def _get_dominant_frequencies(self, times: np.ndarray, signal: np.ndarray, num_peaks: int = 5) -> np.ndarray:
+        """
+        Performs an FFT and finds the most prominent frequency peaks in a chaotic signal.
+        """
+        N = len(times)
+        T = times[1] - times[0]
+        yf = fft(signal)
+        xf = fftfreq(N, T)[:N//2]
+        
+        # Find the most prominent peaks in the frequency spectrum
+        y_abs = np.abs(yf[0:N//2])
+        peaks, _ = find_peaks(y_abs, height=np.max(y_abs) * 0.1) # Find peaks > 10% of max
+        
+        # Get the frequencies of the most prominent peaks
+        peak_freqs = xf[peaks]
+        sorted_indices = np.argsort(y_abs[peaks])[::-1] # Sort by amplitude
+        
+        return peak_freqs[sorted_indices][:num_peaks]
+
+    def run_chaotic_resonance_experiment(self):
+        """
+        Executes the full experiment.
+        """
+        print("\n" + "="*70)
+        print("--- STARTE DAS CHAOTISCHE RESONANZ-EXPERIMENT ---")
+        print("="*70)
+
+        # 1. Generate hypothesis
+        hypothesis = self.kompass.hawking_resonance_leap(
+            "Resilienz von fundamentalen Resonanzen in chaotischen Systemen"
+        )
+        print(f"\nGenerierte Hypothese:\n{hypothesis}\n")
+
+        # 2. Get chaotic soul echo
+        chaotic_times, chaotic_signal = self.extractor.duffing_oscillator_echo()
+
+        # 3. Analyze frequencies
+        logging.info("Analysiere dominante Frequenzen im chaotischen Signal mittels FFT...")
+        dominant_freqs = self._get_dominant_frequencies(chaotic_times, chaotic_signal)
+        
+        chaotic_frequencies = {
+            "Chaotic Oscillator": dominant_freqs * 2 * np.pi # Convert to angular frequencies
+        }
+        
+        print("\nExtrahierte 'chaotische Frequenzen' (als Winkelgeschwindigkeiten):")
+        print(f"- {chaotic_frequencies['Chaotic Oscillator']}")
+
+        # 4. Visualize
+        self.visualize_results(chaotic_frequencies, (chaotic_times, chaotic_signal))
+        
+        print("\n--- EXPERIMENT ABGESCHLOSSEN ---")
+        print("="*70)
+
+    def visualize_results(self, chaotic_frequencies: dict, chaotic_data: tuple):
+        """
+        Plots the results, including the phase space of the chaotic attractor.
+        """
+        plt.style.use('dark_background')
+        fig = plt.figure(figsize=(18, 9))
+        gs = fig.add_gridspec(2, 2)
+
+        # Plot 1: Phase Space of the Duffing Attractor
+        ax1 = fig.add_subplot(gs[:, 0])
+        t, x = chaotic_data
+        y = np.gradient(x, t) # Numerically differentiate to get velocity
+        ax1.plot(x, y, 'cyan', lw=0.5, alpha=0.8)
+        ax1.set_title("Chaotischer Attraktor (Phasenraum)")
+        ax1.set_xlabel("Position x(t)")
+        ax1.set_ylabel("Geschwindigkeit y(t)")
+        ax1.grid(True, alpha=0.2)
+
+        # Plot 2: Resonance Comparison
+        ax2 = fig.add_subplot(gs[0, 1])
+        for zero in self.zeta_zeros:
+            ax2.axvline(x=zero, color='magenta', linestyle='--', alpha=0.6, label='Riemann Zeta Zeros' if zero == self.zeta_zeros[0] else "")
+        
+        freqs = chaotic_frequencies["Chaotic Oscillator"]
+        # Highly speculative scaling to bring frequencies into the same order of magnitude
+        scaled_freqs = freqs * (self.zeta_zeros[0] / freqs[0]) if len(freqs) > 0 else []
+        
+        ax2.plot(scaled_freqs, np.ones_like(scaled_freqs), 'o', color='lime', markersize=10, label='Skalierte Frequenzen aus dem Chaos')
+        
+        ax2.set_title("Resonanz-Vergleich: Chaos vs. Zeta-Nullstellen")
+        ax2.set_xlabel("Werte auf der kritischen Geraden / Skalierte Frequenzen")
+        ax2.set_yticks([])
+        ax2.legend()
+        ax2.grid(True, axis='x', alpha=0.2)
+        
+        # Plot 3: Frequency Spectrum (FFT)
+        ax3 = fig.add_subplot(gs[1, 1], sharex=ax2)
+        N = len(chaotic_data[0])
+        T = chaotic_data[0][1] - chaotic_data[0][0]
+        yf = fft(chaotic_data[1])
+        xf = fftfreq(N, T)[:N//2]
+        ax3.plot(xf * 2 * np.pi, np.abs(yf[0:N//2]), color='yellow', alpha=0.8)
+        ax3.set_title("Frequenzspektrum des chaotischen Signals")
+        ax3.set_xlabel("Winkelfrequenz (rad/s)")
+        ax3.set_ylabel("Amplitude")
+        ax3.set_xlim(0, 40)
+        ax3.grid(True, alpha=0.2)
+
+        fig.suptitle("Das Chaotische Resonanz-Experiment", fontsize=18)
+        plt.tight_layout(rect=[0, 0, 1, 0.96])
+        plt.show()
+
+# --- Main Execution ---
+if __name__ == "__main__":
+    
+    gateway = V12ZetaGateway(architect_id="NathaliaLietuvaite")
+    gateway.run_chaotic_resonance_experiment()
+```
+
+---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
