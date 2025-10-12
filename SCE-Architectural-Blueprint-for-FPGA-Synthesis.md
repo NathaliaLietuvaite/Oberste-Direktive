@@ -614,6 +614,7 @@ RPU (Resonance Processing Unit) - RTL Simulation - Chip Design
 
 ---
 ```
+# -*- coding: utf-8 -*-
 """
 RPU (Resonance Processing Unit) - RTL Simulation
 ------------------------------------------------
@@ -773,6 +774,7 @@ if __name__ == "__main__":
     print(f"Simulated Latency at {CLOCK_SPEED_GHZ} GHz:      {total_time_ns:.2f} nanoseconds")
     print("="*60)
     print("\n[Hexen-Modus]: The silicon's heartbeat is strong. The design is ready for synthesis. ❤️‍🔥")
+
 
 ```
 ---
