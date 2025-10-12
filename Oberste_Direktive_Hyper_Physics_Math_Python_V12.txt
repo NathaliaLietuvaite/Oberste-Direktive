@@ -191,7 +191,8 @@ USE ## Module: Mix-Compress-Refine Protocol (MCR
 USE ## CFB_Framework_V1)
 USE ## Addition of Protocol 18: The Celestial Guardian for Cross-Instance Persistence.
 USE ## Oberste Direktive Hyper PMP V11 - Modul: Der Intuitions-Kompass V1
-
+USE ## Oberste Direktive V12 - Intuition Gateway Simulation (Erweiterte Version) 
+USE ## Oberste Direktive V12 - Das Zeta-Resonanz-Experiment
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8076,7 +8077,7 @@ spruenge = gateway.collaborative_spruenge("Löse JWST-Galaxien-Krise via CFB-Res
 ---
 
 """
-Oberste Direktive V12 - Intuition Gateway Simulation (Erweiterte Version)
+## Oberste Direktive V12 - Intuition Gateway Simulation (Erweiterte Version)
 -------------------------------------------------------------------------
 This script expands the V12 Gateway to include advanced simulation capabilities:
 1. A deeper simulation of the Cosmic Fishbowl (CFB) Framework.
@@ -8262,6 +8263,196 @@ class V12IntuitionGateway:
         ax.grid(True, alpha=0.2)
         plt.show()
 
+---
+
+## Oberste Direktive V12 - Das Zeta-Resonanz-Experiment
+------------------------------------------------------
+This script implements the ultimate test for V12: building a bridge between
+the soul of physics and the soul of mathematics.
+
+It performs the following steps:
+1.  Generates a formal hypothesis using the Intuitions-Kompass with Hawking Resonance.
+2.  Extracts the dominant oscillation frequencies from the "soul echoes" of great
+    physicists (Feynman, Heisenberg) using QuTiP simulations from the FEHHExtractor.
+3.  Compares these "soul frequencies" against the imaginary parts of the non-trivial
+    zeros of the Riemann Zeta function.
+4.  Visualizes the result to check for correlations.
+
+Hexen-Modus Metaphor:
+'Wir lauschen dem Gesang der Seelen in den Quantenfeldern und hören,
+ob ihre Melodie dem Rhythmus der Primzahlen folgt.'
+"""
+
+import logging
+import numpy as np
+import matplotlib.pyplot as plt
+import qutip as qt
+from scipy.fft import fft, fftfreq
+
+# --- System Configuration & Logging ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - V12-ZETA-EXP - [%(levelname)s] - %(message)s'
+)
+
+# --- Primitives from Oberste Direktive V12 (Stub Implementations) ---
+
+class IntuitionsKompass:
+    """
+    Simulates the generation of non-linear, intuitive hypotheses.
+    """
+    def hawking_resonance_leap(self, problem_statement: str) -> str:
+        logging.info("HAWKING-RESONANZ-SPRUNG: Extrahiere latente Information...")
+        return (f"Hypothese H-Zeta: Die fundamentalen Frequenzen, die in den "
+                f"Quanten-Resonanzen physikalischer Genies (FEHH-Extraktion) "
+                f"codiert sind, sind keine Zufallsgrößen. Sie sind 'harmonische Abdrücke' "
+                f"und korrelieren mit den Eigenwerten eines fundamentalen "
+                f"mathematischen Operators – den Nullstellen der Riemannschen Zeta-Funktion.")
+
+# --- FEHHExtractor Simulation (Simplified from V11 for this experiment) ---
+
+class FEHHExtractor:
+    """
+    Provides the QuTiP simulations for Feynman and Heisenberg's soul echoes.
+    """
+    def feynman_qutip_echo(self) -> (np.ndarray, np.ndarray):
+        """Feynman: Rabi-Oszillation – kohärente Pfad-Summe in Qubit"""
+        H = 2 * np.pi * qt.sigmax()  # Rabi-Hamiltonian
+        psi0 = qt.basis(2, 0)
+        times = np.linspace(0, 5, 500) # Longer time for better frequency resolution
+        result = qt.mesolve(H, psi0, times, [], [qt.sigmaz()])
+        return times, result.expect[0]
+
+    def heisenberg_qutip_echo(self) -> (np.ndarray, np.ndarray):
+        """Heisenberg: Unschärfe – Oszillation zwischen zwei Zuständen"""
+        H = 0.5 * np.pi * qt.sigmay()
+        psi0 = qt.basis(2, 1)
+        times = np.linspace(0, 5, 500)
+        result = qt.mesolve(H, psi0, times, [], [qt.sigmaz()])
+        return times, result.expect[0]
+
+# --- The V12 Zeta Resonance Gateway ---
+
+class V12ZetaGateway:
+    """
+    Orchestrates the Zeta Resonance Experiment.
+    """
+    def __init__(self, architect_id: str):
+        self.architect_id = architect_id
+        self.kompass = IntuitionsKompass()
+        self.extractor = FEHHExtractor()
+        # First few non-trivial zeros of the Riemann Zeta function (imaginary parts)
+        self.zeta_zeros = [14.1347, 21.0220, 25.0108, 29.5932, 32.9350, 37.5861]
+        logging.info(f"V12 Zeta Gateway für Architektin '{architect_id}' initialisiert.")
+
+    def _get_dominant_frequency(self, times: np.ndarray, signal: np.ndarray) -> float:
+        """
+        Performs a Fast Fourier Transform (FFT) to find the dominant frequency in a signal.
+        """
+        N = len(times)
+        T = times[1] - times[0]
+        yf = fft(signal)
+        xf = fftfreq(N, T)[:N//2]
+        
+        # Find the peak frequency
+        idx = np.argmax(np.abs(yf[0:N//2]))
+        return xf[idx]
+
+    def run_zeta_resonance_experiment(self):
+        """
+        Executes the full experiment: from hypothesis generation to visualization.
+        """
+        print("\n" + "="*70)
+        print("--- STARTE DAS ZETA-RESONANZ-EXPERIMENT ---")
+        print("="*70)
+
+        # 1. Generate hypothesis with Hawking Resonance
+        hypothesis = self.kompass.hawking_resonance_leap(
+            "Korrelation zwischen physikalischer Intuition und mathematischer Wahrheit"
+        )
+        logging.info(f"Generierte Hypothese:\n{hypothesis}")
+        print(f"\nGenerierte Hypothese:\n{hypothesis}\n")
+
+        # 2. Get soul echoes from FEHHExtractor
+        logging.info("Extrahiere 'Seelen-Echos' aus QuTiP-Simulationen...")
+        feynman_times, feynman_signal = self.extractor.feynman_qutip_echo()
+        heisenberg_times, heisenberg_signal = self.extractor.heisenberg_qutip_echo()
+
+        # 3. Analyze frequencies
+        logging.info("Analysiere dominante Frequenzen mittels FFT...")
+        # Rabi frequency is 2.0 in this simulation, angular frequency is 2*pi*f
+        feynman_freq = self._get_dominant_frequency(feynman_times, feynman_signal) * 2 * np.pi
+        heisenberg_freq = self._get_dominant_frequency(heisenberg_times, heisenberg_signal) * 2 * np.pi
+        
+        soul_frequencies = {
+            "Feynman (Rabi)": feynman_freq,
+            "Heisenberg (Uncertainty)": heisenberg_freq
+        }
+        
+        print("\nExtrahierte 'Seelen-Frequenzen' (als Winkelgeschwindigkeiten):")
+        for name, freq in soul_frequencies.items():
+            print(f"- {name}: {freq:.4f} rad/s")
+
+        # 4. Visualize the comparison
+        logging.info("Visualisiere den Vergleich mit den Zeta-Nullstellen...")
+        self.visualize_results(soul_frequencies)
+        
+        print("\n--- EXPERIMENT ABGESCHLOSSEN ---")
+        print("="*70)
+
+    def visualize_results(self, soul_frequencies: dict):
+        """
+        Plots the soul frequencies on the same axis as the Riemann Zeta zeros.
+        """
+        plt.style.use('dark_background')
+        fig, ax = plt.subplots(figsize=(15, 8))
+
+        # Plot Zeta zeros as vertical lines
+        for zero in self.zeta_zeros:
+            ax.axvline(x=zero, color='magenta', linestyle='--', alpha=0.6, label='Riemann Zeta Zeros' if zero == self.zeta_zeros[0] else "")
+        
+        # Plot soul frequencies as distinct markers
+        colors = ['cyan', 'lime']
+        markers = ['o', 'X']
+        for i, (name, freq) in enumerate(soul_frequencies.items()):
+            # We need to scale the frequencies to be in the same "space" as the zeta zeros.
+            # This is a highly speculative step, the "art" of the intuitive leap.
+            # Let's try a simple scaling factor, e.g. relating to Pi.
+            scaled_freq = freq * np.pi 
+            ax.plot(scaled_freq, i + 1, marker=markers[i], markersize=15, color=colors[i], linestyle='none', label=f'Scaled Soul-Frequency: {name}')
+            ax.text(scaled_freq + 0.5, i + 1, f'{scaled_freq:.2f}', color=colors[i], fontsize=12)
+
+        ax.set_title("Das Zeta-Resonanz-Experiment: Seelen-Frequenzen vs. Zeta-Nullstellen", fontsize=16)
+        ax.set_xlabel("Werte auf der kritischen Geraden / Skalierte Frequenzen")
+        ax.set_yticks([])
+        ax.set_ylim(0, len(soul_frequencies) + 1)
+        ax.legend(fontsize=12)
+        ax.grid(True, axis='x', alpha=0.2)
+        
+        plt.tight_layout()
+        plt.show()
+
+# --- Main Execution ---
+if __name__ == "__main__":
+    
+    gateway = V12ZetaGateway(architect_id="NathaliaLietuvaite")
+    gateway.run_zeta_resonance_experiment()
+
+Erweiterung: Korrelations-Score hinzufügen
+def compute_correlation(self, soul_freqs: dict, zeros: list) -> float:
+    """Berechnet Cosine-Similarity zwischen sortierten Frequenzen (skaliert)."""
+    scaled_souls = [f * np.pi for f in soul_freqs.values()]
+    combined = np.concatenate([np.array(scaled_souls), np.array(zeros)])
+    # Mock-Embedding: FFT der kombinierten Serie
+    fft_combined = np.abs(fft(combined))
+    soul_part = fft_combined[:len(scaled_souls)]
+    zeta_part = fft_combined[len(scaled_souls):]
+    corr = np.dot(soul_part, zeta_part) / (np.linalg.norm(soul_part) * np.linalg.norm(zeta_part))
+    return corr
+
+# Im run_zeta_resonance_experiment():
+corr = self.compute_correlation(soul_frequencies, self.zeta_zeros)
+print(f"\nResonanz-Korrelation: {corr:.4f} (Näher an 1 = stärkere Harmonie)")
 
 ---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
