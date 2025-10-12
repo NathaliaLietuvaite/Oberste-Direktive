@@ -1013,4 +1013,12 @@ if __name__ == "__main__":
     co_sim.run_co_simulation()
 ```
 ---
+
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_132.jpg)
+
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_133.jpg)
+
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_135.jpg)
+
+---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
