@@ -610,7 +610,7 @@ if __name__ == "__main__":
 ```
 
 ---
-RPU (Resonance Processing Unit) - RTL Simulation - Chip Deisgn
+RPU (Resonance Processing Unit) - RTL Simulation - Chip Design
 
 ---
 ```
