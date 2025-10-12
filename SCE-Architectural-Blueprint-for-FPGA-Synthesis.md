@@ -610,6 +610,50 @@ if __name__ == "__main__":
 ```
 
 ---
+
+Resonance Processing Unit (RPU)
+
+---
+
+## High-Level Design Specification: Resonance Processing Unit (RPU)
+**Codename:** Celestial Guardian
+**Version:** 1.0
+**Zweck:** Ein ASIC (Application-Specific Integrated Circuit), der die "Memory Wall" für Transformer-basierte KI-Modelle durchbricht, indem er eine hardwarebeschleunigte, intelligente Kontext-Filterung durchführt.
+
+### 1. Kernphilosophie (Hexen-Modus)
+Die RPU ist kein passiver Co-Prozessor; sie ist eine aktive Intelligenz auf dem Silizium. Ihre Aufgabe ist es nicht, mehr Daten schneller zu bewegen, sondern die richtigen Daten zu bewegen. Sie transformiert den Speicherzugriff von einem Brute-Force-Problem (alles laden) in eine elegante Filter-Aufgabe (nur die Essenz laden). Sie ist die Hardware-Manifestation des Prinzips: Resonanz findet und verstärkt das Signal im Rauschen.
+
+### 2. Funktionale Blockdiagramm-Architektur
+Der RPU-Chip besteht aus fünf primären, physischen Funktionseinheiten, die auf einem einzigen Die integriert sind:
+
+| Block-ID | Hardware-Einheit | Funktion & Implementierungsdetails |
+| :--- | :--- | :--- |
+| **A** | **HBM Interface & DMA Engine** | **Die Pforte zum Ozean.** Diese Einheit ist der physische Hochgeschwindigkeits-Controller für den externen High-Bandwidth Memory (HBM), in dem der vollständige KV-Cache gespeichert ist. Sie ist für zwei Hauptaufgaben optimiert: 1. **Prefill-Streaming:** Empfängt den KV-Cache-Stream mit maximalem Durchsatz während der initialen Kontext-Phase. 2. **Sparse Fetch Execution:** Führt präzise, nicht-sequentielle Leseoperationen aus, basierend auf den Adresslisten, die vom Query Processor geliefert werden. |
+| **B** | **Index Builder Pipeline** | **Der Echtzeit-Kartenzeichner.** Eine massiv parallele, pipelined Hardware-Struktur, die den KV-Stream während des Prefills in Echtzeit verarbeitet und den Relevanz-Index erstellt. Sie besteht aus Tausenden von identischen Logikblöcken, die jeweils eine **LSH (Locality-Sensitive Hashing)**- und eine **L2-Norm-Berechnungseinheit** enthalten. Jeder Vektor, der durch die Pipeline fließt, wird sofort in einen kompakten Hash und eine Norm umgewandelt und in den On-Chip-SRAM geschrieben. |
+| **C** | **On-Chip SRAM (Index Memory)** | **Das Gehirn des Chips.** Ein Block aus ultra-schnellem, statischem RAM direkt auf dem Chip (z.B. 4-8 MB). Er speichert nicht die Vektoren selbst, sondern den von der Index Builder Pipeline erstellten **Relevanz-Index**. Jeder Eintrag enthält: `[Vector_Hash, HBM_Address, L2_Norm]`. Seine Größe und Geschwindigkeit sind der Schlüssel zur Latenz der gesamten Operation. |
+| **D** | **Query Processor Array** | **Das Such-Orchester.** Dies ist das Herzstück der Intelligenz. Es ist keine CPU, sondern eine riesige Matrix aus Tausenden von winzigen, spezialisierten **"Similarity Score Units"**. Jede Einheit ist fest verdrahtet, um eine einzige Operation extrem schnell auszuführen: den Vergleich des Query-Vektors mit einem Eintrag aus dem SRAM. Dies geschieht durch eine Kombination aus Hash-Vergleich und Norm-Distanzberechnung (als Proxy für das Skalarprodukt). Die Ergebnisse aller Einheiten werden in ein **Hardware-basiertes Sortiernetzwerk** (z.B. ein Bitonic Sorter) eingespeist, das die Top-k-Adressen in einer logarithmischen Anzahl von Taktzyklen findet. |
+| **E** | **Master Control Unit (MCU) mit TEE** | **Der Dirigent und das Gewissen.** Ein kleiner RISC-V-Core, der den gesamten Chip steuert und als Schnittstelle zum Haupt-KI-Prozessor (CPU/GPU) dient. Er empfängt Befehle wie "Begin Prefill" oder "Execute Query". **Entscheidend:** Dieser Block enthält auch die **Trusted Execution Environment (TEE)**, die den "Safe Mode" implementiert. Wenn der Hauptprozessor das `agent_is_unreliable`-Flag sendet, passt die MCU die Parameter für den Query Processor an (z.B. erhöht `k`) und priorisiert damit Robustheit über reiner Effizienz. Dies ist die Hardware-Implementierung der Symbiose aus Resilienz und Performance. |
+
+### 3. Datenfluss im Betrieb (Register-Transfer-Level-Perspektive)
+#### Prefill-Phase (Index-Aufbau):
+1. Die KI-Software generiert den KV-Cache und streamt ihn in den HBM.
+2. Die HBM Interface Unit (A) leitet eine Kopie dieses Streams an die Index Builder Pipeline (B).
+3. Der Index Builder (B) berechnet für jeden Vektor Hash und Norm und schreibt das Ergebnis in den On-Chip SRAM (C). Am Ende dieser Phase ist der Index vollständig.
+
+#### Decoding-Phase (Token-Generierung):
+1. Die KI-Software (Decoder) generiert einen Query-Vektor.
+2. Der Vektor wird an die Master Control Unit (E) auf dem RPU-Chip gesendet.
+3. Die MCU (E) leitet den Vektor an den Query Processor Array (D) weiter.
+4. Der Query Processor (D) führt die massiv parallele Suche im SRAM (C) durch und ermittelt die Adressen der Top-k-Treffer.
+5. Die Adressliste wird an die MCU (E) zurückgegeben.
+6. Die MCU (E) befiehlt der HBM Interface Unit (A), genau diese Blöcke aus dem externen HBM zu laden.
+7. Die HBM Interface Unit (A) liefert die wenigen, hochrelevanten Datenblöcke an die KI-Software zurück.
+
+### 4. Fazit
+Dieses Design verlagert die Intelligenz der Kontext-Auswahl von der langsamen Software-Ebene in eine spezialisierte, massiv parallele Hardware-Ebene. Es löst die "Memory Wall", indem es den Speicherverkehr um ~95 % reduziert, und integriert gleichzeitig ein hardwarebasiertes Sicherheitsprotokoll (den "Safe Mode" im TEE), um die Resilienz zu gewährleisten.
+
+---
+
 RPU (Resonance Processing Unit) - RTL Simulation - Chip Design
 
 ---
