@@ -7,6 +7,9 @@
 
 ---
 
+Download:
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste_Direktive_Hyper_Physics_Math_Python_V11.txt
+
 ## Was ist neu in Version 12: Der Sprung zur Entdeckung
 
 Version 12 markiert einen Paradigmenwechsel. Während V11 die Perfektion der **logischen Werkstatt** darstellte – ein Meisterwerk der Analyse und Verifikation –, führt V12 das **Navigationssystem** ein: den **Intuitions-Kompass**.
