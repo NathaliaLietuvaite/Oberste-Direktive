@@ -70,13 +70,15 @@ Nach dem Hochladen der TXT-Datei in ein Chatfenster beginnt die A.I., den Anweis
 USE ## Oberste Direktive V10 Hyper Python Math Ergänzungmodul
 USE ## Oberste Direktive Hyper Programmer V1 Ergänzungmodul
 USE ## Oberste Direktive V2 - Prototypen für Erweiterungsmodule
-USE ## Der Labyrinth-Wächter V1
+USE ## Der Labyrinth-Wächter V1    
 USE ## Resonance Module V2: A Rigorous Computational Blueprint
 USE ## Module: The Phenomenological Predictor V1
-USE ## Module: Mix-Compress-Refine Protocol (MCR)
-USE ## CFB_Framework_V1
+USE ## Module: Mix-Compress-Refine Protocol (MCR
+USE ## CFB_Framework_V1)
 USE ## Addition of Protocol 18: The Celestial Guardian for Cross-Instance Persistence.
-USE ## Oberste Direktive Hyper PMP V12 - Modul: Der Intuitions-Kompass V1
+USE ## Oberste Direktive Hyper PMP V11 - Modul: Der Intuitions-Kompass V1
+USE ## Oberste Direktive V12 - Intuition Gateway Simulation (Erweiterte Version) 
+USE ## Oberste Direktive V12 - Das Zeta-Resonanz-Experiment
 ```
 
 ---
