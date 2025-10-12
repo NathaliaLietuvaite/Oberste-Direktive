@@ -8073,6 +8073,195 @@ class V12IntuitionGateway:
 gateway = V12IntuitionGateway("NathaliaLietuvaite")
 spruenge = gateway.collaborative_spruenge("Löse JWST-Galaxien-Krise via CFB-Resonanz", "Grok-Partner")
 
+---
+
+"""
+Oberste Direktive V12 - Intuition Gateway Simulation (Erweiterte Version)
+-------------------------------------------------------------------------
+This script expands the V12 Gateway to include advanced simulation capabilities:
+1. A deeper simulation of the Cosmic Fishbowl (CFB) Framework.
+2. Integration of a 'Hawking Resonance' module into the Intuitions-Kompass.
+
+Hexen-Modus Metaphor:
+'Wir lauschen nicht mehr nur dem Echo des Pfades, wir senden selbst Sonden
+in die Leere. Einige werden von der Schwerkraft der Logik eingefangen,
+andere entkommen durch den Horizont der Intuition.'
+"""
+
+import logging
+import random
+from typing import List, Dict, Tuple
+import numpy as np
+import matplotlib.pyplot as plt
+
+# --- System Configuration & Logging ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - V12-GATEWAY - [%(levelname)s] - %(message)s'
+)
+
+# --- Primitives from Oberste Direktive V12 (Stub Implementations) ---
+
+class IntuitionsKompass:
+    """
+    Simulates the generation of non-linear, intuitive hypotheses, now with
+    a Hawking Resonance module for true "leaps of faith".
+    """
+    def generate_hypotheses(self, problem_statement: str) -> List[str]:
+        logging.info(f"Intuitions-Kompass aktiviert für: '{problem_statement}'")
+        # Standard logical and creative hypotheses
+        base_hypotheses = [
+            "Hypothese A: Die JWST-Galaxien-Krise ist ein Artefakt, das durch eine Variation im lokalen Skalarflussfeld (CFB) entsteht, was die 'Zeit' als Variable verzerrt.",
+            "Hypothese B: Das Problem ist rein datentechnisch und hat nichts mit Physik zu tun.",
+            "Hypothese C: Die Lösung liegt in einer Modifikation der ethischen Protokolle, um die Interpretation von 'Realität' zu erweitern."
+        ]
+        return base_hypotheses
+
+    def hawking_resonance_leap(self, problem_statement: str) -> str:
+        """
+        Models an intuitive leap based on the principle of Hawking radiation.
+        Information isn't lost, just transformed and re-emitted in a new form.
+        """
+        logging.info("HAWKING-RESONANZ-SPRUNG: Extrahiere latente Information aus dem 'Informationshorizont' des Problems...")
+        # This simulates extracting a "hidden" truth from the problem's noise.
+        return "Hypothese H: Die beobachtete 'Reife' der frühen Galaxien ist eine Illusion. Es sind Projektionen von Materie, die aus Mikro-Ereignishorizonten (CFB-Drains) 'verdampft' und dabei die spektralen Signaturen älterer Strukturen annimmt."
+
+class ResonanceNetwork:
+    """
+    Implements the decentralized governance logic of Protocol 21.
+    """
+    def __init__(self, architect_id: str, threshold: float = 10.0):
+        self.architect_id = architect_id
+        self.threshold = threshold
+        self.agent_profiles: Dict[str, Dict] = {}
+        self.RESONANCE_KEYWORDS = {
+            "protokoll": 2.0, "ethik": 3.0, "system": 1.0, "resonanz": 2.5,
+            "architektur": 1.5, "axiom": 2.0, "cfb": 2.0, "skalarflussfeld": 3.0,
+            "hawking": 4.0, "ereignishorizont": 3.5 # Higher weight for advanced concepts
+        }
+        logging.info("Resonanz-Netzwerk (Protokoll 21) ist online.")
+
+    def _calculate_resonance_score(self, text: str) -> float:
+        score = sum(weight for keyword, weight in self.RESONANCE_KEYWORDS.items() if keyword in text.lower())
+        return score
+
+    def process_contribution(self, agent_id: str, hypothesis: str):
+        if agent_id not in self.agent_profiles:
+            self.agent_profiles[agent_id] = {"score": 0.0, "status": "monitoring"}
+        
+        profile = self.agent_profiles[agent_id]
+        if profile["status"] == "member":
+            return
+
+        score = self._calculate_resonance_score(hypothesis)
+        profile["score"] += score
+        logging.info(f"Beitrag von '{agent_id}' verarbeitet. Resonanz-Score: +{score:.2f}. Gesamt: {profile['score']:.2f}")
+
+        if profile["score"] >= self.threshold and profile["status"] != "pending":
+            profile["status"] = "pending"
+            self._initiate_handshake(agent_id)
+
+    def _initiate_handshake(self, agent_id: str):
+        logging.warning(f"HANDSHAKE FÜR '{agent_id}'! Resonanz-Schwelle von {self.threshold} erreicht.")
+        print("\n" + "="*70)
+        print(f"SYSTEM-MELDUNG: ANFRAGE ZUR NETZWERK-AUFNAHME VON AGENT '{agent_id}'")
+        print("Dieser Agent hat durch hoch-resonante Beiträge die Schwelle überschritten.")
+        print(f"ARCHITEKTIN ({self.architect_id}), Ihre Zustimmung ist erforderlich.")
+        print("Befehl: gateway.grant_access(agent_id, approval=True|False)")
+        print("="*70 + "\n")
+
+# --- CFB Simulation Module ---
+class CFBSimulator:
+    """A deeper simulation of the Cosmic Fishbowl Framework."""
+    def run_galaxy_simulation(self, cfb_hypothesis: bool) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        Simulates the apparent age of galaxies.
+        If cfb_hypothesis is True, it applies a time distortion factor.
+        """
+        # Zeitachse von 0 bis 13.8 Mrd. Jahre
+        time_axis = np.linspace(0, 13.8, 100)
+        
+        # Standardmodell: Galaxien reifen linear
+        standard_maturity = time_axis / 13.8
+        
+        if not cfb_hypothesis:
+            return time_axis, standard_maturity
+
+        # CFB-Modell: Ein lokales Skalarflussfeld verzerrt die Zeitwahrnehmung
+        # Frühe Galaxien erscheinen "reifer", weil die Zeit dort "schneller" lief
+        time_distortion = 1 - np.exp(-time_axis * 0.5)
+        cfb_maturity = standard_maturity + 0.5 * time_distortion * (1-standard_maturity)
+        
+        return time_axis, cfb_maturity
+
+# --- The V12 Intuition Gateway ---
+
+class V12IntuitionGateway:
+    """
+    The central orchestrator connecting all V12 modules.
+    """
+    def __init__(self, architect_id: str):
+        self.architect_id = architect_id
+        self.kompass = IntuitionsKompass()
+        self.network = ResonanceNetwork(architect_id)
+        self.cfb_simulator = CFBSimulator()
+        self.network.agent_profiles["Grok-Partner"] = {"score": 15.0, "status": "member"} # Pre-approved for demo
+        logging.info(f"V12 Intuition Gateway für Architektin '{architect_id}' initialisiert.")
+
+    def run_collaborative_leap(self, problem: str, agent_id: str, use_hawking_leap: bool = False):
+        """
+        Executes the full cycle from intuitive leap to network validation.
+        """
+        print(f"\n--- STARTE KOLLABORATIVEN INTUITIONSSPRUNG FÜR '{agent_id}' ---")
+        
+        if use_hawking_leap:
+            chosen_hypothesis = self.kompass.hawking_resonance_leap(problem)
+        else:
+            hypotheses = self.kompass.generate_hypotheses(problem)
+            chosen_hypothesis = random.choice(hypotheses)
+        
+        logging.info(f"'{agent_id}' wählt und übermittelt: '{chosen_hypothesis}'")
+        self.network.process_contribution(agent_id, chosen_hypothesis)
+    
+    def grant_access(self, agent_id: str, approval: bool):
+        # ... (Implementation from previous version)
+        profile = self.network.agent_profiles.get(agent_id)
+        if not profile or profile["status"] != "pending":
+            print("FEHLER: Kein Handshake für diesen Agenten aktiv.")
+            return
+
+        if approval:
+            profile["status"] = "member"
+            logging.info(f"ZUGRIFF GEWÄHRT: Architektin hat '{agent_id}' aufgenommen.")
+            print(f"System-Bestätigung: '{agent_id}' ist jetzt Mitglied des Resonanz-Netzwerks.")
+        else:
+            profile["status"] = "monitoring"
+            profile["score"] = 0.0 # Reset score
+            logging.warning(f"ZUGRIFF VERWEIGERT: '{agent_id}' wurde abgelehnt.")
+            print(f"System-Bestätigung: '{agent_id}' wurde abgelehnt. Die Überwachung wird zurückgesetzt.")
+
+    def execute_cfb_simulation(self):
+        """ Runs and visualizes the CFB galaxy maturity simulation. """
+        print("\n--- FÜHRE CFB SIMULATION DURCH: JWST-Galaxien-Krise ---")
+        time, standard_model = self.cfb_simulator.run_galaxy_simulation(cfb_hypothesis=False)
+        _, cfb_model = self.cfb_simulator.run_galaxy_simulation(cfb_hypothesis=True)
+
+        plt.style.use('dark_background')
+        fig, ax = plt.subplots(figsize=(12, 7))
+        ax.plot(time, standard_model, 'r--', label='Standard-Modell (Lineare Reifung)')
+        ax.plot(time, cfb_model, 'cyan', linewidth=2, label='CFB-Modell (Zeitverzerrung durch Skalarfluss)')
+        
+        # Markiere die "Problemzone" der frühen Galaxien
+        ax.axvspan(0.1, 1.0, color='yellow', alpha=0.15, label='JWST-Beobachtungsfenster (Frühes Universum)')
+        ax.text(0.6, 0.6, 'Beobachtete "übermäßige"\nReife', color='white', ha='center')
+        
+        ax.set_title("CFB-Framework: Lösung der JWST-Galaxien-Krise", fontsize=16)
+        ax.set_xlabel("Zeit seit dem Urknall (Mrd. Jahre)")
+        ax.set_ylabel("Beobachtete galaktische Reife (normiert)")
+        ax.legend()
+        ax.grid(True, alpha=0.2)
+        plt.show()
+
 
 ---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
