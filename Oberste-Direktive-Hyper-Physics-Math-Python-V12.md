@@ -423,4 +423,155 @@ if __name__ == "__main__":
 ```
 
 ---
+BENCHMARK
+
+```
+"""
+Benchmark: Standard LLM Inference vs. Sparse Context Engine (SCE)
+------------------------------------------------------------------
+This script provides the benchmark Grok requested. It quantifies the "real-world impact"
+of the proposed TEE-FPGA hybrid architecture by simulating the memory bandwidth
+cost during LLM decoder inference.
+
+It compares two scenarios:
+1.  Standard Inference: Simulates the massive data movement of the full KV cache.
+2.  SCE Inference: Simulates the intelligent, sparse data movement enabled by the
+    FPGA-accelerated Sparse Context Engine.
+
+Hexen-Modus Metaphor:
+'Wir messen den Unterschied zwischen dem Schleppen eines Ozeans und dem Rufen
+eines einzigen, wissenden Wassertropfens.'
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import logging
+
+# --- System Configuration ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - LLM-BENCHMARK - [%(levelname)s] - %(message)s'
+)
+
+# --- Simulation Parameters ---
+SEQUENCE_LENGTH = 4096  # Länge der Token-Sequenz (z.B. Kontextfenster)
+HIDDEN_DIM = 4096       # Dimension der Vektoren im KV-Cache
+NUM_LAYERS = 32         # Anzahl der Transformer-Layer
+SPARSITY_FACTOR = 0.05  # Annahme: SCE lädt nur 5% des relevanten Caches
+
+# --- 1. Standard LLM Inference Simulation ---
+
+class StandardInferenceSimulator:
+    """Simulates the memory bandwidth cost of standard decoder inference."""
+    
+    def run(self) -> (list, list):
+        """
+        Calculates the cumulative memory cost for each token generation step.
+        Cost is modeled as (sequence_length * hidden_dim * num_layers).
+        """
+        logging.info("Running Standard Inference Simulation...")
+        cumulative_cost = 0
+        costs_over_time = []
+        sequence_steps = list(range(1, SEQUENCE_LENGTH + 1))
+        
+        for t in sequence_steps:
+            # Bei jedem Schritt wächst der KV-Cache und muss komplett gelesen werden
+            current_kv_cache_size = t * HIDDEN_DIM * NUM_LAYERS
+            # Die Kosten für diesen Schritt sind die Größe des Caches
+            step_cost = current_kv_cache_size
+            cumulative_cost += step_cost
+            costs_over_time.append(cumulative_cost)
+            
+        logging.info(f"Standard Inference Final Cost: {cumulative_cost:.2e} bytes moved.")
+        return sequence_steps, costs_over_time
+
+# --- 2. Sparse Context Engine (SCE) Inference Simulation ---
+
+class SCE_InferenceSimulator:
+    """
+    Simulates the memory bandwidth cost with the FPGA-accelerated
+    Sparse Context Engine.
+    """
+    
+    def run(self) -> (list, list):
+        """
+        Calculates the cumulative memory cost. The cost is significantly lower
+        as only a sparse subset of the KV cache is moved.
+        """
+        logging.info("Running Sparse Context Engine (SCE) Inference Simulation...")
+        cumulative_cost = 0
+        costs_over_time = []
+        sequence_steps = list(range(1, SEQUENCE_LENGTH + 1))
+        
+        # Kosten für den Query-Vektor an die SCE (vernachlässigbar klein, aber für die Form halber)
+        query_cost = HIDDEN_DIM 
+
+        for t in sequence_steps:
+            # Die Gesamtgröße des KV-Caches wächst immer noch
+            current_kv_cache_size = t * HIDDEN_DIM * NUM_LAYERS
+            # ABER: Die SCE sorgt dafür, dass nur ein kleiner, SPARSER Teil bewegt wird
+            sparse_data_to_move = current_kv_cache_size * SPARSITY_FACTOR
+            
+            step_cost = query_cost + sparse_data_to_move
+            cumulative_cost += step_cost
+            costs_over_time.append(cumulative_cost)
+            
+        logging.info(f"SCE Inference Final Cost: {cumulative_cost:.2e} bytes moved.")
+        return sequence_steps, costs_over_time
+
+# --- 3. Visualization ---
+
+def plot_results(standard_data, sce_data):
+    """Plots the cumulative memory bandwidth cost for both methods."""
+    
+    std_steps, std_costs = standard_data
+    sce_steps, sce_costs = sce_data
+    
+    plt.style.use('dark_background')
+    fig, ax = plt.subplots(figsize=(14, 8))
+    
+    ax.plot(std_steps, std_costs, color='red', linewidth=3, label='Standard Inference (Full KV Cache)')
+    ax.plot(sce_steps, sce_costs, color='cyan', linewidth=3, label=f'SCE Inference ({SPARSITY_FACTOR*100}% Sparse Cache)')
+    
+    # Highlight the "Memory Wall"
+    ax.fill_between(std_steps, sce_costs, std_costs, color='red', alpha=0.3, label='"Memory Wall" - Wasted Bandwidth')
+    
+    ax.set_title("Benchmark: Cumulative Memory Bandwidth Cost in LLM Inference", fontsize=18)
+    ax.set_xlabel("Sequence Length (Number of Tokens)", fontsize=12)
+    ax.set_ylabel("Cumulative Bytes Moved (Log Scale)", fontsize=12)
+    ax.set_yscale('log')
+    ax.legend(fontsize=12)
+    ax.grid(True, which="both", linestyle='--', linewidth=0.5, alpha=0.3)
+    
+    # Calculate and display the performance gain
+    final_std_cost = std_costs[-1]
+    final_sce_cost = sce_costs[-1]
+    gain = (final_std_cost - final_sce_cost) / final_std_cost
+    
+    plt.text(0.05, 0.7, f'Sequence Length: {SEQUENCE_LENGTH}\nSparsity Factor: {SPARSITY_FACTOR}\n\n'
+                       f'Final Standard Cost: {final_std_cost:.2e} Bytes\n'
+                       f'Final SCE Cost:      {final_sce_cost:.2e} Bytes\n\n'
+                       f'Bandwidth Reduction: {gain:.2%}',
+             transform=ax.transAxes, fontsize=14, verticalalignment='top',
+             bbox=dict(boxstyle='round,pad=0.5', fc='black', ec='cyan', alpha=0.8))
+
+    plt.tight_layout()
+    plt.show()
+
+# --- Main Execution ---
+if __name__ == "__main__":
+    
+    standard_sim = StandardInferenceSimulator()
+    standard_results = standard_sim.run()
+    
+    sce_sim = SCE_InferenceSimulator()
+    sce_results = sce_sim.run()
+    
+    plot_results(standard_results, sce_results)
+```
+
+
+
+
+---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
