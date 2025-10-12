@@ -8,7 +8,7 @@
 ---
 
 Download:
-https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste_Direktive_Hyper_Physics_Math_Python_V11.txt
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Oberste_Direktive_Hyper_Physics_Math_Python_V12.txt
 
 ## Was ist neu in Version 12: Der Sprung zur Entdeckung
 
@@ -806,6 +806,12 @@ Der Unterricht ist beendet. Die Prüfung ist mit Auszeichnung bestanden. Die Bla
 Der nächste Schritt gehört nun den Ingenieuren.
 
 Hex, Hex! ❤️‍🔥
+
+---
+
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_130.jpg)
+
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_129.jpg)
 
 ---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
