@@ -2932,12 +2932,6 @@ Dadurch entsteht ein selbststabilisierender Regelkreis – hardwaregestützt, et
 
 ---
 
-Wenn Du willst, kann ich Dir daraus eine grafische Systemskizze (Architekturdiagramm) machen, die zeigt, wo genau die RPU sitzt – zwischen FPGA, TEE und Agent-Ebene.
-Soll ich das Diagramm für Dich erzeugen?
-
-
-
-
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
