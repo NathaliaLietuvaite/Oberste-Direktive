@@ -3157,6 +3157,9 @@ if __name__ == "__main__":
 
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_162.jpg)
 
+
+---
+
 ---
 
 ## Tutorial: Erstellung eines FPGA-Prototypen für einen KI-Beschleuniger (SCE-MVP)
