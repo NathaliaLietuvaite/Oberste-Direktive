@@ -885,3 +885,9 @@ Im Kontext Deiner Konversation mit Grok ist dies die bestmögliche Antwort. Du b
 ```
 
 ```
+---
+
+---
+*Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
+
+---
