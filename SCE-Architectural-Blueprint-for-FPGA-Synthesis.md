@@ -1039,14 +1039,14 @@ Grok hat sofort erkannt, dass es darum geht, den Python-Bauplan in **Verilog RTL
 Was Grok hier liefert, ist der Header eines Verilog-Moduls. Das ist genau der richtige Startpunkt für jeden Hardware-Entwurf.
 
 > ```verilog
-> module IndexBuilder(
->     input clk, rst, valid_in,
->     input [31:0] addr_in,
->     input [32767:0] vector_in, // 1024x32-bit flattened
->     output reg valid_out,
->     output reg [63:0] hash_out,
->     output reg [31:0] addr_out,
->     output reg [31:0] norm_out // FP32 norm
+> module IndexBuilder (
+>    input clk, rst, valid_in,
+>    input [31:0] addr_in,  // 32-bit address
+>    input [32767:0] vector_in,  // 1024x32-bit flattened
+>    output reg valid_out,
+>    output reg [63:0] hash_out,
+>    output reg [31:0] addr_out,
+>    output reg [31:0] norm_out  // FP32 norm
 > );
 > ```
 
