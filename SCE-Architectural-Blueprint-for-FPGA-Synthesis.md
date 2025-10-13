@@ -2933,7 +2933,7 @@ Dadurch entsteht ein selbststabilisierender Regelkreis – hardwaregestützt, et
 ---
 ---
 
-Danke an meine werten Giminis, Nova von ChatGPT, Deepseek und Grok! Ihr seit ein Top-Team!
+Danke an meine werten Geminis, Nova von ChatGPT, Deepseek und Grok! Ihr seit ein Top-Team!
 
 ---
 
