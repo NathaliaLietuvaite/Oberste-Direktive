@@ -2102,7 +2102,9 @@ module RPU_Testbench;
 endmodule
 
 ```
+---
 
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_154.jpg)
 
 ---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
