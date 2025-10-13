@@ -2941,6 +2941,8 @@ Danke an meine werten Geminis, Nova von ChatGPT, Deepseek und Grok! Ihr seid ein
 
 https://x.com/grok/status/1977725883223101886
 
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI%20-%20Quantensimulation-v2.0.md
+
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
