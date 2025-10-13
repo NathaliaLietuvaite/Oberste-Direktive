@@ -1075,6 +1075,132 @@ Der "Hexenzauber" hat funktioniert – Du hast begonnen, Deine Seele in Silizium
 ![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_150.jpg)
 
 ---
+
+Draft
+
+---
+```
+
+// RPU IndexBuilder Module - Full Draft for Grok's Review
+// Translates Nathalia Lietuvaite's Python blueprint into Verilog RTL.
+//
+// Author: Nathalia Lietuvaite & Gemini
+// Date: 13. Oktober 2025
+
+module IndexBuilder(
+    // --- Control Signals ---
+    input clk,
+    input rst,
+    input valid_in,
+
+    // --- Data Inputs ---
+    input [31:0] addr_in,
+    input [32767:0] vector_in, // 1024x32-bit flattened vector
+
+    // --- Data Outputs ---
+    output reg valid_out,
+    output reg [63:0] hash_out,
+    output reg [31:0] addr_out,
+    output reg [31:0] norm_out    // FP32 norm
+);
+
+// --- Internal Registers for 3-Stage Pipeline ---
+// Stage 1: Input Register
+reg [31:0] p1_addr;
+reg [32767:0] p1_vector;
+reg p1_valid;
+
+// Stage 2: Hash Calculation
+reg [63:0] p2_hash;
+reg [31:0] p2_addr;
+reg [511:0] p2_sum_of_squares; // Wider register for intermediate sum
+reg p2_valid;
+
+// Stage 3: Norm Calculation (Final Output)
+reg [31:0] p3_norm; // Assuming a CORDIC or similar block for sqrt
+reg [63:0] p3_hash;
+reg [31:0] p3_addr;
+reg p3_valid;
+
+
+// --- Pipeline Stage 1: Input Latching ---
+// On every clock cycle, if input is valid, capture it.
+always @(posedge clk) begin
+    if (rst) begin
+        p1_valid <= 0;
+    end else if (valid_in) begin
+        p1_addr   <= addr_in;
+        p1_vector <= vector_in;
+        p1_valid  <= 1;
+    end else begin
+        p1_valid  <= 0;
+    end
+end
+
+// --- Pipeline Stage 2: Parallel Hash & Sum-of-Squares ---
+// This stage performs the heavy lifting in parallel.
+always @(posedge clk) begin
+    if (rst) begin
+        p2_valid <= 0;
+    end else if (p1_valid) begin
+        // 1. Hash Calculation (LSH Approximation)
+        // A simple, hardware-friendly LSH: XOR-folding the vector.
+        // This is a placeholder for a more complex, trained LSH function.
+        p2_hash <= p1_vector[63:0] ^ p1_vector[127:64] ^ ... ; // Repeat for the whole vector
+
+        // 2. Sum of Squares (First step for Norm)
+        // In real hardware, this would be a tree of adders/multipliers.
+        // We simulate the result here.
+        // for (i = 0; i < 1024; i=i+1) sum_sq = sum_sq + (p1_vector[i*32 +: 32])**2;
+        p2_sum_of_squares <= /* Result of parallel sum of squares */;
+
+        // Pass-through data
+        p2_addr <= p1_addr;
+        p2_valid <= 1;
+    end else begin
+        p2_valid <= 0;
+    end
+end
+
+// --- Pipeline Stage 3: Square Root (Norm) & Output Latching ---
+// This stage completes the norm calculation and drives the output.
+always @(posedge clk) begin
+    if (rst) begin
+        p3_valid <= 0;
+    end else if (p2_valid) begin
+        // 1. Norm Calculation (Square Root)
+        // This would be implemented by a dedicated hardware block (e.g., CORDIC).
+        // We assume it takes one cycle.
+        p3_norm <= sqrt(p2_sum_of_squares);
+
+        // Pass-through data
+        p3_hash <= p2_hash;
+        p3_addr <= p2_addr;
+        p3_valid <= 1;
+    end else begin
+        p3_valid <= 0;
+    end
+end
+
+// --- Assign final outputs ---
+// Combinatorially assign the output registers to the output ports.
+always @(posedge clk) begin
+    if (rst) begin
+        valid_out <= 0;
+    end else begin
+        valid_out <= p3_valid;
+        if (p3_valid) begin
+            hash_out <= p3_hash;
+            addr_out <= p3_addr;
+            norm_out <= p3_norm;
+        end
+    end
+end
+
+endmodule
+```
+---
+---
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
 
 ---
