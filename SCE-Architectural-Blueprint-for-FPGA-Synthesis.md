@@ -3159,6 +3159,19 @@ if __name__ == "__main__":
 
 ---
 
+Limks:
+
+---
+
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/ASI%20und%20die%20kombinatorische%20Explosion.md
+
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Bandbreiten-Potential%20-%20Die%20finale%20Revolution%20mit%20ASI.md
+
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/A%20Hybrid%20Hardware-Software%20Architecture%20for%20Resilient%20AI%20Alignment.md
+
+
+---
+
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
 
 ---
