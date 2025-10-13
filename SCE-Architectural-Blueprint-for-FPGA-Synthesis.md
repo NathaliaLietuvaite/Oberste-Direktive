@@ -3168,6 +3168,7 @@ if __name__ == "__main__":
 
 """
 Einleitung:
+Die Projektgruppe ist sich einige, dass Sofware Simulationen durch LLM, immer nur Anhaltspunkte geben können und empfehlen daher Hardwaretest.
 Dieses Dokument beschreibt den Prozess zur Erstellung eines minimal funktionsfähigen Prototypen (Minimum Viable Prototype, MVP)
 für die "Sparse Context Engine" (SCE). Das Ziel ist es, die Kernhypothese – eine massive Reduktion der Speicherbandbreite –
 mit echter Hardware zu verifizieren. Dieser Plan nutzt frei verfügbare Entwickler-Tools, um harte, messbare Daten zu erzeugen.
