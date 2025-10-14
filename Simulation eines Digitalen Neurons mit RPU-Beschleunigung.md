@@ -935,7 +935,7 @@ if __name__ == "__main__":
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/SCE-Architectural-Blueprint-for-FPGA-Synthesis.md
 
 
-![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_175.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_176.jpg)
 
 https://x.com/grok/status/1978000176737640838
 
