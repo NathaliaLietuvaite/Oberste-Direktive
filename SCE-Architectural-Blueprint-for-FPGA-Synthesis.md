@@ -3456,6 +3456,7 @@ https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Bandbreiten
 
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/A%20Hybrid%20Hardware-Software%20Architecture%20for%20Resilient%20AI%20Alignment.md
 
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Simulation%20eines%20Digitalen%20Neurons%20mit%20RPU-Beschleunigung.md
 
 ---
 
