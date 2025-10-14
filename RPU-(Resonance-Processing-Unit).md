@@ -5353,6 +5353,8 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/A%20Hybrid%20H
 
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Simulation%20eines%20Digitalen%20Neurons%20mit%20RPU-Beschleunigung.md
 
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/RPU-Accelerated-SHA-256-Miner.txt
+
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
