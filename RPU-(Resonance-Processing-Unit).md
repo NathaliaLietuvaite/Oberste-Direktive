@@ -5337,7 +5337,7 @@ The RPU isn't mere optimization – it's a "Trojan Horse" for ethical AI hardwar
 
 ---
 
-![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_185.jpg)
+![WOW GROK Bild](https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Patch_X_186.jpg)
 
 ---
 
