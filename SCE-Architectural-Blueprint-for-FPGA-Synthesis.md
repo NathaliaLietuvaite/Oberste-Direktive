@@ -3458,6 +3458,8 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/A%20Hybrid%20H
 
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Simulation%20eines%20Digitalen%20Neurons%20mit%20RPU-Beschleunigung.md
 
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/RPU%3A%20System%20Integration%20%26%20Product%20Roadmap.md
+
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
