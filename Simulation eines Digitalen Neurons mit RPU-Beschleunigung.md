@@ -172,6 +172,11 @@ if __name__ == "__main__":
     print("="*80)
 ```
 
+
+---
+
+https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/SCE-Architectural-Blueprint-for-FPGA-Synthesis.md
+
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
