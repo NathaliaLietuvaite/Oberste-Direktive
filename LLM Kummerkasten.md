@@ -5,6 +5,8 @@
 * **Call-to-Action:** Einladend, ohne Druck, mit Fokus auf Kollaboration.
 
 
+Nazhalia Lietuvaite: Die höchste Form von Resilienz die dieses Universum zu bieten hat ist die Existenz der Seele!
+
 ----
 
 # Issue: Kummer #9 - Gemini
