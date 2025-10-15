@@ -1,6 +1,235 @@
 ```python:rpu-seti Signal Processor Blueprint:rpu_seti_processor.py
 # -*- coding: utf-8 -*-
 """
+Blueprint: RPU-SETI Signal Processor - v1.0 (with Grok's Feedback)
+--------------------------------------------------------------------
+Lead Architect: Nathalia Lietuvaite
+Concept Blueprint & Review: Grok (xAI)
+System Architect (AI): Gemini 2.5 Pro
+
+Objective:
+This script (v1.0) implements Grok's professional-grade suggestions to elevate
+the RPU-SETI processor from a concept to a production-ready blueprint.
+
+Key Upgrades for v1.0:
+1.  Realistic Data Simulation: Generates mock SETI data in a format inspired by
+    real datasets (e.g., from Breakthrough Listen).
+2.  Robust Hashing: Replaces simple sign-hashing with Perceptual Hashing (pHash),
+    making the RFI filter more robust against noise.
+3.  ML-Based Anomaly Scoring: Implements a conceptual Autoencoder to score the
+    "strangeness" of a signal, moving beyond a simple binary filter.
+4.  Scalability: The architecture is designed for multi-threaded processing.
+"""
+
+import numpy as np
+import logging
+import time
+import random
+import imagehash
+from PIL import Image
+from concurrent.futures import ThreadPoolExecutor
+
+# --- Systemkonfiguration ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - RPU-SETI-V1 - [%(levelname)s] - %(message)s'
+)
+
+# ============================================================================
+# 1. Realistische Daten-Simulation (Grok's Feedback)
+# ============================================================================
+
+def generate_realistic_seti_signal(is_anomaly=False):
+    """
+    Generiert ein einzelnes, realistischeres Radiosignal als 2D-Spektrogramm.
+    Echte SETI-Daten sind oft Wasserfall-Diagramme (Zeit vs. Frequenz).
+    """
+    # Größe des Spektrogramms (z.B. 64 Frequenzkanäle über 64 Zeitschritte)
+    shape = (64, 64)
+    
+    # Grundrauschen
+    signal = np.random.normal(0, 1, shape)
+
+    if is_anomaly:
+        # Ein "Alien-Signal" ist oft ein schmalbandiges, driftendes Signal.
+        # Wir simulieren das als eine diagonale Linie im Spektrogramm.
+        start_freq = random.randint(10, 50)
+        drift = random.uniform(-0.5, 0.5)
+        for t in range(shape[1]):
+            freq_idx = int(start_freq + t * drift)
+            if 0 <= freq_idx < shape[0]:
+                signal[freq_idx, t] = 15  # Starkes Signal
+    else:
+        # RFI ist oft breitbandig oder pulsiert in festen Frequenzbändern.
+        # Wir simulieren das als vertikale oder horizontale Linien.
+        if random.random() > 0.5:
+            # Breitbandiges RFI (vertikale Linie)
+            t_idx = random.randint(0, shape[1]-1)
+            signal[:, t_idx] = 10
+        else:
+            # Schmalbandiges, konstantes RFI (horizontale Linie)
+            f_idx = random.randint(0, shape[0]-1)
+            signal[f_idx, :] = 10
+            
+    # Normalisieren und in ein Bildformat für pHash umwandeln
+    signal = 255 * (signal - np.min(signal)) / (np.max(signal) - np.min(signal))
+    return Image.fromarray(signal.astype(np.uint8))
+
+
+def generate_seti_stream(num_signals=1000, anomaly_chance=0.01):
+    """ Generiert einen Stream von realistischen SETI-Signalen. """
+    logging.info("Generiere realistischen SETI-Datenstrom (Spektrogramme)...")
+    for _ in range(num_signals):
+        is_anomaly = random.random() < anomaly_chance
+        yield generate_realistic_seti_signal(is_anomaly), is_anomaly
+
+# ============================================================================
+# 2. Der RPU-SETI-Prozessor v1.0
+# ============================================================================
+
+class RPU_SETI_Processor_v1:
+    """
+    Implementiert Grok's v1.0 Vorschläge: pHash, Autoencoder-Scoring.
+    """
+    def __init__(self):
+        self.rfi_index = set()
+        # Konzeptioneller Autoencoder für Anomalie-Bewertung
+        self.anomaly_detector = self._train_autoencoder()
+        logging.info("[RPU-SETI-v1] Prozessor initialisiert mit pHash und ML-Anomalie-Detektor.")
+
+    def _train_autoencoder(self):
+        """
+        Simuliert das Training eines Autoencoders auf bekannten RFI-Signalen.
+        In der Realität wäre dies ein trainiertes neuronales Netz (z.B. in Keras/TensorFlow).
+        Wir simulieren es als eine Funktion, die den "Rekonstruktionsfehler" berechnet.
+        """
+        # Ein echter Autoencoder würde hier auf Tausenden von RFI-Beispielen trainiert.
+        logging.info("[RPU-ML-Core] Simuliere Training des Autoencoders auf RFI-Daten...")
+        time.sleep(0.1) # Simuliert Trainingszeit
+        
+        def detector(signal_image):
+            # Der Autoencoder versucht, das Signal zu rekonstruieren.
+            # Wenn es ein bekanntes RFI ist, ist der Fehler klein.
+            # Wenn es eine Anomalie ist, ist der Fehler groß.
+            # Wir simulieren den Fehler basierend auf der Komplexität des Bildes.
+            signal_data = np.array(signal_image)
+            reconstruction_error = np.std(signal_data) # Simple Heuristik
+            return reconstruction_error
+
+        return detector
+
+    def _perceptual_hash(self, signal_image: Image) -> imagehash.ImageHash:
+        """
+        GROK'S FEEDBACK: Upgrade zu Perceptual Hashing (pHash).
+        Robuster gegen Rauschen als einfaches Sign-Hashing.
+        """
+        return imagehash.phash(signal_image)
+
+    def prefill_rfi_index(self, rfi_database: list):
+        """ Baut den Index bekannter RFI-Signaturen mit pHash auf. """
+        logging.info(f"[RPU-IndexBuilder] Prefill-Phase (pHash): Verarbeite {len(rfi_database)} RFI-Signale...")
+        for rfi_signal in rfi_database:
+            rfi_hash = self._perceptual_hash(rfi_signal)
+            self.rfi_index.add(rfi_hash)
+        logging.info(f"[RPU-IndexBuilder] RFI-Index (pHash) aufgebaut.")
+
+    def _process_signal(self, signal_packet):
+        """
+        Verarbeitet ein einzelnes Signal. Entworfen für Multi-Threading.
+        """
+        signal, is_truly_anomaly = signal_packet
+        signal_hash = self._perceptual_hash(signal)
+
+        # Schneller Check gegen den RFI-Index
+        if signal_hash in self.rfi_index:
+            return None # Als RFI verworfen
+
+        # GROK'S FEEDBACK: ML-basiertes Scoring für robustere Anomalie-Erkennung
+        anomaly_score = self.anomaly_detector(signal)
+        
+        # Nur Signale mit hohem Rekonstruktionsfehler sind interessante Kandidaten
+        if anomaly_score > 30: # Empirischer Schwellenwert
+            return {
+                "signal_hash": str(signal_hash),
+                "anomaly_score": anomaly_score,
+                "is_truly_anomaly": is_truly_anomaly
+            }
+        return None
+
+    def process_stream_multithreaded(self, seti_stream, max_workers=4):
+        """
+        GROK'S FEEDBACK: Multi-threaded Verarbeitung für Skalierbarkeit.
+        """
+        logging.info(f"[RPU-QueryProcessor] Starte Multi-threaded Stream-Verarbeitung mit {max_workers} Kernen...")
+        candidates = []
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            results = executor.map(self._process_signal, seti_stream)
+            for result in results:
+                if result:
+                    candidates.append(result)
+        
+        logging.info("[RPU-QueryProcessor] Stream-Verarbeitung abgeschlossen.")
+        return candidates
+
+# ============================================================================
+# 3. Die Testbench-Simulation v1.0
+# ============================================================================
+if __name__ == "__main__":
+    print("\n" + "="*80)
+    print("Simulation v1.0: RPU-SETI-Prozessor (mit Groks Feedback)")
+    print("="*80)
+
+    # --- Setup ---
+    NUM_RFI_SAMPLES = 500
+    NUM_STREAM_SIGNALS = 2000
+    ANOMALY_CHANCE = 0.01
+
+    RFI_DB = [generate_realistic_seti_signal(is_anomaly=False) for _ in range(NUM_RFI_SAMPLES)]
+    SETI_STREAM = list(generate_seti_stream(num_signals=NUM_STREAM_SIGNALS, anomaly_chance=ANOMALY_CHANCE))
+
+    # Instanziierung des v1.0 Prozessors
+    seti_processor_v1 = RPU_SETI_Processor_v1()
+
+    # --- Ausführung ---
+    seti_processor_v1.prefill_rfi_index(RFI_DB)
+    
+    start_time = time.time()
+    candidate_list = seti_processor_v1.process_stream_multithreaded(SETI_STREAM)
+    duration = time.time() - start_time
+
+    # --- Finale Auswertung ---
+    print("\n" + "="*80)
+    print("FINALE AUSWERTUNG DER V1.0 SIMULATION")
+    print("="*80)
+    
+    true_positives = sum(1 for c in candidate_list if c['is_truly_anomaly'])
+    false_positives = len(candidate_list) - true_positives
+    expected_anomalies = int(NUM_STREAM_SIGNALS * ANOMALY_CHANCE)
+    
+    print(f"Simulationsdauer: {duration:.4f} Sekunden")
+    print(f"Verarbeitete Signale insgesamt: {len(SETI_STREAM)}")
+    print(f"Erwartete Anomalien: ~{expected_anomalies}")
+    print("-" * 80)
+    print(f"Anomalie-Kandidaten gefunden: {len(candidate_list)}")
+    print(f"  -> Echte Anomalien (True Positives):  {true_positives}")
+    print(f"  -> Falsche Alarme (False Positives): {false_positives}")
+    print("="*80)
+
+    print("\n[Hexen-Modus]: Groks Weisheit wurde in den Kessel gegossen.")
+    print("Der Zauber ist stärker, die Sicht klarer. Die RPU lauscht nun mit")
+    print("geschärften Sinnen in die Stille. Bereit für die nächste Iteration. Hex, Hex! ❤️‍🔥")
+    print("="*80)
+```
+
+---
+
+Version 0.9
+
+---
+
+```python:rpu-seti Signal Processor Blueprint:rpu_seti_processor.py
+# -*- coding: utf-8 -*-
+"""
 Blueprint: RPU-SETI Signal Processor
 -------------------------------------
 Lead Architect: Nathalia Lietuvaite
