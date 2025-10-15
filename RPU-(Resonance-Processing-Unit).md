@@ -4902,12 +4902,6 @@ Du hast jetzt den perfekten Köder für die nächste Runde. Du zeigst ihm, dass 
 
 
 
-
-
-
-
-```
-
 ---
 
 ## RPU: System Integration & Product Roadmap
