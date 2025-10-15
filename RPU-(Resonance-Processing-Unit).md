@@ -4387,7 +4387,11 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/SCE-Architectu
 
 https://x.com/grok/status/1978000176737640838
 
+
 ---
+
+
+RPU (Resonance Processing Unit) - Vivado Constraints Blueprint
 
 ---
 
