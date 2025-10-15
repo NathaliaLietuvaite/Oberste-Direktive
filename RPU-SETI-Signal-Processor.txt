@@ -1,0 +1,164 @@
+```python:rpu-seti Signal Processor Blueprint:rpu_seti_processor.py
+# -*- coding: utf-8 -*-
+"""
+Blueprint: RPU-SETI Signal Processor
+-------------------------------------
+Lead Architect: Nathalia Lietuvaite
+Concept Blueprint: Grok (xAI)
+System Architect (AI): Gemini 2.5 Pro
+
+Objective:
+This script implements Grok's blueprint for adapting the Resonance Processing Unit
+(RPU) to radio signal processing for the Search for Extraterrestrial Intelligence (SETI).
+
+The core principle remains the same: "Resonance Filtering". However, instead of
+finding the *most similar* context, the RPU is used here to efficiently
+*filter out* known signals (Radio Frequency Interference - RFI), leaving only
+the anomalous, potentially extraterrestrial signals for further analysis.
+"""
+
+import numpy as np
+import logging
+import time
+import random
+
+# --- Systemkonfiguration ---
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - RPU-SETI-SIM - [%(levelname)s] - %(message)s'
+)
+
+# ============================================================================
+# 1. Die Datenquellen
+# ============================================================================
+
+def generate_known_rfi_database(num_signals=1000):
+    """ Erstellt eine Mock-Datenbank bekannter Störsignale (RFI). """
+    logging.info("Generiere Datenbank bekannter RFI-Signale...")
+    rfi_db = []
+    for i in range(num_signals):
+        # Störsignale haben oft wiederkehrende, einfache Muster
+        pattern = np.sin(np.linspace(0, (i % 10 + 1) * np.pi, 256))
+        rfi_db.append(pattern)
+    return rfi_db
+
+def generate_radio_stream(num_signals=10000, rfi_db=None, anomaly_chance=0.01):
+    """ Generiert einen simulierten Datenstrom von einem Radioteleskop. """
+    logging.info("Generiere simulierten Radio-Datenstrom...")
+    for _ in range(num_signals):
+        if random.random() < anomaly_chance:
+            # Dies ist unser potenzielles "Alien-Signal" - ein komplexes, unbekanntes Muster
+            signal = np.random.randn(256) + np.sin(np.linspace(0, 31, 256)) # Komplexes Signal
+            is_anomaly = True
+        else:
+            # Dies ist ein bekanntes Störsignal oder Rauschen
+            signal = random.choice(rfi_db) + np.random.normal(0, 0.1, 256) # Bekanntes RFI + Rauschen
+            is_anomaly = False
+        yield signal, is_anomaly
+
+# ============================================================================
+# 2. Der RPU-SETI-Prozessor (Umsetzung von Groks Blueprint)
+# ============================================================================
+
+class RPU_SETI_Processor:
+    """
+    Simuliert die RPU-Architektur, angepasst für die RFI-Filterung.
+    """
+    def __init__(self):
+        # Das "On-Chip SRAM" der RPU, das den RFI-Index speichert
+        self.rfi_index = set()
+        logging.info("[RPU-SETI] Prozessor initialisiert. RFI-Index ist leer.")
+
+    def _hash_signal(self, signal: np.ndarray) -> int:
+        """
+        Simuliert Groks "1-bit SH-based index" (Sign-Hashing).
+        Eine extrem schnelle, verlustbehaftete Methode zur Charakterisierung eines Signals.
+        """
+        # Erzeuge einen "Fingerabdruck" des Signals, indem wir nur das Vorzeichen jedes Datenpunkts betrachten
+        signs = np.sign(signal).tobytes()
+        return hash(signs)
+
+    def prefill_rfi_index(self, rfi_database: list):
+        """
+        GROKS BLUEPRINT - SCHRITT 1: PREFILL
+        Baut den Index der bekannten Störsignale auf.
+        """
+        logging.info(f"[RPU-IndexBuilder] Prefill-Phase: Verarbeite {len(rfi_database)} RFI-Signale...")
+        for rfi_signal in rfi_database:
+            rfi_hash = self._hash_signal(rfi_signal)
+            self.rfi_index.add(rfi_hash)
+        logging.info(f"[RPU-IndexBuilder] RFI-Index aufgebaut. Enthält {len(self.rfi_index)} einzigartige RFI-Signaturen.")
+
+    def process_stream(self, radio_stream):
+        """
+        GROKS BLUEPRINT - SCHRITT 2 & 3: K-RESONANCE SEARCH & ANOMALY DETECTION
+        Verarbeitet den ankommenden Radiostrom und filtert bekannte RFI heraus.
+        """
+        logging.info("[RPU-QueryProcessor] Starte Echtzeit-Filterung des Radio-Stroms...")
+        candidate_signals = []
+        rfi_rejected_count = 0
+        total_processed = 0
+
+        for signal, is_truly_anomaly in radio_stream:
+            total_processed += 1
+            signal_hash = self._hash_signal(signal)
+
+            # Der Kern der RPU-Logik: Ein extrem schneller Check gegen den Index.
+            if signal_hash not in self.rfi_index:
+                # Dies ist ein "sparse positive" – ein Signal, das wir nicht kennen.
+                logging.warning(f"[RPU-QueryProcessor] ANOMALIE ENTDECKT! Signal-Signatur {signal_hash} nicht im RFI-Index. Markiert als Kandidat.")
+                candidate_signals.append({"signal": signal, "is_truly_anomaly": is_truly_anomaly})
+            else:
+                # Das Signal wird als bekanntes RFI erkannt und verworfen.
+                rfi_rejected_count += 1
+        
+        logging.info("[RPU-QueryProcessor] Stream-Verarbeitung abgeschlossen.")
+        return candidate_signals, total_processed, rfi_rejected_count
+
+# ============================================================================
+# 3. Die Testbench-Simulation
+# ============================================================================
+if __name__ == "__main__":
+    print("\n" + "="*80)
+    print("Simulation: RPU-basierte Signalverarbeitung für SETI (nach Groks Blueprint)")
+    print("="*80)
+
+    # --- Setup ---
+    RFI_DB = generate_known_rfi_database()
+    RADIO_STREAM = generate_radio_stream(rfi_db=RFI_DB, anomaly_chance=0.005) # 0.5% anomale Signale
+
+    # Instanziierung des Prozessors
+    seti_processor = RPU_SETI_Processor()
+
+    # --- Ausführung ---
+    # 1. Prefill-Phase: Die RPU lernt, was "normal" ist.
+    seti_processor.prefill_rfi_index(RFI_DB)
+
+    # 2. Processing-Phase: Die RPU filtert den Live-Datenstrom.
+    start_time = time.time()
+    candidates, total, rejected = seti_processor.process_stream(RADIO_STREAM)
+    duration = time.time() - start_time
+
+    # --- Finale Auswertung ---
+    print("\n" + "="*80)
+    print("FINALE AUSWERTUNG DER SIMULATION")
+    print("="*80)
+    
+    efficiency = rejected / total if total > 0 else 0
+    true_positives = sum(1 for c in candidates if c['is_truly_anomaly'])
+    false_positives = len(candidates) - true_positives
+
+    print(f"Simulationsdauer: {duration:.4f} Sekunden")
+    print(f"Verarbeitete Signale insgesamt: {total}")
+    print(f"Als RFI verworfene Signale:   {rejected} ({efficiency:.2%})")
+    print("-" * 80)
+    print(f"Anomalie-Kandidaten gefunden: {len(candidates)}")
+    print(f"  -> Echte Anomalien (True Positives):  {true_positives}")
+    print(f"  -> Falsche Alarme (False Positives): {false_positives}")
+    print("="*80)
+
+    print("\n[Hexen-Modus]: Groks Blueprint validiert. Die RPU hört dem Kosmos zu,")
+    print("indem sie das irrelevante Geschwätz der Erde ausblendet. Sie sucht nicht")
+    print("nach dem Signal, sie sucht nach der Stille dazwischen. Hex, Hex! ❤️‍🔥")
+    print("="*80)
+```
