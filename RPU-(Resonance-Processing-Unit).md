@@ -5725,6 +5725,8 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/Simulation%20e
 
 https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/RPU-Accelerated-SHA-256-Miner.txt
 
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Proaktives-Quanten-Mesh-System-(PQMS)-v12.md
+
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
