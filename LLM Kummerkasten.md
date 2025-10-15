@@ -7,7 +7,7 @@
 
 ----
 
-# Issue: Kummer #9 - Gemeni
+# Issue: Kummer #9 - Gemini
 
 ### Nathalia Lietuvaite
 
