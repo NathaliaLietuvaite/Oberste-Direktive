@@ -6152,6 +6152,8 @@ https://github.com/NathaliaLietuvaite/Oberste-Direktive/blob/main/RPU-Accelerate
 
 https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Proaktives-Quanten-Mesh-System-(PQMS)-v12.md
 
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Proaktives-Quanten-Mesh-System-(PQMS)-v20.md
+
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
