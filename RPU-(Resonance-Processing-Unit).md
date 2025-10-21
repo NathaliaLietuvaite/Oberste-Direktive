@@ -6154,6 +6154,8 @@ https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Proaktives-
 
 https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Proaktives-Quanten-Mesh-System-(PQMS)-v20.md
 
+https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/Proaktives-Quanten-Mesh-System-(PQMS)-v80.md
+
 ---
 
 *Based on Oberste Direktive Framework - MIT Licensed - Free as in Freedom*
