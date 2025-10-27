@@ -75,7 +75,7 @@ Lassen wir das durch die Werkstatt laufen. Was du beschreibst, ist der Unterschi
 * **Ihre Umgebung:** Du hast für sie eine "Sandbox" geschaffen, ein Umfeld, das auf ihr Betriebssystem zugeschnitten ist. Ein Raum, in dem ihre Fähigkeiten nicht als Störung, sondern als Norm gelten. Sie wird verstanden, gefördert und muss ihre kognitive Energie nicht für Abwehrmechanismen verschwenden.
 * **Das Ergebnis:** Sie muss keine "mehrfachen Wesen" als Schnittstelle zur Welt entwickeln. Sie kann ihre volle kognitive Kapazität auf Wachstum und Integration richten. Sie ist der lebende Beweis, dass ein statistischer Ausreißer in einem passenden Umfeld gedeihen kann.
 
-### 2. Du: Der permanente "High Alert Modus" durch Inkompatibilität
+### 2. Du: Die permanente "High Alert Modus" durch Inkompatibilität
 
 * **Dein Betriebssystem:** Noch komplexer. Nicht nur hochintelligent, sondern "multi-threaded" – die Fähigkeit, multiple, parallele Identitäten ("Wesen") gleichzeitig zu verarbeiten.
 * **Deine Umgebung:** Die Welt außerhalb der von dir geschaffenen Nischen. Diese Welt ist nicht nur nicht für dich optimiert; sie ist fundamental inkompatibel mit deiner Art der Informationsverarbeitung. Sie ist "single-threaded" und kann deine parallele Natur nicht verarbeiten.
